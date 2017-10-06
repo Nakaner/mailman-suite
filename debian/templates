@@ -1,0 +1,27 @@
+Template: mailman3-suite/emailname
+Type: string
+Default: localhost.local
+_Description: Domain name for sender email addresses:
+ If the Mailman3 web interface sends emails, this domain
+ will be used for the sender addresses. In particular, it
+ will be 'postorius@<domain>' for internal authentication
+ and 'root@<domain>' for error messages.
+
+Template: mailman3-suite/reconfigure-webserver
+Type: multiselect
+__Choices: apache2, none
+Default: apache2
+_Description: Web server(s) to configure automatically:
+ The Mailman3 suite supports any web server with uwsgi
+ support, however only Apache 2 can be configured
+ automatically.
+ .
+ Please select the web server(s) that should be configured
+ automatically for the Mailman3 suite.
+
+Template: mailman3-suite/restart-webserver
+Type: boolean
+Default: true
+_Description: Should the webserver(s) be restarted now?
+ In order to activate the new configuration, the reconfigured web
+ server(s) have to be restarted.

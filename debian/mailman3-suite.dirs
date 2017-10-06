@@ -1,0 +1,4 @@
+etc/mailman3
+usr/share/mailman3-suite
+var/lib/mailman3/web
+var/log/mailman3

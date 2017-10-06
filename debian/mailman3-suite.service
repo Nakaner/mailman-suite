@@ -1,0 +1,17 @@
+[Unit]
+Description=Mailman3 suite uWSGI service
+After=network.target
+Documentation=file:///usr/share/doc/mailman3-suite/README.rst
+
+[Service]
+ExecStart=/usr/bin/uwsgi --ini /usr/share/mailman3-suite/uwsgi.ini
+Restart=on-failure
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

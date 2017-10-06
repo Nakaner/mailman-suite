@@ -1,0 +1,10 @@
+/var/log/mailman3/mailman3-suite.log {
+	copytruncate
+	daily
+	rotate 5
+	compress
+	delaycompress
+	missingok
+	notifempty
+	create 640 list list
+}

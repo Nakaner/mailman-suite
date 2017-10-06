@@ -1,0 +1,11 @@
+General maintenance
+
+    This package is maintained in Git and uses the git-buildpackage workflow.
+
+Build the package
+
+    Build the package using git-buildpackage with pristine tar:
+
+        gbp buildpackage --git-pristine-tar
+
+ -- Jonas Meurer <mejo@debian.org>  Fri, 06 Oct 2017 14:48:00 +0200

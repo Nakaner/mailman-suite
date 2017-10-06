@@ -1,0 +1,183 @@
+#!/bin/sh
+
+set -e
+
+. /usr/share/debconf/confmodule
+. /usr/share/dbconfig-common/dpkg/postinst.pgsql
+
+dbc_go mailman3-suite "$@"
+
+pathfind() {
+    OLDIFS="$IFS"
+    IFS=:
+    for p in $PATH; do
+        if [ -x "$p/$*" ]; then
+            IFS="$OLDIFS"
+            return 0
+        fi
+    done
+    IFS="$OLDIFS"
+    return 1
+}
+
+if [ -e /usr/share/apache2/apache2-maintscript-helper ]; then
+    . /usr/share/apache2/apache2-maintscript-helper
+
+    apache_install() {
+        if [ -d /etc/apache2/conf-available ] && [ ! -e /etc/apache2/conf-available/mailman3.conf ]; then
+            ln -s /etc/mailman3/apache.conf /etc/apache2/conf-available/mailman3.conf
+        fi
+        # Enable proxy_uwsgi module
+        if [ -f /etc/apache2/mods-available/proxy_uwsgi.load ]; then
+            apache2_invoke enmod proxy_uwsgi
+        fi
+        # Enable the configuration
+        apache2_invoke enconf mailman3.conf
+    }
+else
+    apache_install() {
+        return 1
+    }
+fi
+
+settings_local_new=
+hyperkitty_cfg_new=
+
+cleanup () {
+    [ "$settings_local_new" ] && rm -f "$settings_local_new"
+    [ "$hyperkitty_cfg_new" ] && rm -f "$hyperkitty_cfg_new"
+}
+
+create_config () {
+    trap cleanup EXIT
+    settings_local_new=`tempfile -m 0644`
+    cp -a /usr/share/mailman3-suite/settings_local.py.sample $settings_local_new
+    hyperkitty_cfg_new=`tempfile -m 0644`
+    cp -a /usr/share/mailman3-suite/hyperkitty.cfg.sample $hyperkitty_cfg_new
+    
+    # set PostgreSQL settings from dbconfig-common in settings_local.py
+    if [ -f /etc/dbconfig-common/mailman3-suite.conf ]; then
+        dbuser="$(sed -ne "s/^dbc_dbuser='\(\S\+\)'/\1/p" \
+            /etc/dbconfig-common/mailman3-suite.conf)"
+        dbpass="$(sed -ne "s/^dbc_dbpass='\(\S\+\)'/\1/p" \
+            /etc/dbconfig-common/mailman3-suite.conf)"
+        dbserver="$(sed -ne "s/^dbc_dbserver='\(\S\+\)'/\1/p" \
+            /etc/dbconfig-common/mailman3-suite.conf)"
+        dbname="$(sed -ne "s/^dbc_dbname='\(\S\+\)'/\1/p" \
+            /etc/dbconfig-common/mailman3-suite.conf)"
+        sed -i -e "s/^\(\s\+'NAME':\s*'\)\S\+\(',\s*\)/\1$dbname\2/" \
+               -e "s/^\(\s\+'USER':\s*'\)\S\+\(',\s*\)/\1$dbuser\2/" \
+               -e "s/^\(\s\+'PASSWORD':\s*'\)\S\+\(',\s*\)/\1$dbpass\2/" \
+               -e "s/^\(\s\+'HOST':\s*'\)\S*\(',\s*\)/\1$dbserver\2/" \
+               $settings_local_new
+    fi
+
+    # set PostgreSQL settings from dbconfig-common in settings_local.py
+    # Get SECRET_KEY from mailman3-suite.py if existent
+    [ -f /etc/mailman3/mailman3-suite.py ] && {
+        secretkey="$(sed -ne "s/^SECRET_KEY = '\(\S\+\)'$/\1/p" \
+            /etc/mailman3/mailman3-suite.py)"
+    }
+    # If this is the default key, forget it!
+    [ "$secretkey" = "change-this-on-your-production-server" ] && unset secretkey
+    # Generate a new one
+    while [ -z "$secretkey" ]; do
+        secretkey="$(dd if=/dev/urandom bs=1 count=200 2>/dev/null \
+            | tr -c -d 'A-Za-z0-9' | sed -ne 's/\(.\{48\}\).*/\1/p')"
+    done
+
+    # Get MAILMAN_ARCHIVER_KEY from mailman3-suite.py if existent, set
+    [ -f /etc/mailman3/mailman3-suite.py ] && {
+        archiverkey="$(sed -ne "s/^MAILMAN_ARCHIVER_KEY = '\(\S\+\)'$/\1/p" \
+            /etc/mailman3/mailman3-suite.py)"
+    }
+    # If this is the default key, forget it!
+    [ "$archiverkey" = "SecretArchiverAPIKey" ] && unset archiverkey
+    # Generate a new one
+    while [ -z "$archiverkey" ]; do
+        archiverkey="$(dd if=/dev/urandom bs=1 count=200 2>/dev/null \
+            | tr -c -d 'A-Za-z0-9' | sed -ne 's/\(.\{32\}\).*/\1/p')"
+    done
+
+    db_get mailman3-suite/emailname
+    emailname="$RET"
+
+    # Set custom settings in settings_local.py
+    sed -i -e "s/^\(\s*SECRET_KEY\s*=\s*'\)\S\+\('\s*\)$/\1$secretkey\2/" \
+           -e "s/^\(\s*MAILMAN_ARCHIVER_KEY\s*=\s*'\)\S\+\('\s*\)/\1$archiverkey\2/" \
+           -e "s/^\(\s*EMAILNAME\s*=\s*'\)\S\+\('\s*\)/\1$emailname\2/" \
+           $settings_local_new
+
+    # Set custom settings in hyperkitty.cfg
+    sed -i -e "s/\(api_key:\s*\)\S\+\(\s*\)$/\1$archiverkey\2/" \
+           $hyperkitty_cfg_new
+
+    # Register new config file
+    ucf --three-way --debconf-ok "$settings_local_new" /etc/mailman3/mailman3-suite.py
+    ucf --three-way --debconf-ok "$hyperkitty_cfg_new" /etc/mailman3/hyperkitty.cfg
+    ucfr mailman3-suite /etc/mailman3/mailman3-suite.py
+    ucfr mailman3-suite /etc/mailman3/hyperkitty.cfg
+    rm -f $settings_local_new $hyperkitty_cfg_new
+}
+
+init_django () {
+    if pathfind django-admin; then
+        django-admin migrate --pythonpath /usr/share/mailman3-suite --settings settings
+        django-admin loaddata --pythonpath /usr/share/mailman3-suite --settings settings first_start
+        yes yes | django-admin collectstatic --pythonpath /usr/share/mailman3-suite --settings settings
+    fi
+}
+
+case "$1" in
+    configure)
+
+        # Handle webserver reconfiguration/restart
+        db_get mailman3-suite/reconfigure-webserver
+        webservers="$RET"
+        restart=""
+
+        for webserver in $webservers; do
+            webserver=${webserver%,}
+            case "$webserver" in
+                apache2)
+                    apache_install
+                    ;;
+            esac
+            pathfind $webserver || continue
+            restart="$restart $webserver"
+        done
+
+        db_get mailman3-suite/restart-webserver
+        res="$RET"
+        if [ "$res" = "true" ]; then
+            for webserver in $restart; do
+                webserver=${webserver%,}
+                # Redirection of 3 is needed because Debconf uses it and it might
+                # be inherited by webserver. See bug #446324.
+                if pathfind invoke-rc.d; then
+                    invoke-rc.d $webserver reload 3>/dev/null || true
+                else
+                    /etc/init.d/$webserver reload 3>/dev/null || true
+                fi
+            done
+        fi
+
+        create_config
+
+	init_django
+
+        db_stop
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

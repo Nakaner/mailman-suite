@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -e
+
+. /usr/share/debconf/confmodule
+. /usr/share/dbconfig-common/dpkg/prerm.pgsql
+
+dbc_go mailman3-suite "$@"
+
+pyclean /usr/share/mailman3-suite
+
+case "$1" in
+    remove|upgrade|deconfigure)
+    ;;
+
+    failed-upgrade)
+    ;;
+
+    *)
+        echo "prerm called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0
