@@ -1,7 +1,7 @@
 Mailman3 Suite for Debian
 =========================
 
- This packages ships a Django web project to provide the Mailman3 Postorius
+ This package ships a Django web project to provide the Mailman3 Postorius
 web interface and the Hyperkitty web achiver together. Most necessary
 configuration is automated:
 
