@@ -28,8 +28,15 @@ Depends: dbconfig-pgsql | dbconfig-no-thanks,
 Recommends: mailman3-core, libapache2-mod-proxy-uwsgi | nxginx, postgresql
 Description: Django project integrating Mailman3 Postorius and HyperKitty
  This django web application provides the Mailman3 Postorius web interface
- and the HyperKitty mailinglist archiver integrated into one project and
- made available via uwsgi.
+ and the HyperKitty mailinglist archiver integrated into one project.
+ .
+ The package automates most of the necessary configuration for the Django
+ project (PostgreSQL database, webserver configuration, secret and API key
+ generation, Django project configuration) to get a ready-to-use Mailman3
+ suite.
+ .
+ The Mailman3 Django project runs as uWSGI daemon and the webserver is
+ configured as reverse proxy. It can be accessed at '/mailman3'.
 
 Package: mailman3
 Architecture: all

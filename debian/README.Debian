@@ -1,0 +1,28 @@
+Mailman3 Suite for Debian
+=========================
+
+ This packages ships a Django web project to provide the Mailman3 Postorius
+web interface and the Hyperkitty web achiver together. Most necessary
+configuration is automated:
+
+ * PostgreSQL database and user for the Django project are created.
+ * A uWSGI daemon is enabled and started to provide the Django project
+   at 'uwsgi://127.0.0.1:8080/' and at 'http://127.0.0.1:8000/'.
+ * A secure API token for the Hyperkitty archiver is generated and
+   set both in the Django and in the Hyperkitty configuration.
+ * Supported webservers (currently Apache2) will be configured to provide
+   access to the project at '/mailman3' (as reverse proxying to the uWSGI
+   daemon).
+
+ Unfortunately, one step cannot be automated (yet). You need to enable the
+Hyperkitty archiver in mailman3-core by adding the following snippet to
+/etc/mailman3/mailman.cfg:
+
+```
+[archiver.hyperkitty]
+class: mailman_hyperkitty.Archiver
+enable: yes
+configuration: /etc/mailman3/hyperkitty.cfg
+```
+
+ -- Jonas Meurer <mejo@debian.org>, Wed, 11 Oct 2017 21:14:29 +0200
