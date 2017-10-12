@@ -1,6 +1,10 @@
 mailman-suite (0+20170523-1) unstable; urgency=medium
 
+  [Jonas Meurer]
   * Initial release. (Closes: #799292, #877878)
   * Package based on upstream Git commit cd1b5856 from May 23rd 2017.
 
- -- Jonas Meurer <mejo@debian.org>  Mon, 09 Oct 2017 13:15:33 +0200
+  [Pierre-Elliott Bécue]
+  * French translation for debconf template.
+
+ -- Pierre-Elliott Bécue <becue@crans.org> Thu, 12 Oct 2017 15:04:12 +0200
