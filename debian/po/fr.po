@@ -1,4 +1,4 @@
-# Translation of mailman3-core debconf templates into French.
+# Translation of mailman3-suite debconf templates into French.
 # Copyright (C) 2017
 # This file is distributed under the same license as the mailman-suite package.
 # Pierre-Elliott Bécue <becue@crans.org>, 2017.
