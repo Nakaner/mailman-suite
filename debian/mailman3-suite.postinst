@@ -123,10 +123,11 @@ create_config () {
 
 init_django () {
     if pathfind django-admin; then
-        django-admin makemigrations --pythonpath /usr/share/mailman3-suite --settings settings
-        django-admin migrate --pythonpath /usr/share/mailman3-suite --settings settings
-        django-admin loaddata --pythonpath /usr/share/mailman3-suite --settings settings first_start
-        yes yes | django-admin collectstatic --pythonpath /usr/share/mailman3-suite --settings settings
+        django_admin_args="--verbosity 0 --no-color --pythonpath /usr/share/mailman3-suite --settings settings"
+        django-admin makemigrations --no-input $django_admin_args
+        django-admin migrate        --no-input $django_admin_args
+        django-admin loaddata                  $django_admin_args first_start
+        django-admin collectstatic  --no-input $django_admin_args
     fi
 }
 
