@@ -6,3 +6,5 @@
 override_dh_fixperms:
 	chmod 0644 debian/mailman3-suite/usr/share/mailman3-suite/wsgi.py
 	dh_fixperms
+	chown list:list debian/mailman3-suite/var/lib/mailman3/web/fulltext_index
+	chown list:list debian/mailman3-suite/var/lib/mailman3/web/static/CACHE

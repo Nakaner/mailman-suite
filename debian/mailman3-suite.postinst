@@ -116,6 +116,8 @@ create_config () {
     ucf --three-way --debconf-ok "$hyperkitty_cfg_new" /etc/mailman3/hyperkitty.cfg
     ucfr mailman3-suite /etc/mailman3/mailman3-suite.py
     ucfr mailman3-suite /etc/mailman3/hyperkitty.cfg
+    chmod 0640 /etc/mailman3/mailman3-suite.py /etc/mailman3/hyperkitty.cfg
+    chown root:list /etc/mailman3/mailman3-suite.py /etc/mailman3/hyperkitty.cfg
     rm -f $settings_local_new $hyperkitty_cfg_new
 }
 
