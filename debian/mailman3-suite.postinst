@@ -72,7 +72,6 @@ create_config () {
                $settings_local_new
     fi
 
-    # set PostgreSQL settings from dbconfig-common in settings_local.py
     # Get SECRET_KEY from mailman3-suite.py if existent
     [ -f /etc/mailman3/mailman3-suite.py ] && {
         secretkey="$(sed -ne "s/^SECRET_KEY = '\(\S\+\)'$/\1/p" \
