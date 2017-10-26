@@ -121,6 +121,7 @@ create_config () {
 
 init_django () {
     if pathfind django-admin; then
+        django-admin makemigrations --pythonpath /usr/share/mailman3-suite --settings settings
         django-admin migrate --pythonpath /usr/share/mailman3-suite --settings settings
         django-admin loaddata --pythonpath /usr/share/mailman3-suite --settings settings first_start
         yes yes | django-admin collectstatic --pythonpath /usr/share/mailman3-suite --settings settings
