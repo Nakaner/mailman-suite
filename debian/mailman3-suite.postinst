@@ -94,8 +94,8 @@ create_config () {
     [ "$restapipass" = "restpass" ] && unset restapipass
     # Set a new one
     if [ -z "$archiverkey" ]; then
-	[ -f /etc/mailman3/mailman.cfg ] && {
-	    restapipass="$(sed -ne 's/^\s*admin_pass:\s*//p' \
+        [ -f /etc/mailman3/mailman.cfg ] && {
+            restapipass="$(sed -ne 's/^\s*admin_pass:\s*//p' \
                 /etc/mailman3/mailman.cfg)"
         }
     fi
@@ -133,16 +133,25 @@ create_config () {
     ucfr mailman3-suite /etc/mailman3/mailman3-suite.py
     ucfr mailman3-suite /etc/mailman3/hyperkitty.cfg
     chmod 0640 /etc/mailman3/mailman3-suite.py /etc/mailman3/hyperkitty.cfg
-    chown root:list /etc/mailman3/mailman3-suite.py /etc/mailman3/hyperkitty.cfg
+    chown root:list     /etc/mailman3/hyperkitty.cfg
+    chown root:www-data /etc/mailman3/mailman3-suite.py
     rm -f $settings_local_new $hyperkitty_cfg_new
+}
+
+create_logfiles () {
+    for logfile in /var/log/mailman3/mailman-suite.log /var/log/mailman3/mailman-suite-uwsgi.log; do
+        touch $logfile
+        chown www-data:www-data $logfile
+        chmod 0640 $logfile
+    done
 }
 
 django_admin_args="--verbosity 0 --no-color --pythonpath /usr/share/mailman3-suite --settings settings"
 
 init_django () {
     if pathfind django-admin; then
-        django-admin loaddata $django_admin_args first_start
         update_django
+        django-admin loaddata $django_admin_args first_start
     fi
 }
 
@@ -188,17 +197,13 @@ case "$1" in
         fi
 
         create_config
+        create_logfiles
 
         if [ -n "$2" ]; then
             init_django
         else
             update_django
         fi
-
-	logfile="/var/log/mailman3/mailman-suite.log"
-	touch $logfile
-	chown list:list $logfile
-	chmod 0640 $logfile
 
         db_stop
     ;;

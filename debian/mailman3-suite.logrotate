@@ -6,7 +6,7 @@
 	delaycompress
 	missingok
 	notifempty
-	create 640 list list
+	create 640 www-data www-data
 }
 
 /var/log/mailman3/mailman-suite-uwsgi.log {
@@ -17,5 +17,5 @@
 	delaycompress
 	missingok
 	notifempty
-	create 640 list list
+	create 640 www-data www-data
 }
