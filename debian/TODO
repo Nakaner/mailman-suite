@@ -1,6 +1,11 @@
 TODOs for mailman-suite
 =======================
 
+* mailman3-suite: prompt for superuser credentials and create superuser
+
+  For that, we have to find a way to pass the password via stdin to
+  'django-admin createsuperuser'.
+
 * mailman3-suite: drop hard dependency on mailman3-core
 
   For now, the dependency is there to ensure that the postinst of
