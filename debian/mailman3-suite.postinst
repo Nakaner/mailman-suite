@@ -195,6 +195,11 @@ case "$1" in
             update_django
         fi
 
+	logfile="/var/log/mailman3/mailman-suite.log"
+	touch $logfile
+	chown list:list $logfile
+	chmod 0640 $logfile
+
         db_stop
     ;;
 
