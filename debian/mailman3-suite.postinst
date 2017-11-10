@@ -85,7 +85,22 @@ create_config () {
             | tr -c -d 'A-Za-z0-9' | sed -ne 's/\(.\{48\}\).*/\1/p')"
     done
 
-    # Get MAILMAN_ARCHIVER_KEY from mailman3-suite.py if existent, set
+    # Get MAILMAN_REST_API_PASS from mailman3-suite.py if existent
+    [ -f /etc/mailman3/mailman3-suite.py ] && {
+        restapipass="$(sed -ne "s/^MAILMAN_REST_API_PASS = '\(\S\+\)'$/\1/p" \
+            /etc/mailman3/mailman3-suite.py)"
+    }
+    # If this is the default key, forget it!
+    [ "$restapipass" = "restpass" ] && unset restapipass
+    # Set a new one
+    if [ -z "$archiverkey" ]; then
+	[ -f /etc/mailman3/mailman.cfg ] && {
+	    restapipass="$(sed -ne 's/^\s*admin_pass:\s*//p' \
+                /etc/mailman3/mailman.cfg)"
+        }
+    fi
+
+    # Get MAILMAN_ARCHIVER_KEY from mailman3-suite.py if existent
     [ -f /etc/mailman3/mailman3-suite.py ] && {
         archiverkey="$(sed -ne "s/^MAILMAN_ARCHIVER_KEY = '\(\S\+\)'$/\1/p" \
             /etc/mailman3/mailman3-suite.py)"
@@ -103,6 +118,7 @@ create_config () {
 
     # Set custom settings in settings_local.py
     sed -i -e "s/^\(\s*SECRET_KEY\s*=\s*'\)\S\+\('\s*\)$/\1$secretkey\2/" \
+           -e "s/^\(\s*MAILMAN_REST_API_PASS\s*=\s*'\)\S\+\('\s*\)/\1$restapipass\2/" \
            -e "s/^\(\s*MAILMAN_ARCHIVER_KEY\s*=\s*'\)\S\+\('\s*\)/\1$archiverkey\2/" \
            -e "s/^\(\s*EMAILNAME\s*=\s*'\)\S\+\('\s*\)/\1$emailname\2/" \
            $settings_local_new
@@ -121,12 +137,19 @@ create_config () {
     rm -f $settings_local_new $hyperkitty_cfg_new
 }
 
+django_admin_args="--verbosity 0 --no-color --pythonpath /usr/share/mailman3-suite --settings settings"
+
 init_django () {
     if pathfind django-admin; then
-        django_admin_args="--verbosity 0 --no-color --pythonpath /usr/share/mailman3-suite --settings settings"
-        django-admin makemigrations --no-input $django_admin_args
         django-admin migrate        --no-input $django_admin_args
         django-admin loaddata                  $django_admin_args first_start
+        django-admin collectstatic  --no-input $django_admin_args
+    fi
+}
+
+update_django() {
+    if pathfind django-admin; then
+        django-admin migrate        --no-input $django_admin_args
         django-admin collectstatic  --no-input $django_admin_args
     fi
 }
@@ -167,7 +190,11 @@ case "$1" in
 
         create_config
 
-	init_django
+        if [ -n "$2" ]; then
+            init_django
+        else
+            update_django
+        fi
 
         db_stop
     ;;
