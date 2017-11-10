@@ -14,6 +14,7 @@ Package: mailman3-suite
 Architecture: all
 Depends: dbconfig-pgsql | dbconfig-no-thanks,
          lsb-base,
+         mailman3-core,
          node-less,
          python (<< 2.8),
          python-django-hyperkitty,
@@ -25,7 +26,7 @@ Depends: dbconfig-pgsql | dbconfig-no-thanks,
          uwsgi,
          uwsgi-plugin-python,
          ${misc:Depends}
-Recommends: mailman3-core, libapache2-mod-proxy-uwsgi | nxginx, postgresql
+Recommends: libapache2-mod-proxy-uwsgi | nxginx, postgresql
 Description: Django project integrating Mailman3 Postorius and HyperKitty
  This django web application provides the Mailman3 Postorius web interface
  and the HyperKitty mailinglist archiver integrated into one project.
