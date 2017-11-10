@@ -7,7 +7,14 @@ set -e
 
 dbc_go mailman3-suite "$@"
 
-pyclean /usr/share/mailman3-suite
+if which pyclean >/dev/null 2>&1; then
+    pyclean -p mailman3-suite
+else
+    dpkg -L mailman3-suite | grep \.py$ | while read file
+    do
+        rm -f "${file}"[co] >/dev/null
+    done
+fi
 
 case "$1" in
     remove|upgrade|deconfigure)
