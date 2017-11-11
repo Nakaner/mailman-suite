@@ -170,7 +170,7 @@ create_superuser () {
     db_get mailman3-suite/superuser-password
     su_password="$RET"
 
-    if [ -n "$su_name" && -n "$su_mail" && -n "$su_password" ]; then
+    if [ -n "$su_name" ] && [ -n "$su_mail" ] && [ -n "$su_password" ]; then
         /usr/share/mailman3-suite/manage.py shell -c \
             "from django.contrib.auth.models import User; \
              User.objects.filter(email='$su_mail').delete(); \
@@ -221,6 +221,8 @@ case "$1" in
         else
             update_django
         fi
+
+	create_superuser
 
         db_stop
     ;;

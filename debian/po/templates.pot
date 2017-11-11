@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mailman-suite\n"
 "Report-Msgid-Bugs-To: mailman-suite@packages.debian.org\n"
-"POT-Creation-Date: 2017-10-11 19:41+0200\n"
+"POT-Creation-Date: 2017-11-11 02:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,27 +32,53 @@ msgid ""
 "internal authentication and 'root@<domain>' for error messages."
 msgstr ""
 
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid "Username of the Postorius superuser:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid ""
+"This is the username of the Postorius superuser. It will have global "
+"administrative access to all mailinglists."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Email address of the Postorius superuser:"
+msgstr ""
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid "Password for the Postorius superuser:"
+msgstr ""
+
 #. Type: multiselect
 #. Choices
-#: ../templates:2001
+#: ../templates:5001
 msgid "apache2"
 msgstr ""
 
 #. Type: multiselect
 #. Choices
-#: ../templates:2001
+#: ../templates:5001
 msgid "none"
 msgstr ""
 
 #. Type: multiselect
 #. Description
-#: ../templates:2002
+#: ../templates:5002
 msgid "Web server(s) to configure automatically:"
 msgstr ""
 
 #. Type: multiselect
 #. Description
-#: ../templates:2002
+#: ../templates:5002
 msgid ""
 "The Mailman3 suite supports any web server with uwsgi support, however only "
 "Apache 2 can be configured automatically."
@@ -60,7 +86,7 @@ msgstr ""
 
 #. Type: multiselect
 #. Description
-#: ../templates:2002
+#: ../templates:5002
 msgid ""
 "Please select the web server(s) that should be configured automatically for "
 "the Mailman3 suite."
@@ -68,13 +94,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../templates:3001
+#: ../templates:6001
 msgid "Should the webserver(s) be restarted now?"
 msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../templates:3001
+#: ../templates:6001
 msgid ""
 "In order to activate the new configuration, the reconfigured web server(s) "
 "have to be restarted."
