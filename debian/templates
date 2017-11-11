@@ -7,6 +7,23 @@ _Description: Domain name for sender email addresses:
  will be 'postorius@<domain>' for internal authentication
  and 'root@<domain>' for error messages.
 
+Template: mailman3-suite/superuser-name
+Type: string
+Default: admin
+_Description: Username of the Postorius superuser:
+ This is the username of the Postorius superuser. It will have global
+ administrative access to all mailinglists.
+
+Template: mailman3-suite/superuser-mail
+Type: string
+Default: root@localhost
+_Description: Email address of the Postorius superuser:
+
+Template: mailman3-suite/superuser-password
+Type: password
+Default:
+_Description: Password for the Postorius superuser:
+
 Template: mailman3-suite/reconfigure-webserver
 Type: multiselect
 __Choices: apache2, none
