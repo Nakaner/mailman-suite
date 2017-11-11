@@ -82,7 +82,7 @@ create_config () {
     # Generate a new one
     while [ -z "$secretkey" ]; do
         secretkey="$(dd if=/dev/urandom bs=1 count=200 2>/dev/null \
-            | tr -c -d 'A-Za-z0-9' | sed -ne 's/\(.\{48\}\).*/\1/p')"
+            | base64 -w0 | sed -ne 's/\(.\{48\}\).*/\1/p')"
     done
 
     # Get MAILMAN_REST_API_PASS from mailman3-suite.py if existent
@@ -110,7 +110,7 @@ create_config () {
     # Generate a new one
     while [ -z "$archiverkey" ]; do
         archiverkey="$(dd if=/dev/urandom bs=1 count=200 2>/dev/null \
-            | tr -c -d 'A-Za-z0-9' | sed -ne 's/\(.\{32\}\).*/\1/p')"
+            | base64 -w0 | sed -ne 's/\(.\{32\}\).*/\1/p')"
     done
 
     db_get mailman3-suite/emailname
