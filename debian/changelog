@@ -15,4 +15,4 @@ mailman-suite (0+20170523-1) unstable; urgency=medium
   [ Pierre-Elliott Bécue ]
   * French translation for debconf template.
 
- -- Pierre-Elliott Bécue <becue@crans.org>  Sun, 12 Nov 2017 15:42:00 +0100
+ -- Jonas Meurer <mejo@debian.org>  Sun, 12 Nov 2017 23:04:45 +0100
