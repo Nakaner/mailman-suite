@@ -46,6 +46,7 @@ Depends: mailman3-core,
          python-django-hyperkitty,
          python-django-postorius,
          python-mailmanclient,
+         python3-mailman-hyperkitty,
          ${misc:Depends}
 Description: Full Mailman3 mailing list management suite (metapackage)
  This is GNU Mailman, a mailing list management system. This metapackage

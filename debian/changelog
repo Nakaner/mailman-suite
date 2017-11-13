@@ -1,3 +1,9 @@
+mailman-suite (0+20170523-2) unstable; urgency=medium
+
+  * Adds missing dependency to mailman3: python3-mailman-hyperkitty
+
+ -- Pierre-Elliott Bécue <becue@crans.org>  Mon, 13 Nov 2017 11:27:42 +0100
+
 mailman-suite (0+20170523-1) unstable; urgency=medium
 
   [ Jonas Meurer ]
