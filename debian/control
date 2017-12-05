@@ -7,8 +7,8 @@ Uploaders: Pierre-Elliott Bécue <becue@crans.org>,
 Build-Depends: debhelper (>= 10), po-debconf
 Standards-Version: 4.1.1
 Homepage: https://gitlab.com/mailman/mailman-suite
-Vcs-Browser: https://anonscm.debian.org/git/pkg-mailmam/mailman3-web.git/
-Vcs-Git: https://anonscm.debian.org/cgit/pkg-mailman/mailman3-web.git/
+Vcs-Browser: https://anonscm.debian.org/git/pkg-mailman/mailman-suite.git/
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-mailman/mailman-suite.git/
 
 Package: mailman3-suite
 Architecture: all
