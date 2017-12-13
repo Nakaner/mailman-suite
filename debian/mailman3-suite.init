@@ -39,7 +39,7 @@ do_start () {
 }
 
 do_stop () {
-    start-stop-daemon --stop --quiet --signal=HUP
+    start-stop-daemon --stop --quiet --signal=HUP \
         --pidfile $PIDFILE --exec $DAEMON
 }
 

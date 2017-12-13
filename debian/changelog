@@ -1,3 +1,10 @@
+mailman-suite (0+20170523-4) unstable; urgency=medium
+
+  * d/mailman3-suite.init: Fix typo in do_stop() function. Thanks to Stephen
+    Rothwell for the bugreport. (Closes: #884325)
+
+ -- Jonas Meurer <mejo@debian.org>  Wed, 13 Dec 2017 23:56:28 +0100
+
 mailman-suite (0+20170523-3) unstable; urgency=medium
 
   * d/control: fix a typo in Recommends: field. (Closes: #884316)
