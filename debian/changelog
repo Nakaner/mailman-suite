@@ -1,11 +1,15 @@
 mailman-suite (0+20170523-2) unstable; urgency=medium
 
+  [ Pierre-Elliott Bécue ]
   * d/control: fix vcs items to solve vcswatch complaints.
   * Adds missing dependency to mailman3: python3-mailman-hyperkitty
   * Uses pipes as sed delimiters to avoid some wrongdoings with variables
     filled with base64. (Closes: #884259)
 
- -- Pierre-Elliott Bécue <becue@crans.org>  Wed, 13 Dec 2017 03:36:47 +0100
+  [ Jonas Meurer ]
+  * d/control: bump standards-version to 4.1.2, no changes needed.
+
+ -- Jonas Meurer <mejo@debian.org>  Wed, 13 Dec 2017 07:52:24 +0100
 
 mailman-suite (0+20170523-1) unstable; urgency=medium
 
