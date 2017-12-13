@@ -12,13 +12,13 @@
 ### END INIT INFO
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+NAME="mailman3-suite"
+DESC="Mailman3 suite uWSGI service"
+SCRIPTNAME=/etc/init.d/mailman3-suite
 DAEMON=/usr/bin/uwsgi
 PIDFILE="/run/mailman3-suite/${NAME}.pid"
 LOGFILE="/var/log/mailman3/mailman3-suite.log"
 DAEMON_ARGS="--ini /usr/share/mailman3-suite/uwsgi.ini --die-on-term --pidfile ${PIDFILE} --daemonize ${LOGFILE}"
-DESC="Mailman3 suite uWSGI service"
-NAME="mailman3-suite"
-SCRIPTNAME=/etc/init.d/mailman3-suite
 
 test -x $DAEMON || exit 0
 
