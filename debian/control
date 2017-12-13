@@ -26,7 +26,7 @@ Depends: dbconfig-pgsql | dbconfig-no-thanks,
          uwsgi,
          uwsgi-plugin-python,
          ${misc:Depends}
-Recommends: libapache2-mod-proxy-uwsgi | nxginx, postgresql
+Recommends: libapache2-mod-proxy-uwsgi | nginx, postgresql
 Description: Django project integrating Mailman3 Postorius and HyperKitty
  This django web application provides the Mailman3 Postorius web interface
  and the HyperKitty mailinglist archiver integrated into one project.
