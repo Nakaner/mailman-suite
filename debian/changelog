@@ -1,16 +1,11 @@
-mailman-suite (0+20170523-3) unstable; urgency=medium
-
-  * d/control: fix vcs items to solve vcswatch complaints.
-
- -- Pierre-Elliott Bécue <becue@crans.org>  Tue, 05 Dec 2017 17:18:04 +0100
-
 mailman-suite (0+20170523-2) unstable; urgency=medium
 
+  * d/control: fix vcs items to solve vcswatch complaints.
   * Adds missing dependency to mailman3: python3-mailman-hyperkitty
   * Uses pipes as sed delimiters to avoid some wrongdoings with variables
-    filled with base64.
+    filled with base64. (Closes: #884259)
 
- -- Pierre-Elliott Bécue <becue@crans.org>  Mon, 13 Nov 2017 19:36:17 +0100
+ -- Pierre-Elliott Bécue <becue@crans.org>  Wed, 13 Dec 2017 03:36:47 +0100
 
 mailman-suite (0+20170523-1) unstable; urgency=medium
 
