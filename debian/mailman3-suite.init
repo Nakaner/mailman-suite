@@ -39,27 +39,34 @@ do_start () {
 }
 
 do_stop () {
-    start-stop-daemon --stop --quiet --signal=HUP \
+    start-stop-daemon --stop --quiet --oknodo --retry=QUIT/30/KILL/5 \
         --pidfile $PIDFILE --exec $DAEMON
 }
 
 do_reload () {
-  start-stop-daemon --stop --quiet --retry=QUIT/30/KILL/5 \
-    --pidfile $PIDFILE --exec $DAEMON
+    start-stop-daemon --stop --quiet --signal=HUP \
+        --pidfile $PIDFILE --exec $DAEMON
+
+    RETVAL="$?"
+
+    # There is no such process, nothing to reload!
+    [ "$RETVAL" = 1 ] && RETVAL=3
+
+    return "$RETVAL"
 }
 
 do_force_reload() {
-  start-stop-daemon --stop --quiet \
-    --signal=TERM \
-    --pidfile $PIDFILE \
-    --exec $DAEMON
+    start-stop-daemon --stop --quiet \
+        --signal=TERM \
+        --pidfile $PIDFILE \
+        --exec $DAEMON
 
-  RETVAL="$?"
+    RETVAL="$?"
 
-  # There is no such process, nothing to reload!
-  [ "$RETVAL" = 1 ] && RETVAL=3
+    # There is no such process, nothing to reload!
+    [ "$RETVAL" = 1 ] && RETVAL=3
 
-  return "$RETVAL"
+    return "$RETVAL"
 }
 
 case "$1" in
