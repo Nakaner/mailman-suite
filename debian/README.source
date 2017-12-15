@@ -8,4 +8,4 @@ Build the package
 
         gbp buildpackage --git-pristine-tar
 
- -- Jonas Meurer <mejo@debian.org>  Fri, 06 Oct 2017 14:48:00 +0200
+ -- Jonas Meurer <jonas@freesources.org>  Fri, 06 Oct 2017 14:48:00 +0200
