@@ -18,7 +18,7 @@ SCRIPTNAME=/etc/init.d/mailman3-suite
 DAEMON=/usr/bin/uwsgi
 PIDFILE="/run/mailman3-suite/${NAME}.pid"
 LOGFILE="/var/log/mailman3/mailman3-suite.log"
-DAEMON_ARGS="--ini /usr/share/mailman3-suite/uwsgi.ini --die-on-term --pidfile ${PIDFILE} --daemonize ${LOGFILE}"
+DAEMON_ARGS="--ini /usr/share/mailman3-suite/uwsgi.ini --pidfile ${PIDFILE} --daemonize ${LOGFILE}"
 
 test -x $DAEMON || exit 0
 
