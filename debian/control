@@ -12,21 +12,22 @@ Vcs-Git: https://anonscm.debian.org/cgit/pkg-mailman/mailman-suite.git/
 
 Package: mailman3-suite
 Architecture: all
-Depends: dbconfig-pgsql | dbconfig-no-thanks,
+Depends: dbconfig-pgsql | dbconfig-mysql | dbconfig-sqlite3 | dbconfig-no-thanks,
          lsb-base,
          mailman3-core,
          node-less,
          python (<< 2.8),
          python-django-hyperkitty,
          python-django-postorius,
-         python-psycopg2,
+         python-psycopg2 | python3-pymysql,
          python-whoosh,
          ruby-sass,
          ucf,
          uwsgi,
          uwsgi-plugin-python,
          ${misc:Depends}
-Recommends: libapache2-mod-proxy-uwsgi | nginx, postgresql
+Recommends: libapache2-mod-proxy-uwsgi | nginx,
+            postgresql | default-mysql-server | virtual-mysql-server
 Description: Django project integrating Mailman3 Postorius and HyperKitty
  This django web application provides the Mailman3 Postorius web interface
  and the HyperKitty mailinglist archiver integrated into one project.

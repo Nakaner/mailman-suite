@@ -3,7 +3,11 @@
 set -e
 
 . /usr/share/debconf/confmodule
-. /usr/share/dbconfig-common/dpkg/postinst.pgsql
+. /usr/share/dbconfig-common/dpkg/postinst
+
+# Set permissions for sqlite3 file
+dbc_dbfile_owner="www-data:www-data"
+dbc_dbfile_perms="0640"
 
 dbc_go mailman3-suite "$@"
 
@@ -60,22 +64,43 @@ create_config () {
     hyperkitty_cfg_new=`tempfile -m 0644`
     cp -a /usr/share/mailman3-suite/hyperkitty.cfg.sample $hyperkitty_cfg_new
     
-    # set PostgreSQL settings from dbconfig-common in settings_local.py
+    # get database settings from dbconfig-common
     if [ -f /etc/dbconfig-common/mailman3-suite.conf ]; then
-        dbuser="$(sed -ne "s|^dbc_dbuser='\(\S\+\)'|\1|p" \
-            /etc/dbconfig-common/mailman3-suite.conf)"
-        dbpass="$(sed -ne "s|^dbc_dbpass='\(\S\+\)'|\1|p" \
-            /etc/dbconfig-common/mailman3-suite.conf)"
-        dbserver="$(sed -ne "s|^dbc_dbserver='\(\S\+\)'|\1|p" \
-            /etc/dbconfig-common/mailman3-suite.conf)"
-        dbname="$(sed -ne "s|^dbc_dbname='\(\S\+\)'|\1|p" \
-            /etc/dbconfig-common/mailman3-suite.conf)"
-        sed -i -e "s|^\(\s\+'NAME':\s*'\)\S\+\(',\s*\)|\1$dbname\2|" \
-               -e "s|^\(\s\+'USER':\s*'\)\S\+\(',\s*\)|\1$dbuser\2|" \
-               -e "s|^\(\s\+'PASSWORD':\s*'\)\S\+\(',\s*\)|\1$dbpass\2|" \
-               -e "s|^\(\s\+'HOST':\s*'\)\S*\(',\s*\)|\1$dbserver\2|" \
-               $settings_local_new
+        . /etc/dbconfig-common/mailman3-suite.conf
+
+        # Comment out default database settings if dbconfig is used
+        sed -i -e "s|^\(\s\+\)\('ENGINE':\)|\1#\2|" \
+                $settings_local_new
+
+        sed -i -e "s|^\(\s\+'NAME':\s*'\)\S\+\(',\s*\)|\1$dbc_dbname\2|" \
+               -e "s|^\(\s\+'USER':\s*'\)\S\+\(',\s*\)|\1$dbc_dbuser\2|" \
+               -e "s|^\(\s\+'PASSWORD':\s*'\)\S\+\(',\s*\)|\1$dbc_dbpass\2|" \
+               -e "s|^\(\s\+'HOST':\s*'\)\S*\(',\s*\)|\1$dbc_dbserver\2|" \
+                $settings_local_new
     fi
+
+    case "$dbc_dbtype" in
+        pgsql)
+            sed -i -e "s|^\(\s\+\)#\?\s*\('ENGINE': 'django.db.backends.postgresql_psycopg2',\s*\)$|\1\2|" \
+                    $settings_local_new
+            ;;
+        mysql)
+            sed -i -e "s|^\(\s\+\)#\?\s*\('ENGINE': 'django.db.backends.mysql',\s*\)$|\1\2|" \
+                   -e "s|^\(\s\+\)#\?\s*\('init_command': \"SET sql_mode=.*\",\s*\)$|\1\2|" \
+                    $settings_local_new
+            ;;
+        sqlite3)
+            sed -i -e "s|^\(\s\+\)#\?\s*\('ENGINE': 'django.db.backends.sqlite3',\s*\)$|\1\2|" \
+                   -e "s|^\(\s\+'NAME':\s*'\)\S\+\(',\s*\)|\1$dbc_basepath/$dbc_dbname.db\2|" \
+                    $settings_local_new
+            ;;
+        "")
+            ;;
+        *)
+            echo "Unsupported database type $dbc_type."
+            exit 1
+            ;;
+    esac
 
     # Get SECRET_KEY from mailman3-suite.py if existent
     [ -f /etc/mailman3/mailman3-suite.py ] && {
@@ -227,7 +252,7 @@ case "$1" in
             update_django
         fi
 
-	create_superuser
+        create_superuser
 
         db_stop
     ;;
