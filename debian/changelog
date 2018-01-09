@@ -1,8 +1,5 @@
 mailman-suite (0+20170523-7) unstable; urgency=medium
 
-  [ Pierre-Elliott Bécue ]
-  * Add a d/source/local-options file to unapply the patches after the build.
-
   [ Jonas Meurer ]
   * d/mailman3-suite.prerm: Move 'dbc_go' behind the '#DEBHELPER' section.
     Database removal has to happen after service is stopped to prevent
