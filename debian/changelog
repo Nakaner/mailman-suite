@@ -22,8 +22,9 @@ mailman-suite (0+20170523-7) unstable; urgency=medium
   * d/templates: Change the webserver selection from multiselect to select,
     making 'none' the default. This fixes non-interactive installations and
     those without installed Apache2. (Closes: #884835)
+  * d/mailman3-suite.postrm: Run 'db_purge' to clean up debconf database.
 
- -- Jonas Meurer <jonas@freesources.org>  Tue, 09 Jan 2018 18:01:47 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Tue, 09 Jan 2018 18:33:26 +0100
 
 mailman-suite (0+20170523-6) unstable; urgency=medium
 
