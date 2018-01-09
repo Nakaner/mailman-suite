@@ -212,6 +212,17 @@ create_superuser () {
 case "$1" in
     configure)
 
+        create_config
+        create_logfiles
+
+        if [ -n "$2" ]; then
+            init_django
+        else
+            update_django
+        fi
+
+        create_superuser
+
         # Handle webserver reconfiguration/restart
         db_get mailman3-suite/reconfigure-webserver
         webservers="$RET"
@@ -242,17 +253,6 @@ case "$1" in
                 fi
             done
         fi
-
-        create_config
-        create_logfiles
-
-        if [ -n "$2" ]; then
-            init_django
-        else
-            update_django
-        fi
-
-        create_superuser
 
         db_stop
     ;;
