@@ -19,6 +19,9 @@ mailman-suite (0+20170523-7) unstable; urgency=medium
   * d/mailman3-suite.postinst: Change order of actions. First create config
     and log files, then run django-admin and finally (optionally) configure
     webservers.
+  * d/templates: Change the webserver selection from multiselect to select,
+    making 'none' the default. This fixes non-interactive installations and
+    those without installed Apache2. (Closes: #884835)
 
  -- Jonas Meurer <jonas@freesources.org>  Tue, 09 Jan 2018 18:01:47 +0100
 

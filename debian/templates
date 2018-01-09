@@ -25,9 +25,9 @@ Default:
 _Description: Password for the Postorius superuser:
 
 Template: mailman3-suite/reconfigure-webserver
-Type: multiselect
-__Choices: apache2, none
-Default: apache2
+Type: select
+__Choices: none, apache2
+Default: none
 _Description: Web server(s) to configure automatically:
  The Mailman3 suite supports any web server with uwsgi
  support, however only Apache 2 can be configured
