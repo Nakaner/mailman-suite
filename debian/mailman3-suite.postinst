@@ -223,8 +223,8 @@ case "$1" in
 
         create_superuser
 
-        # Handle webserver reconfiguration/restart
-        db_get mailman3-suite/reconfigure-webserver
+        # Handle webserver configuration/restart
+        db_get mailman3-suite/configure-webserver
         webservers="$RET"
         restart=""
 

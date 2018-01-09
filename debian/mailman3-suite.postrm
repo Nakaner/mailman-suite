@@ -39,8 +39,8 @@ case "$1" in
 
     remove)
 
-        # Handling web server reconfiguration
-        db_get mailman3-suite/reconfigure-webserver
+        # Handling web server configuration
+        db_get mailman3-suite/configure-webserver
         webservers="$RET"
         restart=""
 

@@ -24,7 +24,7 @@ Type: password
 Default:
 _Description: Password for the Postorius superuser:
 
-Template: mailman3-suite/reconfigure-webserver
+Template: mailman3-suite/configure-webserver
 Type: select
 __Choices: none, apache2
 Default: none
@@ -40,5 +40,5 @@ Template: mailman3-suite/restart-webserver
 Type: boolean
 Default: true
 _Description: Should the webserver(s) be restarted now?
- In order to activate the new configuration, the reconfigured web
+ In order to activate the new configuration, the configured web
  server(s) have to be restarted.
