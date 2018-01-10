@@ -1,9 +1,10 @@
 mailman-suite (0+20170523-8) UNRELEASED; urgency=medium
 
   * d/control:
+    - Remove dependency on mailman3-core for mailman3-suite.
     - Update description of mailman3 metapackage.
 
- -- Pierre-Elliott Bécue <becue@crans.org>  Wed, 10 Jan 2018 10:49:23 +0100
+ -- Pierre-Elliott Bécue <becue@crans.org>  Wed, 10 Jan 2018 10:50:37 +0100
 
 mailman-suite (0+20170523-7) unstable; urgency=medium
 
