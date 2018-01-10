@@ -29,11 +29,35 @@ a fully working Mailman3 suite:
    # django-admin createsuperuser --pythonpath /usr/share/mailman3-suite \
        --settings settings --username <user> --email <mail-addr>
 
+MySQL database backend
+======================
+
+ Unfortunately, using MySQL as backend is broken with Debian MariaDB
+packages between 10.0.22-2 and 10.2.7-1. The reason is that they already
+have 'utf8mb4' set as default character set but don't 'dynamic' as default
+row format' along with InnoDB engine 'Barracuda' and 'innodb_large_prefix'
+yet. This leads to 'Specified key was to long' errors at 'django-admin
+migrate'.
+
+ See Debian bug report #886756[1] and upstream bug MDEC-14904[2] for
+further information.
+
+ If you want to use MariaDB as database backend, you'll have to use
+MariaDB 10.2 for now. The issue is not fixed in MariaDB 10.1 packages
+yet as of January 10th 2018.
+
+[1] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=886756
+[2] https://jira.mariadb.org/browse/MDEV-14904
+
+Detailed functionality of this package
+======================================
 
  For information, the following things happen automated during configuration
 of the package:
 
- * PostgreSQL database and user for the Django project are created.
+ * The database backend is prepared:
+   * For PostgreSQL and MySQL, database and user ('mailman3suite') are created
+   * For SQLite3, an empty database file is created
 
  * A uWSGI daemon is enabled and started to provide the Django project
    via unix socket at `/run/mailman3-suite/uwsgi.sock`.
@@ -45,10 +69,10 @@ of the package:
    `/etc/mailman3/mailman.cfg` and set accordingly in the mailman3-suite
    configuration.
 
- * Supported webservers (currently Apache2) will be configured to provide
-   access to the project at '/mailman3' (as reverse proxying to the uWSGI
-   daemon).
+ * Optionally supported webservers (currently Apache2) will be configured
+   to provide access to the project at '/mailman3' (by reverse proxying
+   to the uWSGI daemon).
 
  * Optionally a superuser for the Postorius webinterface will be created.
 
- -- Jonas Meurer <jonas@freesources.org>, Fri, 10 Nov 2017 22:15:19 +0100
+ -- Jonas Meurer <jonas@freesources.org>, Wed, 10 Jan 2018 00:50:11 +0100

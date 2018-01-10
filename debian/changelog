@@ -15,6 +15,12 @@ mailman-suite (0+20170523-7) unstable; urgency=medium
       installations.
     * Move SQLite3 database file to '/var/lib/mailman3/web/mailman3suite.db',
       manage it with dbconfig.
+    * Unfortunately, using MySQL as backend is broken with MariaDB packages
+      in Debian between 10.0.22-2 and 10.2.7-1 as they use 'utf8mb4' as
+      default character set but don't have 'innodb_large_prefix' and
+      row format 'dynamic' yet. See bug #886756 for further information.
+      If you want to use MariaDB as database backend, you'll have to use
+      MariaDB <= 10.0.22-1 or >= 10.2.7-1 for now.
   * d/control: Bump standards-version to 4.1.3, no changes required.
   * d/mailman3-suite.postinst: Change order of actions. First create config
     and log files, then run django-admin and finally (optionally) configure
@@ -24,7 +30,7 @@ mailman-suite (0+20170523-7) unstable; urgency=medium
     those without installed Apache2. (Closes: #884835)
   * d/mailman3-suite.postrm: Run 'db_purge' to clean up debconf database.
 
- -- Jonas Meurer <jonas@freesources.org>  Tue, 09 Jan 2018 18:33:26 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Wed, 10 Jan 2018 00:58:24 +0100
 
 mailman-suite (0+20170523-6) unstable; urgency=medium
 
