@@ -57,4 +57,6 @@ Description: Full Mailman3 mailing list management suite (metapackage)
   * python-mailmanclient: Python bindings for the Mailman3 REST API
   * python-django-postorius: The Mailman3 web interface
   * python-django-hyperkitty: The Mailman3 mailinglist web archiver
+  * python3-mailman-hyperkitty: The Mailman3 server plugin to send mails to
+    Hyperkitty.
   * mailman3-suite: Combines postorius and hyperkitty into one web app
