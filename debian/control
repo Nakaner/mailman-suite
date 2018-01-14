@@ -32,7 +32,7 @@ Description: Django project integrating Mailman3 Postorius and HyperKitty
  and the HyperKitty mailinglist archiver integrated into one project.
  .
  The package automates most of the necessary configuration for the Django
- project (PostgreSQL database, webserver configuration, secret and API key
+ project (database setup, webserver configuration, secret and API key
  generation, Django project configuration) to get a ready-to-use Mailman3
  suite.
  .
