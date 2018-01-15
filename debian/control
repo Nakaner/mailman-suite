@@ -12,7 +12,7 @@ Vcs-Git: https://anonscm.debian.org/cgit/pkg-mailman/mailman-suite.git/
 
 Package: mailman3-suite
 Architecture: all
-Depends: dbconfig-pgsql | dbconfig-mysql | dbconfig-sqlite3 | dbconfig-no-thanks,
+Depends: dbconfig-sqlite3 | dbconfig-pgsql | dbconfig-mysql | dbconfig-no-thanks,
          lsb-base,
          node-less,
          python (<< 2.8),
@@ -25,8 +25,8 @@ Depends: dbconfig-pgsql | dbconfig-mysql | dbconfig-sqlite3 | dbconfig-no-thanks
          uwsgi,
          uwsgi-plugin-python,
          ${misc:Depends}
-Recommends: libapache2-mod-proxy-uwsgi | nginx,
-            postgresql | default-mysql-server | virtual-mysql-server
+Recommends: libapache2-mod-proxy-uwsgi | nginx
+Suggests: postgresql | default-mysql-server | virtual-mysql-server
 Description: Django project integrating Mailman3 Postorius and HyperKitty
  This django web application provides the Mailman3 Postorius web interface
  and the HyperKitty mailinglist archiver integrated into one project.
@@ -36,8 +36,13 @@ Description: Django project integrating Mailman3 Postorius and HyperKitty
  generation, Django project configuration) to get a ready-to-use Mailman3
  suite.
  .
- The Mailman3 Django project runs as uWSGI daemon and the webserver is
- configured as reverse proxy. It can be accessed at '/mailman3'.
+ The Mailman3 Django project runs as uWSGI daemon and optionally a webserver
+ is configured as reverse proxy. In this case, the service can be accessed
+ at '/mailman3'.
+ .
+ Default database backend is SQLite3 in order to not break automated
+ installations. For productive setups, PostgreSQL or MySQL are much better
+ though. See README.Debian for further information.
 
 Package: mailman3
 Architecture: all

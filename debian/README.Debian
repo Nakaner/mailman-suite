@@ -29,6 +29,23 @@ a fully working Mailman3 suite:
    # django-admin createsuperuser --pythonpath /usr/share/mailman3-suite \
        --settings settings --username <user> --email <mail-addr>
 
+
+Database backend
+================
+
+ The default configured database backend is SQLite3. This is necessary to
+not break automated (non-interactive) installations without installing
+recommends.
+
+ For productive setups, SQLite3 is *not* recommended as database backend.
+PostgreSQL or MySQL should be used instead. The database configuration can
+be automated by installing 'dbconfig-pgsql' or 'dbconfig-mysql' and running
+'dpkg-reconfigure mailman3-suite'. A respective local or remote database
+server needs needs to be available in this case.
+
+ For MySQL as database backend, please read the next section.
+
+
 MySQL database backend
 ======================
 
@@ -49,15 +66,16 @@ yet as of January 10th 2018.
 [1] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=886756
 [2] https://jira.mariadb.org/browse/MDEV-14904
 
+
 Detailed functionality of this package
 ======================================
 
- For information, the following things happen automated during configuration
-of the package:
+ For information, the following things happen automated during
+configuration of the package:
 
  * The database backend is prepared:
-   * For PostgreSQL and MySQL, database and user ('mailman3suite') are created
    * For SQLite3, an empty database file is created
+   * For PostgreSQL/MySQL, database + user ('mailman3suite') are created
 
  * A uWSGI daemon is enabled and started to provide the Django project
    via unix socket at `/run/mailman3-suite/uwsgi.sock`.
@@ -69,10 +87,10 @@ of the package:
    `/etc/mailman3/mailman.cfg` and set accordingly in the mailman3-suite
    configuration.
 
- * Optionally supported webservers (currently Apache2) will be configured
+ * Optionally, supported webservers (currently Apache2) will be configured
    to provide access to the project at '/mailman3' (by reverse proxying
    to the uWSGI daemon).
 
- * Optionally a superuser for the Postorius webinterface will be created.
+ * Optionally, a superuser for the Postorius webinterface will be created.
 
- -- Jonas Meurer <jonas@freesources.org>, Wed, 10 Jan 2018 00:50:11 +0100
+ -- Jonas Meurer <jonas@freesources.org>, Mon, 15 Jan 2018 16:58:38 +0100
