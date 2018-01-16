@@ -18,8 +18,9 @@ mailman-suite (0+20170523-8) unstable; urgency=medium
     - Degrade recommends on postgresql|mysql to suggests now that we use
       sqlite3 as default database backend. We don't want to pull in needless
       extra database servers.
+    - Set Rules-Requires-Root: binary-targets.
 
- -- Jonas Meurer <jonas@freesources.org>  Mon, 15 Jan 2018 17:00:17 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Tue, 16 Jan 2018 15:07:39 +0100
 
 mailman-suite (0+20170523-7) unstable; urgency=medium
 
