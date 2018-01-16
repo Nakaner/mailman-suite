@@ -93,4 +93,5 @@ configuration of the package:
 
  * Optionally, a superuser for the Postorius webinterface will be created.
 
+
  -- Jonas Meurer <jonas@freesources.org>, Mon, 15 Jan 2018 16:58:38 +0100
