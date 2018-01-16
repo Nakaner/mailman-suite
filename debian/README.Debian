@@ -41,7 +41,7 @@ recommends.
 PostgreSQL or MySQL should be used instead. The database configuration can
 be automated by installing 'dbconfig-pgsql' or 'dbconfig-mysql' and running
 'dpkg-reconfigure mailman3-suite'. A respective local or remote database
-server needs needs to be available in this case.
+server has to be available in this case.
 
  For MySQL as database backend, please read the next section.
 
