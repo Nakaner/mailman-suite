@@ -1,3 +1,10 @@
+mailman-suite (0+20170523-11) UNRELEASED; urgency=medium
+
+  * d/control:
+    - Update Vcs-* fields to point to new repository on salsa.debian.org.
+
+ -- Jonas Meurer <jonas@freesources.org>  Tue, 27 Feb 2018 14:16:10 +0100
+
 mailman-suite (0+20170523-9) unstable; urgency=medium
 
   * d/mailman3-suite.config: Fix typo, use debconf question
