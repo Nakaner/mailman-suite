@@ -27,9 +27,9 @@ apache_remove() {
     if [ -e /usr/share/apache2/apache2-maintscript-helper ] ; then
         . /usr/share/apache2/apache2-maintscript-helper
         apache2_invoke disconf mailman3.conf
-        if [ -d /etc/apache2/conf-available ] && [ -e /etc/apache2/conf-available/mailman3.conf ]; then
-            rm /etc/apache2/conf-available/mailman3.conf
-        fi
+    fi
+    if [ -d /etc/apache2/conf-available ] && [ -e /etc/apache2/conf-available/mailman3.conf ]; then
+        rm /etc/apache2/conf-available/mailman3.conf
     fi
 }
 
