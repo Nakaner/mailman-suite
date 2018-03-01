@@ -50,21 +50,22 @@ MySQL database backend
 ======================
 
  Unfortunately, using MySQL as backend is broken with Debian MariaDB
-packages between 10.0.22-2 and 10.2.7-1. The reason is that they already
-have 'utf8mb4' set as default character set but don't 'dynamic' as default
+packages between 10.0.22-2 and 10.2.7-1. The reason is that they use
+'utf8mb4' as default character set but don't have 'dynamic' set as default
 row format' along with InnoDB engine 'Barracuda' and 'innodb_large_prefix'
 yet. This leads to 'Specified key was to long' errors at 'django-admin
 migrate'.
 
- See Debian bug report #886756[1] and upstream bug MDEC-14904[2] for
-further information.
+ See Debian bug reports #891691[1], #886756[2] and upstream bug report
+MDEC-14904[3] for further information.
 
  If you want to use MariaDB as database backend, you'll have to use
-MariaDB 10.2 for now. The issue is not fixed in MariaDB 10.1 packages
-yet as of January 10th 2018.
+MariaDB 10.2 or newer for now. The issue is not fixed in MariaDB 10.1
+packages yet as of March 1st 2018.
 
-[1] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=886756
-[2] https://jira.mariadb.org/browse/MDEV-14904
+[1] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=891691
+[2] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=886756
+[3] https://jira.mariadb.org/browse/MDEV-14904
 
 
 Detailed functionality of this package
@@ -94,4 +95,4 @@ configuration of the package:
  * Optionally, a superuser for the Postorius webinterface will be created.
 
 
- -- Jonas Meurer <jonas@freesources.org>, Mon, 15 Jan 2018 16:58:38 +0100
+ -- Jonas Meurer <jonas@freesources.org>, Thu, 01 Mar 2018 15:00:26 +0100
