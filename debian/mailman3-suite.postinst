@@ -183,7 +183,7 @@ django_admin_args="--verbosity 0 --no-color --pythonpath /usr/share/mailman3-sui
 init_django () {
     if pathfind django-admin; then
         update_django
-        su --login --comand "django-admin loaddata $django_admin_args first_start" www-data
+        su --login --command "django-admin loaddata $django_admin_args first_start" www-data
     fi
 }
 
