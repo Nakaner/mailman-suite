@@ -183,14 +183,14 @@ django_admin_args="--verbosity 0 --no-color --pythonpath /usr/share/mailman3-sui
 init_django () {
     if pathfind django-admin; then
         update_django
-        su --login --command "django-admin loaddata $django_admin_args first_start" www-data
+        su --shell /bin/sh --command "django-admin loaddata $django_admin_args first_start" www-data
     fi
 }
 
 update_django () {
     if pathfind django-admin; then
-        su --login --command "django-admin migrate        --no-input $django_admin_args" www-data
-        su --login --command "django-admin collectstatic  --no-input $django_admin_args" www-data
+        su --shell /bin/sh --command "django-admin migrate        --no-input $django_admin_args" www-data
+        su --shell /bin/sh --command "django-admin collectstatic  --no-input $django_admin_args" www-data
     fi
 }
 
