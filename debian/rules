@@ -9,4 +9,4 @@ override_dh_fixperms:
 	chown list:list debian/mailman3-suite/var/lib/mailman3
 	chown list:list debian/mailman3-suite/var/log/mailman3
 	chown www-data:www-data debian/mailman3-suite/var/lib/mailman3/suite/fulltext_index
-	chown www-data:www-data debian/mailman3-suite/var/lib/mailman3/suite/static/CACHE
+	chown www-data:www-data debian/mailman3-suite/var/lib/mailman3/suite/static
