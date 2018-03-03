@@ -1,10 +1,11 @@
 mailman-suite (0+20170523-11) unstable; urgency=medium
 
+  [ Jonas Meurer ]
   * d/control:
     - Fix alternative dependency on 'python-mysqldb'. We need the python2
       version here as the django parts of mailman3 are still python2.
   * d/README.Debian:
-    - Update paragraph about 'MySQL database backend'. 
+    - Update paragraph about 'MySQL database backend'.
   * d/mailman3-suite.config:
     - Fix dbc_dbname for SQLite database backend.
   * d/mailman3-suite.postinst:
@@ -22,7 +23,13 @@ mailman-suite (0+20170523-11) unstable; urgency=medium
   * Move data directory from '/var/lib/mailman3/web' to
     '/var/lib/mailman3/suite' to better match package name.
 
- -- Jonas Meurer <jonas@freesources.org>  Sat, 03 Mar 2018 11:47:28 +0100
+  [ Pierre-Elliott Bécue ]
+  * d/changelog:
+    - Remove trailing spaces
+  * d/README.Debian:
+    - Fix typo
+
+ -- Jonas Meurer <jonas@freesources.org>  Sat, 03 Mar 2018 12:49:53 +0100
 
 mailman-suite (0+20170523-10) unstable; urgency=high
 

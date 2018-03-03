@@ -57,7 +57,7 @@ yet. This leads to 'Specified key was to long' errors at 'django-admin
 migrate'.
 
  See Debian bug reports #891691[1], #886756[2] and upstream bug report
-MDEC-14904[3] for further information.
+MDEV-14904[3] for further information.
 
  If you want to use MariaDB as database backend, you'll have to use
 MariaDB 10.2 or newer for now. The issue is not fixed in MariaDB 10.1
