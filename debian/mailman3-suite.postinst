@@ -91,7 +91,7 @@ create_config () {
             ;;
         sqlite3)
             sed -i -e "s|^\(\s\+\)#\?\s*\('ENGINE': 'django.db.backends.sqlite3',\s*\)$|\1\2|" \
-                   -e "s|^\(\s\+'NAME':\s*'\)\S\+\(',\s*\)|\1$dbc_basepath/$dbc_dbname.db\2|" \
+                   -e "s|^\(\s\+'NAME':\s*'\)\S\+\(',\s*\)|\1$dbc_basepath/$dbc_dbname\2|" \
                     $settings_local_new
             ;;
         "")
