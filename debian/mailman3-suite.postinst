@@ -170,9 +170,11 @@ create_config () {
 
 create_logfiles () {
     for logfile in /var/log/mailman3/mailman-suite.log /var/log/mailman3/mailman-suite-uwsgi.log; do
-        touch $logfile
-        chown www-data:www-data $logfile
-        chmod 0640 $logfile
+        if [ ! -f "$logfile" ]; then
+            touch $logfile
+            chown www-data:www-data $logfile
+            chmod 0640 $logfile
+	fi
     done
 }
 

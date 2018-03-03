@@ -1,4 +1,4 @@
-mailman-suite (0+20170523-11) UNRELEASED; urgency=medium
+mailman-suite (0+20170523-11) unstable; urgency=medium
 
   * d/control:
     - Fix alternative dependency on 'python-mysqldb'. We need the python2
@@ -7,12 +7,14 @@ mailman-suite (0+20170523-11) UNRELEASED; urgency=medium
     - Update paragraph about 'MySQL database backend'. 
   * d/mailman3-suite.config:
     - Fix dbc_dbname for SQLite database backend.
+  * d/mailman3-suite.postinst:
+    - Only touch+chown logfiles if they don't exist yet.
   * d/mailman3-suite.cron.d:
     - Run mailman3-suite cronjobs as user 'www-data'. The uwsgi daemon runs
       as 'www-data', so the corresponding cronjobs should do so as well.
       (Closes: #891849)
 
- -- Jonas Meurer <jonas@freesources.org>  Sat, 03 Mar 2018 10:47:36 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Sat, 03 Mar 2018 10:52:25 +0100
 
 mailman-suite (0+20170523-10) unstable; urgency=high
 
