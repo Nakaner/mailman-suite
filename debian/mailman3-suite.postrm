@@ -82,7 +82,7 @@ case "$1" in
             db_purge
         fi
 
-        rm -rf /var/lib/mailman3/web
+        rm -rf /var/lib/mailman3/suite
 
         for ext in .ucf-new .ucf-old .ucf-dist ""; do
             rm -f "/etc/mailman3/mailman3-suite.py$ext"

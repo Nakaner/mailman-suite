@@ -13,8 +13,10 @@ mailman-suite (0+20170523-11) unstable; urgency=medium
     - Run mailman3-suite cronjobs as user 'www-data'. The uwsgi daemon runs
       as 'www-data', so the corresponding cronjobs should do so as well.
       (Closes: #891849)
+  * Move data directory from '/var/lib/mailman3/web' to
+    '/var/lib/mailman3/suite' to better match package name.
 
- -- Jonas Meurer <jonas@freesources.org>  Sat, 03 Mar 2018 10:52:25 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Sat, 03 Mar 2018 10:58:43 +0100
 
 mailman-suite (0+20170523-10) unstable; urgency=high
 

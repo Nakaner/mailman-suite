@@ -73,7 +73,7 @@ DATABASES = {
         #'ENGINE': 'django.db.backends.postgresql_psycopg2',
         #'ENGINE': 'django.db.backends.mysql',
         # DB name or path to database file if using sqlite3.
-        'NAME': '/var/lib/mailman3/web/mailman3suite.db',
+        'NAME': '/var/lib/mailman3/suite/mailman3suite.db',
         # The following settings are not used with sqlite3:
         'USER': 'mailman3suite',
         'PASSWORD': 'mmpass',

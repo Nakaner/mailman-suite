@@ -77,7 +77,7 @@ Last-Update: 2017-10-11
  # in apps' "static/" subdirectories and in STATICFILES_DIRS.
  # Example: "/var/www/example.com/static/"
 -STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-+STATIC_ROOT = '/var/lib/mailman3/web/static'
++STATIC_ROOT = '/var/lib/mailman3/suite/static'
  
  # URL prefix for static files.
  # Example: "http://example.com/static/", "http://static.example.com/"
@@ -190,7 +190,7 @@ Last-Update: 2017-10-11
      'default': {
          'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
 -        'PATH': os.path.join(BASE_DIR, "fulltext_index"),
-+        'PATH': '/var/lib/mailman3/web/fulltext_index',
++        'PATH': '/var/lib/mailman3/suite/fulltext_index',
          # You can also use the Xapian engine, it's faster and more accurate,
          # but requires another library.
          # http://django-haystack.readthedocs.io/en/v2.4.1/installing_search_engines.html#xapian
