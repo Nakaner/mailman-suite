@@ -7,8 +7,12 @@ mailman-suite (0+20170523-11) UNRELEASED; urgency=medium
     - Update paragraph about 'MySQL database backend'. 
   * d/mailman3-suite.config:
     - Fix dbc_dbname for SQLite database backend.
+  * d/mailman3-suite.cron.d:
+    - Run mailman3-suite cronjobs as user 'www-data'. The uwsgi daemon runs
+      as 'www-data', so the corresponding cronjobs should do so as well.
+      (Closes: #891849)
 
- -- Jonas Meurer <jonas@freesources.org>  Sat, 03 Mar 2018 10:44:11 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Sat, 03 Mar 2018 10:47:36 +0100
 
 mailman-suite (0+20170523-10) unstable; urgency=high
 
