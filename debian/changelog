@@ -24,12 +24,10 @@ mailman-suite (0+20170523-11) unstable; urgency=medium
     '/var/lib/mailman3/suite' to better match package name.
 
   [ Pierre-Elliott Bécue ]
-  * d/changelog:
-    - Remove trailing spaces
   * d/README.Debian:
     - Fix typo
 
- -- Jonas Meurer <jonas@freesources.org>  Sat, 03 Mar 2018 12:49:53 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Sat, 03 Mar 2018 12:58:21 +0100
 
 mailman-suite (0+20170523-10) unstable; urgency=high
 
