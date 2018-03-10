@@ -1,0 +1,5 @@
+etc/mailman3
+usr/share/mailman3-web
+var/lib/mailman3/web/fulltext_index
+var/lib/mailman3/web/static/CACHE
+var/log/mailman3/web

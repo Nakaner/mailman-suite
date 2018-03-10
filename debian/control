@@ -11,7 +11,7 @@ Homepage: https://gitlab.com/mailman/mailman-suite
 Vcs-Git: https://salsa.debian.org/mailman-team/mailman-suite.git
 Vcs-Browser: https://salsa.debian.org/mailman-team/mailman-suite
 
-Package: mailman3-suite
+Package: mailman3-web
 Architecture: all
 Depends: dbconfig-sqlite3 | dbconfig-pgsql | dbconfig-mysql | dbconfig-no-thanks,
          lsb-base,
@@ -28,6 +28,9 @@ Depends: dbconfig-sqlite3 | dbconfig-pgsql | dbconfig-mysql | dbconfig-no-thanks
          ${misc:Depends}
 Recommends: libapache2-mod-proxy-uwsgi | nginx
 Suggests: postgresql | default-mysql-server | virtual-mysql-server
+Replaces: mailman3-suite (<< 0+20170523-12~)
+Breaks: mailman3-suite (<< 0+20170523-12~)
+Provides: mailman3-suite (<< 0+20170523-12~)
 Description: Django project integrating Mailman3 Postorius and HyperKitty
  This django web application provides the Mailman3 Postorius web interface
  and the HyperKitty mailinglist archiver integrated into one project.
@@ -35,7 +38,7 @@ Description: Django project integrating Mailman3 Postorius and HyperKitty
  The package automates most of the necessary configuration for the Django
  project (database setup, webserver configuration, secret and API key
  generation, Django project configuration) to get a ready-to-use Mailman3
- suite.
+ web suite.
  .
  The Mailman3 Django project runs as uWSGI daemon and optionally a webserver
  is configured as reverse proxy. In this case, the service can be accessed
@@ -45,23 +48,8 @@ Description: Django project integrating Mailman3 Postorius and HyperKitty
  installations. For productive setups, PostgreSQL or MySQL are much better
  options though. See README.Debian for further information.
 
-Package: mailman3
+Package: mailman3-suite
 Architecture: all
-Depends: mailman3-core,
-         mailman3-suite,
-         python-django-hyperkitty,
-         python-django-postorius,
-         python-mailmanclient,
-         python3-mailman-hyperkitty,
-         ${misc:Depends}
-Description: Full Mailman3 mailing list management suite (metapackage)
- This is GNU Mailman, a mailing list management system. This metapackage
- depends on all components of the full Mailman3 suite:
- .
-  * mailman3-core: The core delivery engine
-  * python-mailmanclient: Python bindings for the Mailman3 REST API
-  * python-django-postorius: The Mailman3 web interface
-  * python-django-hyperkitty: The Mailman3 mailinglist web archiver
-  * python3-mailman-hyperkitty: The Mailman3 server plugin to send mails to
-    Hyperkitty.
-  * mailman3-suite: Combines postorius and hyperkitty into one web app
+Depends: mailman3-web
+Description: Transitional package to migrate to mailman3-web
+ This is a transitional package. It can safely be removed.

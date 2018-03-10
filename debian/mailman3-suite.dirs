@@ -1,5 +1,0 @@
-etc/mailman3
-usr/share/mailman3-suite
-var/lib/mailman3/suite/fulltext_index
-var/lib/mailman3/suite/static/CACHE
-var/log/mailman3

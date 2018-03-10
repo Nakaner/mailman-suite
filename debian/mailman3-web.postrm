@@ -7,7 +7,7 @@ if [ -f /usr/share/debconf/confmodule ]; then
 fi
 if [ -f /usr/share/dbconfig-common/dpkg/postrm ]; then
     . /usr/share/dbconfig-common/dpkg/postrm
-    dbc_go mailman3-suite "$@"
+    dbc_go mailman3-web "$@"
 fi
 
 if [ -e /usr/share/apache2/apache2-maintscript-helper ]; then
@@ -43,7 +43,7 @@ case "$1" in
     remove)
 
         # Handling web server configuration
-        db_get mailman3-suite/configure-webserver
+        db_get mailman3-web/configure-webserver
         webservers="$RET"
         restart=""
 
@@ -60,7 +60,7 @@ case "$1" in
             restart="$restart $webserver"
         done
 
-        db_get mailman3-suite/restart-webserver
+        db_get mailman3-web/restart-webserver
         res="$RET"
         db_stop || true
         if [ "$res" = "true" ]; then
@@ -82,21 +82,20 @@ case "$1" in
             db_purge
         fi
 
-        rm -rf /var/lib/mailman3/suite
-        rm -f /var/log/mailman3/mailman-suite.log
-        rm -f /var/log/mailman3/mailman-suite-uwsgi.log
+        rm -rf /var/lib/mailman3/web
+        rm -f /var/log/mailman3/web/mailman3-web.log
 
         for ext in .ucf-new .ucf-old .ucf-dist ""; do
-            rm -f "/etc/mailman3/mailman3-suite.py$ext"
+            rm -f "/etc/mailman3/mailman3-web.py$ext"
             rm -f "/etc/mailman3/hyperkitty.cfg$ext"
         done
         if which ucf >/dev/null 2>&1; then
-            ucf --purge /etc/mailman3/mailman3-suite.py
+            ucf --purge /etc/mailman3/mailman3-web.py
             ucf --purge /etc/mailman3/hyperkitty.cfg
         fi
         if which ucfr >/dev/null 2>&1; then
-            ucfr --purge mailman3-suite /etc/mailman3/mailman3-suite.py
-            ucfr --purge mailman3-suite /etc/mailman3/hyperkitty.cfg
+            ucfr --purge mailman3-web /etc/mailman3/mailman3-web.py
+            ucfr --purge mailman3-web /etc/mailman3/hyperkitty.cfg
         fi
     ;;
 

@@ -1,8 +1,0 @@
-debian/contrib/apache.conf		etc/mailman3/
-debian/contrib/hyperkitty.cfg.sample	usr/share/mailman3-suite/
-debian/contrib/settings_local.py.sample	usr/share/mailman3-suite/
-debian/contrib/uwsgi.ini		usr/share/mailman3-suite/
-mailman-suite_project/manage.py		usr/share/mailman3-suite/
-mailman-suite_project/settings.py	usr/share/mailman3-suite/
-mailman-suite_project/urls.py		usr/share/mailman3-suite/
-mailman-suite_project/wsgi.py		usr/share/mailman3-suite/

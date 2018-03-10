@@ -1,10 +1,10 @@
 [Unit]
-Description=Mailman3 suite uWSGI service
+Description=Mailman3-web uWSGI service
 After=network.target
-Documentation=file:///usr/share/doc/mailman3-suite/README.rst
+Documentation=file:///usr/share/doc/mailman3-web/README.rst
 
 [Service]
-ExecStart=/usr/bin/uwsgi --ini /usr/share/mailman3-suite/uwsgi.ini
+ExecStart=/usr/bin/uwsgi --ini /usr/share/mailman3-web/uwsgi.ini
 Restart=on-failure
 KillSignal=SIGQUIT
 Type=notify

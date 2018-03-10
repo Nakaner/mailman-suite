@@ -6,9 +6,9 @@ set -e
 . /usr/share/dbconfig-common/dpkg/prerm
 
 if which pyclean >/dev/null 2>&1; then
-    pyclean -p mailman3-suite
+    pyclean -p mailman3-web
 else
-    dpkg -L mailman3-suite | grep \.py$ | while read file
+    dpkg -L mailman3-web | grep \.py$ | while read file
     do
         rm -f "${file}"[co] >/dev/null
     done
@@ -30,6 +30,6 @@ esac
 #DEBHELPER#
 
 # database removal has to happen after service is stopped
-dbc_go mailman3-suite "$@"
+dbc_go mailman3-web "$@"
 
 exit 0

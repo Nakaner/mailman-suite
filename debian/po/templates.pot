@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mailman-suite\n"
 "Report-Msgid-Bugs-To: mailman-suite@packages.debian.org\n"
-"POT-Creation-Date: 2018-01-09 18:38+0100\n"
+"POT-Creation-Date: 2018-03-10 15:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,8 +80,8 @@ msgstr ""
 #. Description
 #: ../templates:5002
 msgid ""
-"The Mailman3 suite supports any web server with uwsgi support, however only "
-"Apache 2 can be configured automatically."
+"Mailman3-web supports any web server with uwsgi support, however only Apache "
+"2 can be configured automatically."
 msgstr ""
 
 #. Type: select
@@ -89,7 +89,7 @@ msgstr ""
 #: ../templates:5002
 msgid ""
 "Please select the web server(s) that should be configured automatically for "
-"the Mailman3 suite."
+"Mailman3-web."
 msgstr ""
 
 #. Type: boolean

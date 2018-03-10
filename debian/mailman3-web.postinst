@@ -9,7 +9,7 @@ set -e
 dbc_dbfile_owner="www-data:www-data"
 dbc_dbfile_perms="0640"
 
-dbc_go mailman3-suite "$@"
+dbc_go mailman3-web "$@"
 
 pathfind() {
     OLDIFS="$IFS"
@@ -60,13 +60,13 @@ cleanup () {
 create_config () {
     trap cleanup EXIT
     settings_local_new=`tempfile -m 0644`
-    cp -a /usr/share/mailman3-suite/settings_local.py.sample $settings_local_new
+    cp -a /usr/share/mailman3-web/settings_local.py.sample $settings_local_new
     hyperkitty_cfg_new=`tempfile -m 0644`
-    cp -a /usr/share/mailman3-suite/hyperkitty.cfg.sample $hyperkitty_cfg_new
+    cp -a /usr/share/mailman3-web/hyperkitty.cfg.sample $hyperkitty_cfg_new
     
     # get database settings from dbconfig-common
-    if [ -f /etc/dbconfig-common/mailman3-suite.conf ]; then
-        . /etc/dbconfig-common/mailman3-suite.conf
+    if [ -f /etc/dbconfig-common/mailman3-web.conf ]; then
+        . /etc/dbconfig-common/mailman3-web.conf
 
         # Comment out default database settings if dbconfig is used
         sed -i -e "s|^\(\s\+\)\('ENGINE':\)|\1#\2|" \
@@ -102,10 +102,10 @@ create_config () {
             ;;
     esac
 
-    # Get SECRET_KEY from mailman3-suite.py if existent
-    [ -f /etc/mailman3/mailman3-suite.py ] && {
+    # Get SECRET_KEY from mailman3-web.py if existent
+    [ -f /etc/mailman3/mailman3-web.py ] && {
         secretkey="$(sed -ne "s/^SECRET_KEY = '\(\S\+\)'$/\1/p" \
-            /etc/mailman3/mailman3-suite.py)"
+            /etc/mailman3/mailman3-web.py)"
     }
     # If this is the default key, forget it!
     [ "$secretkey" = "change-this-on-your-production-server" ] && unset secretkey
@@ -115,10 +115,10 @@ create_config () {
             | base64 -w0 | sed -ne 's|\(.\{48\}\).*|\1|p')"
     done
 
-    # Get MAILMAN_REST_API_PASS from mailman3-suite.py if existent
-    [ -f /etc/mailman3/mailman3-suite.py ] && {
+    # Get MAILMAN_REST_API_PASS from mailman3-web.py if existent
+    [ -f /etc/mailman3/mailman3-web.py ] && {
         restapipass="$(sed -ne "s|^MAILMAN_REST_API_PASS = '\(\S\+\)'$|\1|p" \
-            /etc/mailman3/mailman3-suite.py)"
+            /etc/mailman3/mailman3-web.py)"
     }
     # If this is the default key, forget it!
     [ "$restapipass" = "restpass" ] && unset restapipass
@@ -130,10 +130,10 @@ create_config () {
         }
     fi
 
-    # Get MAILMAN_ARCHIVER_KEY from mailman3-suite.py if existent
-    [ -f /etc/mailman3/mailman3-suite.py ] && {
+    # Get MAILMAN_ARCHIVER_KEY from mailman3-web.py if existent
+    [ -f /etc/mailman3/mailman3-web.py ] && {
         archiverkey="$(sed -ne "s|^MAILMAN_ARCHIVER_KEY = '\(\S\+\)'$|\1|p" \
-            /etc/mailman3/mailman3-suite.py)"
+            /etc/mailman3/mailman3-web.py)"
     }
     # If this is the default key, forget it!
     [ "$archiverkey" = "SecretArchiverAPIKey" ] && unset archiverkey
@@ -143,7 +143,7 @@ create_config () {
             | base64 -w0 | sed -ne 's|\(.\{32\}\).*|\1|p')"
     done
 
-    db_get mailman3-suite/emailname
+    db_get mailman3-web/emailname
     emailname="$RET"
 
     # Set custom settings in settings_local.py
@@ -158,27 +158,17 @@ create_config () {
            $hyperkitty_cfg_new
 
     # Register new config file
-    ucf --three-way --debconf-ok "$settings_local_new" /etc/mailman3/mailman3-suite.py
+    ucf --three-way --debconf-ok "$settings_local_new" /etc/mailman3/mailman3-web.py
     ucf --three-way --debconf-ok "$hyperkitty_cfg_new" /etc/mailman3/hyperkitty.cfg
-    ucfr mailman3-suite /etc/mailman3/mailman3-suite.py
-    ucfr mailman3-suite /etc/mailman3/hyperkitty.cfg
-    chmod 0640 /etc/mailman3/mailman3-suite.py /etc/mailman3/hyperkitty.cfg
+    ucfr mailman3-web /etc/mailman3/mailman3-web.py
+    ucfr mailman3-web /etc/mailman3/hyperkitty.cfg
+    chmod 0640 /etc/mailman3/mailman3-web.py /etc/mailman3/hyperkitty.cfg
     chown root:list     /etc/mailman3/hyperkitty.cfg
-    chown root:www-data /etc/mailman3/mailman3-suite.py
+    chown root:www-data /etc/mailman3/mailman3-web.py
     rm -f $settings_local_new $hyperkitty_cfg_new
 }
 
-create_logfiles () {
-    for logfile in /var/log/mailman3/mailman-suite.log /var/log/mailman3/mailman-suite-uwsgi.log; do
-        if [ ! -f "$logfile" ]; then
-            touch $logfile
-            chown www-data:www-data $logfile
-            chmod 0640 $logfile
-	fi
-    done
-}
-
-django_admin_args="--verbosity 0 --no-color --pythonpath /usr/share/mailman3-suite --settings settings"
+django_admin_args="--verbosity 0 --no-color --pythonpath /usr/share/mailman3-web --settings settings"
 
 init_django () {
     if pathfind django-admin; then
@@ -195,15 +185,15 @@ update_django () {
 }
 
 create_superuser () {
-    db_get mailman3-suite/superuser-name
+    db_get mailman3-web/superuser-name
     su_name="$RET"
-    db_get mailman3-suite/superuser-mail
+    db_get mailman3-web/superuser-mail
     su_mail="$RET"
-    db_get mailman3-suite/superuser-password
+    db_get mailman3-web/superuser-password
     su_password="$RET"
 
     if [ -n "$su_name" ] && [ -n "$su_mail" ] && [ -n "$su_password" ]; then
-        /usr/share/mailman3-suite/manage.py shell -c \
+        /usr/share/mailman3-web/manage.py shell -c \
             "from django.contrib.auth.models import User; \
              User.objects.filter(email='$su_mail').delete(); \
              User.objects.create_superuser('$su_name', \
@@ -215,7 +205,6 @@ case "$1" in
     configure)
 
         create_config
-        create_logfiles
 
         if [ -n "$2" ]; then
             init_django
@@ -226,7 +215,7 @@ case "$1" in
         create_superuser
 
         # Handle webserver configuration/restart
-        db_get mailman3-suite/configure-webserver
+        db_get mailman3-web/configure-webserver
         webservers="$RET"
         restart=""
 
@@ -241,7 +230,7 @@ case "$1" in
             restart="$restart $webserver"
         done
 
-        db_get mailman3-suite/restart-webserver
+        db_get mailman3-web/restart-webserver
         res="$RET"
         if [ "$res" = "true" ]; then
             for webserver in $restart; do

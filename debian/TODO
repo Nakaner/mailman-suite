@@ -1,18 +1,18 @@
 TODOs for mailman-suite
 =======================
 
-* mailman3-suite: drop hard dependency on mailman3-core
+* mailman3-web: drop hard dependency on mailman3-core
 
   For now, the dependency is there to ensure that the postinst of
-  mailman3-core is run before the one of mailman3-suite. This is
-  needed because the mailman3-suite postinst derives the REST API
+  mailman3-core is run before the one of mailman3-web. This is
+  needed because the mailman3-web postinst derives the REST API
   key from mailman.cfg, which is generated in mailman3-core
   postinst.
   
   Options:
 
   *) Make the REST API credentials in the settings.py shipped with
-     mailman3-suite optional. E.g. by patching django-mailman3 to
+     mailman3-web optional. E.g. by patching django-mailman3 to
      read the credentials from mailman.cfg if mailman3-core runs on
      the same host.
   *) Patch mailman3-core and django-mailman3 to use a common file

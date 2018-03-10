@@ -1,44 +1,43 @@
-Template: mailman3-suite/emailname
+Template: mailman3-web/emailname
 Type: string
 Default: localhost.local
 _Description: Domain name for sender email addresses:
- If the Mailman3 web interface sends emails, this domain
- will be used for the sender addresses. In particular, it
- will be 'postorius@<domain>' for internal authentication
- and 'root@<domain>' for error messages.
+ If the Mailman3 web interface sends emails, this domain will
+ be used for the sender addresses. In particular, it will be
+ 'postorius@<domain>' for internal authentication and
+ 'root@<domain>' for error messages.
 
-Template: mailman3-suite/superuser-name
+Template: mailman3-web/superuser-name
 Type: string
 Default: admin
 _Description: Username of the Postorius superuser:
- This is the username of the Postorius superuser. It will have global
- administrative access to all mailinglists.
+ This is the username of the Postorius superuser. It will have
+ global administrative access to all mailinglists.
 
-Template: mailman3-suite/superuser-mail
+Template: mailman3-web/superuser-mail
 Type: string
 Default: root@localhost
 _Description: Email address of the Postorius superuser:
 
-Template: mailman3-suite/superuser-password
+Template: mailman3-web/superuser-password
 Type: password
 Default:
 _Description: Password for the Postorius superuser:
 
-Template: mailman3-suite/configure-webserver
+Template: mailman3-web/configure-webserver
 Type: select
 __Choices: none, apache2
 Default: none
 _Description: Web server(s) to configure automatically:
- The Mailman3 suite supports any web server with uwsgi
- support, however only Apache 2 can be configured
- automatically.
+ Mailman3-web supports any web server with uwsgi support,
+ however only Apache 2 can be configured automatically.
  .
  Please select the web server(s) that should be configured
- automatically for the Mailman3 suite.
+ automatically for Mailman3-web.
 
-Template: mailman3-suite/restart-webserver
+Template: mailman3-web/restart-webserver
 Type: boolean
 Default: true
 _Description: Should the webserver(s) be restarted now?
- In order to activate the new configuration, the configured web
- server(s) have to be restarted.
+ In order to activate the new configuration, the configured
+ web server(s) have to be restarted.

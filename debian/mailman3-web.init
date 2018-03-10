@@ -1,34 +1,34 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:          mailman3-suite
+# Provides:          mailman3-web
 # Required-Start:    $network $local_fs $remote_fs $syslog
 # Required-Stop:     $remote_fs
 # Should-Start:      postgresql
 # Should-Stop:       postgresql
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Mailman3 suite uWSGI service
-# Description:       Mailman3 suite uWSGI service
+# Short-Description: Mailman3-web uWSGI service
+# Description:       Mailman3-web uWSGI service
 ### END INIT INFO
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-NAME="mailman3-suite"
-DESC="Mailman3 suite uWSGI service"
-SCRIPTNAME=/etc/init.d/mailman3-suite
+NAME="mailman3-web"
+DESC="Mailman3-web uWSGI service"
+SCRIPTNAME=/etc/init.d/mailman3-web
 DAEMON=/usr/bin/uwsgi
-PIDFILE="/run/mailman3-suite/${NAME}.pid"
-LOGFILE="/var/log/mailman3/mailman3-suite.log"
-DAEMON_ARGS="--ini /usr/share/mailman3-suite/uwsgi.ini --pidfile ${PIDFILE} --daemonize ${LOGFILE}"
+PIDFILE="/run/mailman3-web/${NAME}.pid"
+LOGFILE="/var/log/mailman3/web/mailman3-web.log"
+DAEMON_ARGS="--ini /usr/share/mailman3-web/uwsgi.ini --pidfile ${PIDFILE} --daemonize ${LOGFILE}"
 
 test -x $DAEMON || exit 0
 
 . /lib/lsb/init-functions
 
-if [ ! -d /run/mailman3-suite ]; then
-    mkdir -p /run/mailman3-suite
+if [ ! -d /run/mailman3/web ]; then
+    mkdir -p /run/mailman3/web
 fi
 
-chown www-data:www-data /run/mailman3-suite
+chown www-data:www-data /run/mailman3/web
 
 do_start () {
     start-stop-daemon --start --quiet --pidfile $PIDFILE \

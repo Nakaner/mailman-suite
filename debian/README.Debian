@@ -4,7 +4,7 @@ Mailman3 Suite for Debian
  This package ships a Django web project to provide the Mailman3 Postorius
 web interface and the Hyperkitty web achiver together.
 
- After installing mailman3-suite, a few remaining steps are required to get
+ After installing mailman3-web, a few remaining steps are required to get
 a fully working Mailman3 suite:
 
  * The mail transport agent (MTA) needs to be configured to deliver list
@@ -19,14 +19,14 @@ a fully working Mailman3 suite:
    # dpkg-reconfigure mailman3-core
 
  * A superuser for the Postorius web interface needs to be configured.
-   This can be done during configuration of this mailman3-suite package.
-   If in doubt, reconfigure mailman3-suite:
+   This can be done during configuration of this mailman3-web package.
+   If in doubt, reconfigure mailman3-web:
 
-   # dpkg-reconfigure mailman3-suite
+   # dpkg-reconfigure mailman3-web
 
    Alternatively, a superuser can be created with the following command:
 
-   # django-admin createsuperuser --pythonpath /usr/share/mailman3-suite \
+   # django-admin createsuperuser --pythonpath /usr/share/mailman3-web \
        --settings settings --username <user> --email <mail-addr>
 
 
@@ -40,7 +40,7 @@ recommends.
  For productive setups, SQLite3 is *not* recommended as database backend.
 PostgreSQL or MySQL should be used instead. The database configuration can
 be automated by installing 'dbconfig-pgsql' or 'dbconfig-mysql' and running
-'dpkg-reconfigure mailman3-suite'. A respective local or remote database
+'dpkg-reconfigure mailman3-web'. A respective local or remote database
 server has to be available in this case.
 
  For MySQL as database backend, please read the next section.
@@ -76,16 +76,16 @@ configuration of the package:
 
  * The database backend is prepared:
    * For SQLite3, an empty database file is created
-   * For PostgreSQL/MySQL, database + user ('mailman3suite') are created
+   * For PostgreSQL/MySQL, database + user ('mailman3web') are created
 
  * A uWSGI daemon is enabled and started to provide the Django project
-   via unix socket at `/run/mailman3-suite/uwsgi.sock`.
+   via unix socket at `/run/mailman3-web/uwsgi.sock`.
 
  * A secure API token for the Hyperkitty archiver is generated and
    set both in the Django and in the Hyperkitty configuration.
 
  * The API password for the Mailman3 REST api is derived from
-   `/etc/mailman3/mailman.cfg` and set accordingly in the mailman3-suite
+   `/etc/mailman3/mailman.cfg` and set accordingly in the mailman3-web
    configuration.
 
  * Optionally, supported webservers (currently Apache2) will be configured
@@ -95,4 +95,4 @@ configuration of the package:
  * Optionally, a superuser for the Postorius webinterface will be created.
 
 
- -- Jonas Meurer <jonas@freesources.org>, Thu, 01 Mar 2018 15:00:26 +0100
+ -- Jonas Meurer <jonas@freesources.org>, Sat, 10 Mar 2018 14:59:47 +0100

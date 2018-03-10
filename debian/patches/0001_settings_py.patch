@@ -1,4 +1,4 @@
-Description: Adjust settings.py for the Debian Mailman3 suite
+Description: Adjust settings.py for Debian mailman3-web
 Forwarded: not-needed
 Author: Jonas Meurer <jonas@freesources.org>
 Last-Update: 2017-10-11
@@ -46,7 +46,7 @@ Last-Update: 2017-10-11
 +        'ENGINE': 'django.db.backends.postgresql_psycopg2',
          # DB name or path to database file if using sqlite3.
 -        'NAME': os.path.join(BASE_DIR, 'mailmansuite.db'),
-+        'NAME': 'mailman3-suite',
++        'NAME': 'mailman3web',
          # The following settings are not used with sqlite3:
          'USER': 'mailmansuite',
          'PASSWORD': 'mmpass',
@@ -77,7 +77,7 @@ Last-Update: 2017-10-11
  # in apps' "static/" subdirectories and in STATICFILES_DIRS.
  # Example: "/var/www/example.com/static/"
 -STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-+STATIC_ROOT = '/var/lib/mailman3/suite/static'
++STATIC_ROOT = '/var/lib/mailman3/web/static'
  
  # URL prefix for static files.
  # Example: "http://example.com/static/", "http://static.example.com/"
@@ -190,7 +190,7 @@ Last-Update: 2017-10-11
      'default': {
          'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
 -        'PATH': os.path.join(BASE_DIR, "fulltext_index"),
-+        'PATH': '/var/lib/mailman3/suite/fulltext_index',
++        'PATH': '/var/lib/mailman3/web/fulltext_index',
          # You can also use the Xapian engine, it's faster and more accurate,
          # but requires another library.
          # http://django-haystack.readthedocs.io/en/v2.4.1/installing_search_engines.html#xapian
@@ -203,7 +203,7 @@ Last-Update: 2017-10-11
 -            'filename': os.path.join(BASE_DIR, 'logs', 'mailmansuite.log'),
 +            'class': 'logging.handlers.RotatingFileHandler',
 +            #'class': 'logging.handlers.WatchedFileHandler',
-+            'filename': '/var/log/mailman3/mailman-suite.log',
++            'filename': '/var/log/mailman3/web/mailman3-web.log',
              'formatter': 'verbose',
          },
          'console': {
