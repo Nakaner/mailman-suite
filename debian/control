@@ -30,7 +30,7 @@ Recommends: libapache2-mod-proxy-uwsgi | nginx
 Suggests: postgresql | default-mysql-server | virtual-mysql-server
 Replaces: mailman3-suite (<< 0+20170523-12~)
 Breaks: mailman3-suite (<< 0+20170523-12~)
-Provides: mailman3-suite (<< 0+20170523-12~)
+Provides: mailman3-suite (= 0+20170523-11)
 Description: Django project integrating Mailman3 Postorius and HyperKitty
  This django web application provides the Mailman3 Postorius web interface
  and the HyperKitty mailinglist archiver integrated into one project.
@@ -49,7 +49,9 @@ Description: Django project integrating Mailman3 Postorius and HyperKitty
  options though. See README.Debian for further information.
 
 Package: mailman3-suite
+Section: oldlibs
 Architecture: all
-Depends: mailman3-web
+Depends: mailman3-web,
+         ${misc:Depends}
 Description: Transitional package to migrate to mailman3-web
  This is a transitional package. It can safely be removed.
