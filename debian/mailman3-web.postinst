@@ -44,6 +44,19 @@ else
     }
 fi
 
+if [ -e /usr/share/nginx ]; then
+    nginx_install() {
+        if [ -d /etc/nginx/sites-enabled ] && [ ! -e /etc/nginx/sites-enabled/mailman3 ]; then
+            ln -s /etc/mailman3/nginx.conf /etc/nginx/sites-enabled/mailman3
+            mkdir -p /var/log/nginx/mailman3 && chown www-data:adm /var/log/nginx/mailman3
+        fi
+    }
+else
+    nginx_install() {
+        return 1
+    }
+fi
+
 settings_local_new=
 hyperkitty_cfg_new=
 
@@ -224,6 +237,9 @@ case "$1" in
             case "$webserver" in
                 apache2)
                     apache_install
+                    ;;
+                nginx)
+                    nginx_install
                     ;;
             esac
             pathfind $webserver || continue

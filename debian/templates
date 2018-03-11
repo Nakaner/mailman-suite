@@ -26,11 +26,13 @@ _Description: Password for the Postorius superuser:
 
 Template: mailman3-web/configure-webserver
 Type: select
-__Choices: none, apache2
+__Choices: none, apache2, nginx
 Default: none
 _Description: Web server(s) to configure automatically:
  Mailman3-web supports any web server with uwsgi support,
- however only Apache 2 can be configured automatically.
+ however only Apache 2 and nginx can be configured
+ automatically. If you chose nginx, you'll have to change
+ the vhost name in /etc/mailman3/nginx.conf.
  .
  Please select the web server(s) that should be configured
  automatically for Mailman3-web.

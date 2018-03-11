@@ -36,6 +36,13 @@ apache_remove() {
     fi
 }
 
+ngnx_remove() {
+    if [ -d /etc/nginx/sites-enabled ] && [ -e /etc/nginx/sites-enabled/mailman3 ]; then
+        rm -f /etc/nginx/sites-enabled/mailman3
+        rm -rf /var/log/nginx/mailman3
+    fi
+}
+
 case "$1" in
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
     ;;
@@ -53,6 +60,9 @@ case "$1" in
             case "$webserver" in
                 apache2)
                     apache_remove
+                    ;;
+                nginx)
+                    nginx_remove
                     ;;
             esac
 

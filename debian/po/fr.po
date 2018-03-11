@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mailman-suite\n"
 "Report-Msgid-Bugs-To: mailman-suite@packages.debian.org\n"
-"POT-Creation-Date: 2018-03-10 15:37+0100\n"
+"POT-Creation-Date: 2018-03-11 04:09+0100\n"
 "PO-Revision-Date: 2018-01-09 21:35+0100\n"
 "Last-Translator: Pierre-Elliott Bécue <becue@crans.org>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -77,6 +77,12 @@ msgid "apache2"
 msgstr "apache2"
 
 #. Type: select
+#. Choices
+#: ../templates:5001
+msgid "nginx"
+msgstr ""
+
+#. Type: select
 #. Description
 #: ../templates:5002
 msgid "Web server(s) to configure automatically:"
@@ -85,30 +91,25 @@ msgstr "Serveur web à configurer automatiquement :"
 #. Type: select
 #. Description
 #: ../templates:5002
-#, fuzzy
-#| msgid ""
-#| "The Mailman3 suite supports any web server with uwsgi support, however "
-#| "only Apache 2 can be configured automatically."
 msgid ""
 "Mailman3-web supports any web server with uwsgi support, however only Apache "
-"2 can be configured automatically."
+"2 and nginx can be configured automatically. If you chose nginx, you'll have "
+"to change the vhost name in /etc/mailman3/nginx.conf."
 msgstr ""
 "Mailman3 fonctionne avec n'importe quel serveur web compatible avec uwsgi, "
-"cependant seul Apache 2 peut être configuré automatiquement pour l'instant."
+"cependant seuls Apache 2 et nginx peuven être configuré automatiquement pour "
+"l'instant. Si vous choisissez nginx, vous devrez modifier le nom de domaine "
+"dans le fichier de configuration /etc/mailman3/nginx.conf."
 
 #. Type: select
 #. Description
 #: ../templates:5002
-#, fuzzy
-#| msgid ""
-#| "Please select the web server(s) that should be configured automatically "
-#| "for the Mailman3 suite."
 msgid ""
 "Please select the web server(s) that should be configured automatically for "
 "Mailman3-web."
 msgstr ""
 "Veuillez choisir le serveur web que vous souhaitez configurer "
-"automatiquement pour Mailman3."
+"automatiquement pour l'interface web de Mailman3."
 
 #. Type: boolean
 #. Description

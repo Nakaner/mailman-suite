@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mailman-suite\n"
 "Report-Msgid-Bugs-To: mailman-suite@packages.debian.org\n"
-"POT-Creation-Date: 2018-03-10 15:37+0100\n"
+"POT-Creation-Date: 2018-03-11 04:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,6 +71,12 @@ msgid "apache2"
 msgstr ""
 
 #. Type: select
+#. Choices
+#: ../templates:5001
+msgid "nginx"
+msgstr ""
+
+#. Type: select
 #. Description
 #: ../templates:5002
 msgid "Web server(s) to configure automatically:"
@@ -81,7 +87,8 @@ msgstr ""
 #: ../templates:5002
 msgid ""
 "Mailman3-web supports any web server with uwsgi support, however only Apache "
-"2 can be configured automatically."
+"2 and nginx can be configured automatically. If you chose nginx, you'll have "
+"to change the vhost name in /etc/mailman3/nginx.conf."
 msgstr ""
 
 #. Type: select
