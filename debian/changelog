@@ -1,5 +1,6 @@
 mailman-suite (0+20170523-12) unstable; urgency=medium
 
+  [ Jonas Meurer ]
   * Rename binary package 'mailman3-suite' to 'mailman3-web' to avoid
     further confusion.
   * Move logfiles to new subdirectory /var/log/mailman3/web
@@ -14,7 +15,10 @@ mailman-suite (0+20170523-12) unstable; urgency=medium
     - Add transitional package 'mailman3-suite' that depends on new package
       'mailman3-web'
 
- -- Jonas Meurer <jonas@freesources.org>  Sat, 10 Mar 2018 15:31:42 +0100
+  [ Pierre-Elliott Bécue ]
+  * mailman3-web.install: move uwsgi.ini to /etc/mailman3
+
+ -- Pierre-Elliott Bécue <becue@crans.org>  Sun, 11 Mar 2018 00:56:18 +0100
 
 mailman-suite (0+20170523-11) unstable; urgency=medium
 

@@ -4,7 +4,7 @@ After=network.target
 Documentation=file:///usr/share/doc/mailman3-web/README.rst
 
 [Service]
-ExecStart=/usr/bin/uwsgi --ini /usr/share/mailman3-web/uwsgi.ini
+ExecStart=/usr/bin/uwsgi --ini /etc/mailman3/uwsgi.ini
 Restart=on-failure
 KillSignal=SIGQUIT
 Type=notify
