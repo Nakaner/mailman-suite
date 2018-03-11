@@ -17,6 +17,8 @@ mailman-suite (0+20170523-12) unstable; urgency=medium
   * d/mailman3-web.postinst:
     - Add '-f' to ucfr for hyperkitty.conf, as we might hijack the file from
       old package mailman3-suite.
+  * d/NEWS:
+    - Document the renaming of the binary package name.
 
   [ Pierre-Elliott Bécue ]
   * mailman3-web.install: move uwsgi.ini to /etc/mailman3
@@ -24,7 +26,10 @@ mailman-suite (0+20170523-12) unstable; urgency=medium
   * Fix mailman3-web.cron.d jobs to call explicitly python2.7 version of
     django-admin.py
 
- -- Jonas Meurer <jonas@freesources.org>  Sun, 11 Mar 2018 20:09:56 +0100
+  [ Jonas Meurer ]
+  * 
+
+ -- Jonas Meurer <jonas@freesources.org>  Sun, 11 Mar 2018 20:17:52 +0100
 
 mailman-suite (0+20170523-11) unstable; urgency=medium
 

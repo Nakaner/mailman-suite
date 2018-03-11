@@ -1,0 +1,14 @@
+mailman-suite (0+20170523-12) unstable; urgency=medium
+
+  Binary package 'mailman3-suite' renamed to 'mailman3-web':
+
+  To avoid further confusion, the binary package 'mailman3-suite' got
+  renamed to 'mailman3-web'. We decided to not provide complex migration
+  tools as the package is very young and has never been part of a stable
+  release yet.
+
+  In case you want to keep your existent mailman3-suite database, you're
+  advised to make a backup now and re-import it after the installation of
+  mailman3-web.
+
+ -- Jonas Meurer <jonas@freesources.org>  Mon, 12 Mar 2018 10:46:13 +0100
