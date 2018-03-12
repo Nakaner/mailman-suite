@@ -1,4 +1,4 @@
-/var/log/mailman3/web/mailman3-web.log {
+/var/log/mailman3/web/mailman-web.log {
 	copytruncate
 	daily
 	rotate 5

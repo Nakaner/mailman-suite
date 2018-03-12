@@ -203,7 +203,7 @@ Last-Update: 2017-10-11
 -            'filename': os.path.join(BASE_DIR, 'logs', 'mailmansuite.log'),
 +            'class': 'logging.handlers.RotatingFileHandler',
 +            #'class': 'logging.handlers.WatchedFileHandler',
-+            'filename': '/var/log/mailman3/web/mailman3-web.log',
++            'filename': '/var/log/mailman3/web/mailman-web.log',
              'formatter': 'verbose',
          },
          'console': {

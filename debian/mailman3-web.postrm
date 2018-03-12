@@ -93,7 +93,7 @@ case "$1" in
         fi
 
         rm -rf /var/lib/mailman3/web
-        rm -f /var/log/mailman3/web/mailman3-web.log
+        rm -f /var/log/mailman3/web/mailman-web.log
 
         for ext in .ucf-new .ucf-old .ucf-dist ""; do
             rm -f "/etc/mailman3/mailman-web.py$ext"

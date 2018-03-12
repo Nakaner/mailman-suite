@@ -17,7 +17,7 @@ DESC="Mailman3-web uWSGI service"
 SCRIPTNAME=/etc/init.d/mailman3-web
 DAEMON=/usr/bin/uwsgi
 PIDFILE="/run/mailman3-web/${NAME}.pid"
-LOGFILE="/var/log/mailman3/web/mailman3-web.log"
+LOGFILE="/var/log/mailman3/web/mailman-web.log"
 DAEMON_ARGS="--ini /usr/share/mailman3-web/uwsgi.ini --pidfile ${PIDFILE} --daemonize ${LOGFILE}"
 
 test -x $DAEMON || exit 0
