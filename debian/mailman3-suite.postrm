@@ -1,0 +1,48 @@
+#!/bin/sh
+
+set -e
+
+if [ -f /usr/share/debconf/confmodule ]; then
+    . /usr/share/debconf/confmodule
+fi
+if [ -f /usr/share/dbconfig-common/dpkg/postrm ]; then
+    . /usr/share/dbconfig-common/dpkg/postrm
+    dbc_go mailman3-suite "$@"
+fi
+
+case "$1" in
+    upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+    ;;
+
+    remove)
+    ;;
+
+    purge)
+        if [ -f /usr/share/debconf/confmodule ]; then
+            db_purge
+        fi
+
+        rm -rf /var/lib/mailman3/suite
+        rm -f /var/log/mailman3/mailman3-suite.log
+        rm -f /var/log/mailman3/mailman3-suite-uwsgi.log
+
+        for ext in .ucf-new .ucf-old .ucf-dist ""; do
+            rm -f "/etc/mailman3/mailman3-suite.py$ext"
+        done
+        if which ucf >/dev/null 2>&1; then
+            ucf --purge /etc/mailman3/mailman3-suite.py
+        fi
+        if which ucfr >/dev/null 2>&1; then
+            ucfr --purge mailman3-suite /etc/mailman3/mailman3-suite.py
+        fi
+    ;;
+
+    *)
+        echo "postrm called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

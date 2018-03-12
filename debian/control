@@ -51,7 +51,9 @@ Description: Django project integrating Mailman3 Postorius and HyperKitty
 Package: mailman3-suite
 Section: oldlibs
 Architecture: all
-Depends: mailman3-web,
+Depends: dbconfig-sqlite3 | dbconfig-pgsql | dbconfig-mysql | dbconfig-no-thanks,
+         mailman3-web,
+         ucf,
          ${misc:Depends}
 Description: Transitional package to migrate to mailman3-web
  This is a transitional package. It can safely be removed.
