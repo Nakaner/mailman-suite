@@ -23,6 +23,8 @@ Template: mailman3-web/superuser-password
 Type: password
 Default:
 _Description: Password for the Postorius superuser:
+ If an empty password is given, no superuser will be created
+ at all. It then needs to be created manually.
 
 Template: mailman3-web/configure-webserver
 Type: select
