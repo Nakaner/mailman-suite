@@ -29,7 +29,6 @@ case "$1" in
                 ucf --purge /etc/mailman3/mailman3-suite.py
             fi
             if which ucfr >/dev/null 2>&1; then
-                ucfr --purge mailman3-suite /etc/mailman3/hyperkitty.cfg
                 ucfr --purge mailman3-suite /etc/mailman3/mailman3-suite.py
             fi
         fi
