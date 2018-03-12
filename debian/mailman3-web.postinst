@@ -58,11 +58,9 @@ else
 fi
 
 settings_local_new=
-hyperkitty_cfg_new=
 
 cleanup () {
     [ "$settings_local_new" ] && rm -f "$settings_local_new"
-    [ "$hyperkitty_cfg_new" ] && rm -f "$hyperkitty_cfg_new"
 }
 
 # All seds are using a vertical pipe "|" as a delimiter because of
@@ -74,8 +72,6 @@ create_config () {
     trap cleanup EXIT
     settings_local_new=`tempfile -m 0644`
     cp -a /usr/share/mailman3-web/settings_local.py.sample $settings_local_new
-    hyperkitty_cfg_new=`tempfile -m 0644`
-    cp -a /usr/share/mailman3-web/hyperkitty.cfg.sample $hyperkitty_cfg_new
     
     # get database settings from dbconfig-common
     if [ -f /etc/dbconfig-common/mailman3-web.conf ]; then
@@ -166,19 +162,12 @@ create_config () {
            -e "s|^\(\s*EMAILNAME\s*=\s*'\)\S\+\('\s*\)|\1$emailname\2|" \
            $settings_local_new
 
-    # Set custom settings in hyperkitty.cfg
-    sed -i -e "s|\(api_key:\s*\)\S\+\(\s*\)$|\1$archiverkey\2|" \
-           $hyperkitty_cfg_new
-
     # Register new config file
     ucf --three-way --debconf-ok "$settings_local_new" /etc/mailman3/mailman-web.py
-    ucf --three-way --debconf-ok "$hyperkitty_cfg_new" /etc/mailman3/hyperkitty.cfg
     ucfr mailman3-web /etc/mailman3/mailman-web.py
-    ucfr -f mailman3-web /etc/mailman3/hyperkitty.cfg
-    chmod 0640 /etc/mailman3/mailman-web.py /etc/mailman3/hyperkitty.cfg
-    chown root:list     /etc/mailman3/hyperkitty.cfg
+    chmod 0640 /etc/mailman3/mailman-web.py
     chown root:www-data /etc/mailman3/mailman-web.py
-    rm -f $settings_local_new $hyperkitty_cfg_new
+    rm -f $settings_local_new
 }
 
 django_admin="python2.7 /usr/bin/django-admin"
