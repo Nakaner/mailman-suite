@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mailman-suite\n"
 "Report-Msgid-Bugs-To: mailman-suite@packages.debian.org\n"
-"POT-Creation-Date: 2018-03-11 04:09+0100\n"
+"POT-Creation-Date: 2018-03-12 19:03+0100\n"
 "PO-Revision-Date: 2018-01-09 21:35+0100\n"
 "Last-Translator: Pierre-Elliott Bécue <becue@crans.org>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -63,6 +63,14 @@ msgstr "Adresse courriel du superutilisateur de Postorius :"
 #: ../templates:4001
 msgid "Password for the Postorius superuser:"
 msgstr "Mot de passe du superutilisateur de Postorius :"
+
+#. Type: password
+#. Description
+#: ../templates:4001
+msgid ""
+"If an empty password is given, no superuser will be created at all. It then "
+"needs to be created manually."
+msgstr ""
 
 #. Type: select
 #. Choices
