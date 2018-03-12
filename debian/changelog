@@ -7,6 +7,7 @@ mailman-suite (0+20170523-12) unstable; urgency=medium
   * d/rules:
     - Set owner of /var/lib/mailman3/web/static/CACHE to www-data:www-data.
       (Closes: #892427)
+    - Run debhelper with '--with systemd'
   * d/control:
     - Drop binary package 'mailman3', will be provided by another source
       package in future.
@@ -17,8 +18,8 @@ mailman-suite (0+20170523-12) unstable; urgency=medium
   * d/mailman3-web.postinst:
     - Add '-f' to ucfr for hyperkitty.conf, as we might hijack the file from
       old package mailman3-suite.
-  * d/mailman3-suite.postrm
-    - Remove cruft from mailman3-suite on purge
+  * d/mailman3-suite.{preinst,postrm}:
+    - Stop obsolete service and remove obsolete files from mailman3-suite
   * d/NEWS:
     - Document the renaming of the binary package name.
   * d/contrib/hyperkitty.cfg.sample:
@@ -31,7 +32,7 @@ mailman-suite (0+20170523-12) unstable; urgency=medium
   * Fix mailman3-web.cron.d jobs to call explicitly python2.7 version of
     django-admin.py
 
- -- Jonas Meurer <jonas@freesources.org>  Mon, 12 Mar 2018 12:09:06 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Mon, 12 Mar 2018 12:57:48 +0100
 
 mailman-suite (0+20170523-11) unstable; urgency=medium
 

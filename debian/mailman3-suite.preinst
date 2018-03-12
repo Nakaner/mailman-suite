@@ -1,0 +1,49 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+    install|upgrade)
+        if dpkg --compare-versions "$2" lt 0+20170523-12~; then
+            # Stop and remove obsolete system service 'mailman3-suite'
+            invoke-rc.d mailman3-suite stop || true
+            rm -f /etc/init.d/mailman3-suite
+            update-rc.d -f mailman3-suite remove
+            deb-systemd-helper purge mailman3-suite.service >/dev/null || true
+            deb-systemd-helper unmask mailman3-suite.service >/dev/null || true
+            #if [ -d /run/systemd/system ]; then
+            #    systemctl daemon-reload
+            #fi
+
+            # Remove obsolete django and log files
+            rm -rf /var/lib/mailman3/suite
+            rm -f /var/log/mailman3/mailman-suite.log
+            rm -f /var/log/mailman3/mailman-suite-uwsgi.log
+
+            # Remove obsolete config files
+            rm -f /etc/logrotate.d/mailman3-suite
+            for ext in .ucf-new .ucf-old .ucf-dist ""; do
+                rm -f "/etc/mailman3/mailman3-suite.py$ext"
+            done
+            if which ucf >/dev/null 2>&1; then
+                ucf --purge /etc/mailman3/mailman3-suite.py
+            fi
+            if which ucfr >/dev/null 2>&1; then
+                ucfr --purge mailman3-suite /etc/mailman3/hyperkitty.cfg
+                ucfr --purge mailman3-suite /etc/mailman3/mailman3-suite.py
+            fi
+        fi
+    ;;
+
+    abort-upgrade)
+    ;;
+
+    *)
+        echo "preinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

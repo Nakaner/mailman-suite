@@ -23,8 +23,8 @@ case "$1" in
         fi
 
         rm -rf /var/lib/mailman3/suite
-        rm -f /var/log/mailman3/mailman3-suite.log
-        rm -f /var/log/mailman3/mailman3-suite-uwsgi.log
+        rm -f /var/log/mailman3/mailman-suite.log
+        rm -f /var/log/mailman3/mailman-suite-uwsgi.log
 
         for ext in .ucf-new .ucf-old .ucf-dist ""; do
             rm -f "/etc/mailman3/mailman3-suite.py$ext"
@@ -33,6 +33,7 @@ case "$1" in
             ucf --purge /etc/mailman3/mailman3-suite.py
         fi
         if which ucfr >/dev/null 2>&1; then
+            ucfr --purge mailman3-suite /etc/mailman3/hyperkitty.py
             ucfr --purge mailman3-suite /etc/mailman3/mailman3-suite.py
         fi
     ;;
