@@ -96,15 +96,15 @@ case "$1" in
         rm -f /var/log/mailman3/web/mailman3-web.log
 
         for ext in .ucf-new .ucf-old .ucf-dist ""; do
-            rm -f "/etc/mailman3/mailman3-web.py$ext"
+            rm -f "/etc/mailman3/mailman-web.py$ext"
             rm -f "/etc/mailman3/hyperkitty.cfg$ext"
         done
         if which ucf >/dev/null 2>&1; then
-            ucf --purge /etc/mailman3/mailman3-web.py
+            ucf --purge /etc/mailman3/mailman-web.py
             ucf --purge /etc/mailman3/hyperkitty.cfg
         fi
         if which ucfr >/dev/null 2>&1; then
-            ucfr --purge mailman3-web /etc/mailman3/mailman3-web.py
+            ucfr --purge mailman3-web /etc/mailman3/mailman-web.py
             ucfr --purge mailman3-web /etc/mailman3/hyperkitty.cfg
         fi
     ;;

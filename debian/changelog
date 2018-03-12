@@ -32,7 +32,7 @@ mailman-suite (0+20170523-12) unstable; urgency=medium
   * Fix mailman3-web.cron.d jobs to call explicitly python2.7 version of
     django-admin.py
 
- -- Jonas Meurer <jonas@freesources.org>  Mon, 12 Mar 2018 12:57:48 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Mon, 12 Mar 2018 14:07:49 +0100
 
 mailman-suite (0+20170523-11) unstable; urgency=medium
 

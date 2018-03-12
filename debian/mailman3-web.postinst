@@ -115,10 +115,10 @@ create_config () {
             ;;
     esac
 
-    # Get SECRET_KEY from mailman3-web.py if existent
-    [ -f /etc/mailman3/mailman3-web.py ] && {
+    # Get SECRET_KEY from mailman-web.py if existent
+    [ -f /etc/mailman3/mailman-web.py ] && {
         secretkey="$(sed -ne "s/^SECRET_KEY = '\(\S\+\)'$/\1/p" \
-            /etc/mailman3/mailman3-web.py)"
+            /etc/mailman3/mailman-web.py)"
     }
     # If this is the default key, forget it!
     [ "$secretkey" = "change-this-on-your-production-server" ] && unset secretkey
@@ -128,10 +128,10 @@ create_config () {
             | base64 -w0 | sed -ne 's|\(.\{48\}\).*|\1|p')"
     done
 
-    # Get MAILMAN_REST_API_PASS from mailman3-web.py if existent
-    [ -f /etc/mailman3/mailman3-web.py ] && {
+    # Get MAILMAN_REST_API_PASS from mailman-web.py if existent
+    [ -f /etc/mailman3/mailman-web.py ] && {
         restapipass="$(sed -ne "s|^MAILMAN_REST_API_PASS = '\(\S\+\)'$|\1|p" \
-            /etc/mailman3/mailman3-web.py)"
+            /etc/mailman3/mailman-web.py)"
     }
     # If this is the default key, forget it!
     [ "$restapipass" = "restpass" ] && unset restapipass
@@ -143,10 +143,10 @@ create_config () {
         }
     fi
 
-    # Get MAILMAN_ARCHIVER_KEY from mailman3-web.py if existent
-    [ -f /etc/mailman3/mailman3-web.py ] && {
+    # Get MAILMAN_ARCHIVER_KEY from mailman-web.py if existent
+    [ -f /etc/mailman3/mailman-web.py ] && {
         archiverkey="$(sed -ne "s|^MAILMAN_ARCHIVER_KEY = '\(\S\+\)'$|\1|p" \
-            /etc/mailman3/mailman3-web.py)"
+            /etc/mailman3/mailman-web.py)"
     }
     # If this is the default key, forget it!
     [ "$archiverkey" = "SecretArchiverAPIKey" ] && unset archiverkey
@@ -171,13 +171,13 @@ create_config () {
            $hyperkitty_cfg_new
 
     # Register new config file
-    ucf --three-way --debconf-ok "$settings_local_new" /etc/mailman3/mailman3-web.py
+    ucf --three-way --debconf-ok "$settings_local_new" /etc/mailman3/mailman-web.py
     ucf --three-way --debconf-ok "$hyperkitty_cfg_new" /etc/mailman3/hyperkitty.cfg
-    ucfr mailman3-web /etc/mailman3/mailman3-web.py
+    ucfr mailman3-web /etc/mailman3/mailman-web.py
     ucfr -f mailman3-web /etc/mailman3/hyperkitty.cfg
-    chmod 0640 /etc/mailman3/mailman3-web.py /etc/mailman3/hyperkitty.cfg
+    chmod 0640 /etc/mailman3/mailman-web.py /etc/mailman3/hyperkitty.cfg
     chown root:list     /etc/mailman3/hyperkitty.cfg
-    chown root:www-data /etc/mailman3/mailman3-web.py
+    chown root:www-data /etc/mailman3/mailman-web.py
     rm -f $settings_local_new $hyperkitty_cfg_new
 }
 
