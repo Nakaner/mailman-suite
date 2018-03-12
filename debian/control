@@ -47,13 +47,3 @@ Description: Django project integrating Mailman3 Postorius and HyperKitty
  Default database backend is SQLite3 in order to not break automated
  installations. For productive setups, PostgreSQL or MySQL are much better
  options though. See README.Debian for further information.
-
-Package: mailman3-suite
-Section: oldlibs
-Architecture: all
-Depends: dbconfig-sqlite3 | dbconfig-pgsql | dbconfig-mysql | dbconfig-no-thanks,
-         mailman3-web,
-         ucf,
-         ${misc:Depends}
-Description: Transitional package to migrate to mailman3-web
- This is a transitional package. It can safely be removed.
