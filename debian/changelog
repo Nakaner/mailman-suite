@@ -18,6 +18,8 @@ mailman-suite (0+20170523-12) unstable; urgency=medium
     - Set owner of /var/lib/mailman3/web/static/CACHE to www-data:www-data.
       (Closes: #892427)
     - Run debhelper with '--with systemd'
+  * d/mailman3-web.postinst:
+    - Explictly run python2.7 version of django-admin
   * d/contrib/hyperkitty.cfg.sample:
      - Fix URL to hyperkitty (http://localhost/mailman3/hyperkitty/ per
        default)
@@ -28,7 +30,7 @@ mailman-suite (0+20170523-12) unstable; urgency=medium
   * Fix mailman3-web.cron.d jobs to call explicitly python2.7 version of
     django-admin.py
 
- -- Jonas Meurer <jonas@freesources.org>  Mon, 12 Mar 2018 14:35:45 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Mon, 12 Mar 2018 17:10:42 +0100
 
 mailman-suite (0+20170523-11) unstable; urgency=medium
 
