@@ -22,7 +22,7 @@ mailman-suite (0+20170523-12) unstable; urgency=medium
     - Run debhelper with '--with systemd'
   * d/mailman3-web.config:
     - Fix sed command in get_config_option()
-    - Wrap db_input into 'db_beginblock' and 'db_endblock' 
+    - Wrap db_input into 'db_beginblock' and 'db_endblock'
   * d/mailman3-web.postinst:
     - Explictly run python2.7 version of django-admin
   * d/contrib/hyperkitty.cfg.sample:
