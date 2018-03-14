@@ -46,7 +46,8 @@ _Description: Configuring Mailman3 in Nginx
  will have to change it properly.
  .
  Please also note that Mailman3 is configured to expect the web interface
- at URL subdirectory '/mailman3' per default.
+ at URL subdirectory '/mailman3' per default. But in the nginx file, as
+ the configuration includes a vhost, the expected URL root is '/'.
  .
  For the Nginx vhost configuration (without '/mailman3' subdomain) to
  work, you will have to edit the URL in 'base-url' at
