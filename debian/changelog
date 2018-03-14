@@ -3,41 +3,53 @@ mailman-suite (0+20170523-12) unstable; urgency=medium
   [ Jonas Meurer ]
   * Rename binary package 'mailman3-suite' to 'mailman3-web' to avoid
     further confusion, drop binary package 'mailman3-suite'.
+
+    A bit more background:
+    - The naming of our mailman3 packages caused some confusion. So we
+      decided on the following:
+      1. binary package 'mailman3-suite' will become 'mailman3-web' to make
+         the purpose more obvious.
+      2. binary and source package 'mailman3-core' will become 'mailman3'.
+         This is closer to the upstream name.
+      3. binary metapackage 'mailman3' will become 'mailman3-full' and moves
+         to the source package 'mailman3-core'/'mailman3'.
+
+    This upload of source package 'mailman-suite' takes care of part 1.
+
+  - d/NEWS:
+    - Document the renaming of the binary package name.
+  * d/mailman3-web.*, d/patches/*, d/contrib/uwsgi.ini, d/rules:
     - Move logfiles to new subdirectory /var/log/mailman3/web
-    - d/control:
-      - Drop binary package 'mailman3', will be provided by another source
-        package in future.
-      - Add 'Conflicts: mailman3-suite' to mailman3-web, to prevent parallel
-        installation of old and new binary package.
-    - d/mailman3-web.postinst:
-      - Add '-f' to ucfr for hyperkitty.conf, as we might hijack the file from
-        old package mailman3-suite.
-    - d/NEWS:
-      - Document the renaming of the binary package name.
+  * d/control:
+    - Drop binary package 'mailman3', will be provided by another source
+      package in future.
+    - Add 'Conflicts: mailman3-suite' to mailman3-web, to prevent parallel
+      installation of old and new binary package.
+  * d/mailman3-web.postinst:
+    - Add '-f' to ucfr for hyperkitty.conf, as we might hijack the file from
+      old package mailman3-suite.
+    - Explictly run python2.7 version of django-admin
   * d/contrib/hyperkitty.cfg.sample, d/mailman3-web.{install,postinst,postrm}:
     - Remove 'hyperkitty.cfg', it belongs to python3-mailman-hyperkitty
   * d/rules:
+    - Run debhelper with '--with systemd'
     - Set owner of /var/lib/mailman3/web/static/CACHE to www-data:www-data.
       (Closes: #892427)
-    - Run debhelper with '--with systemd'
   * d/mailman3-web.config:
     - Fix sed command in get_config_option()
     - Wrap db_input into 'db_beginblock' and 'db_endblock'
-  * d/mailman3-web.postinst:
-    - Explictly run python2.7 version of django-admin
-  * d/contrib/hyperkitty.cfg.sample:
-    - Fix URL to hyperkitty (http://localhost/mailman3/hyperkitty/ per
-      default)
   * d/templates:
     - Enhance description for mailman3-web/superuser-password
 
   [ Pierre-Elliott Bécue ]
-  * mailman3-web.install: move uwsgi.ini to /etc/mailman3
-  * Add nginx.conf file.
-  * Fix mailman3-web.cron.d jobs to call explicitly python2.7 version of
-    django-admin.py
+  * d/mailman3-web.install:
+    - Move uwsgi.ini to /etc/mailman3
+  * d/contrib/nginx.conf:
+    - Add nginx.conf file
+  * d/mailman3-web.cron.d:
+    - Fix cron jobs to call explicitly python2.7 version of django-admin.py
 
- -- Jonas Meurer <jonas@freesources.org>  Mon, 12 Mar 2018 19:14:10 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Wed, 14 Mar 2018 11:51:20 +0100
 
 mailman-suite (0+20170523-11) unstable; urgency=medium
 
