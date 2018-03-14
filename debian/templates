@@ -33,11 +33,31 @@ Default: none
 _Description: Web server(s) to configure automatically:
  Mailman3-web supports any web server with uwsgi support,
  however only Apache 2 and nginx can be configured
- automatically. If you chose nginx, you'll have to change
- the vhost name in /etc/mailman3/nginx.conf.
+ automatically.
  .
  Please select the web server(s) that should be configured
  automatically for Mailman3-web.
+
+Template: mailman3-web/nginx-choice
+Type: readme
+_Description: Choice of nginx:
+ Nginx configuration file is a vhost configuration. Hence,
+ it comes with a server name which is set to
+ mailman.example.com. You will have to change it properly.
+ .
+ Please also note that the /mailman3 part of the urls that
+ you can see in the /etc/mailman3/apache.conf has been
+ removed in the location statements.
+ .
+ Also, you will probably have to edit the
+ /etc/mailman3/mailman_hyperkitty.cfg file to put an
+ appropriate url as localhost won't point to your mailman3
+ web instance. You will also have to alter the
+ MAILMAN_ARCHIVER_FROM variable in
+ /etc/mailman3/mailman-web.py.
+ .
+ You can see all these informations in the
+ /etc/mailman3/nginx.conf file in the comments.
 
 Template: mailman3-web/restart-webserver
 Type: boolean

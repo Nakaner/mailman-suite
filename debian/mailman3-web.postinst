@@ -230,6 +230,7 @@ case "$1" in
                     ;;
                 nginx)
                     nginx_install
+                    db_input mailman3-web/nginx-choice || true
                     ;;
             esac
             pathfind $webserver || continue

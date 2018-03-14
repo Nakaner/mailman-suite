@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mailman-suite\n"
 "Report-Msgid-Bugs-To: mailman-suite@packages.debian.org\n"
-"POT-Creation-Date: 2018-03-12 19:03+0100\n"
+"POT-Creation-Date: 2018-03-14 15:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,8 +95,7 @@ msgstr ""
 #: ../templates:5002
 msgid ""
 "Mailman3-web supports any web server with uwsgi support, however only Apache "
-"2 and nginx can be configured automatically. If you chose nginx, you'll have "
-"to change the vhost name in /etc/mailman3/nginx.conf."
+"2 and nginx can be configured automatically."
 msgstr ""
 
 #. Type: select
@@ -107,15 +106,56 @@ msgid ""
 "Mailman3-web."
 msgstr ""
 
-#. Type: boolean
+#. Type: readme
 #. Description
 #: ../templates:6001
+msgid "Choice of nginx:"
+msgstr ""
+
+#. Type: readme
+#. Description
+#: ../templates:6001
+msgid ""
+"Nginx configuration file is a vhost configuration. Hence, it comes with a "
+"server name which is set to mailman.example.com. You will have to change it "
+"properly."
+msgstr ""
+
+#. Type: readme
+#. Description
+#: ../templates:6001
+msgid ""
+"Please also note that the /mailman3 part of the urls that you can see in "
+"the /etc/mailman3/apache.conf has been removed in the location statements."
+msgstr ""
+
+#. Type: readme
+#. Description
+#: ../templates:6001
+msgid ""
+"Also, you will probably have to edit the /etc/mailman3/mailman_hyperkitty."
+"cfg file to put an appropriate url as localhost won't point to your mailman3 "
+"web instance. You will also have to alter the MAILMAN_ARCHIVER_FROM variable "
+"in /etc/mailman3/mailman-web.py."
+msgstr ""
+
+#. Type: readme
+#. Description
+#: ../templates:6001
+msgid ""
+"You can see all these informations in the /etc/mailman3/nginx.conf file in "
+"the comments."
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../templates:7001
 msgid "Should the webserver(s) be restarted now?"
 msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../templates:6001
+#: ../templates:7001
 msgid ""
 "In order to activate the new configuration, the configured web server(s) "
 "have to be restarted."

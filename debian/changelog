@@ -48,6 +48,11 @@ mailman-suite (0+20170523-12) unstable; urgency=medium
     - Add nginx.conf file
   * d/mailman3-web.cron.d:
     - Fix cron jobs to call explicitly python2.7 version of django-admin.py
+  * d/template:
+    - Add a new debconf readme entry to display when a user choses nginx.
+  * d/po/fr.po: updated translation
+  * d/mailman3-web.postinxt:
+    - Displays the readme if nginx is chosen
 
  -- Jonas Meurer <jonas@freesources.org>  Wed, 14 Mar 2018 11:51:20 +0100
 

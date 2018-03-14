@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mailman-suite\n"
 "Report-Msgid-Bugs-To: mailman-suite@packages.debian.org\n"
-"POT-Creation-Date: 2018-03-12 19:03+0100\n"
+"POT-Creation-Date: 2018-03-14 15:05+0100\n"
 "PO-Revision-Date: 2018-01-09 21:35+0100\n"
 "Last-Translator: Pierre-Elliott Bécue <becue@crans.org>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -99,10 +99,14 @@ msgstr "Serveur web à configurer automatiquement :"
 #. Type: select
 #. Description
 #: ../templates:5002
+#, fuzzy
+#| msgid ""
+#| "Mailman3-web supports any web server with uwsgi support, however only "
+#| "Apache 2 and nginx can be configured automatically. If you chose nginx, "
+#| "you'll have to change the vhost name in /etc/mailman3/nginx.conf."
 msgid ""
 "Mailman3-web supports any web server with uwsgi support, however only Apache "
-"2 and nginx can be configured automatically. If you chose nginx, you'll have "
-"to change the vhost name in /etc/mailman3/nginx.conf."
+"2 and nginx can be configured automatically."
 msgstr ""
 "Mailman3 fonctionne avec n'importe quel serveur web compatible avec uwsgi, "
 "cependant seuls Apache 2 et nginx peuven être configuré automatiquement pour "
@@ -119,15 +123,69 @@ msgstr ""
 "Veuillez choisir le serveur web que vous souhaitez configurer "
 "automatiquement pour l'interface web de Mailman3."
 
-#. Type: boolean
+#. Type: readme
 #. Description
 #: ../templates:6001
+msgid "Choice of nginx:"
+msgstr "Choix de nginx:"
+
+#. Type: readme
+#. Description
+#: ../templates:6001
+msgid ""
+"Nginx configuration file is a vhost configuration. Hence, it comes with a "
+"server name which is set to mailman.example.com. You will have to change it "
+"properly."
+msgstr ""
+"Le fichier de configuration pour nginx est un fichier incluant une "
+"configuration de type vhost. Il y a donc un nom de serveur qui est par "
+"défaut à mailman.example.com. Pensez à le changer."
+
+#. Type: readme
+#. Description
+#: ../templates:6001
+msgid ""
+"Please also note that the /mailman3 part of the urls that you can see in the "
+"/etc/mailman3/apache.conf has been removed in the location statements."
+msgstr ""
+"Veuillez noter que le sous-chemin /mailman3 pour les urls que vous pouvez "
+"voir dans le fichier /etc/mailman3/apache.conf ont été enlevées des "
+"définitions de type 'location'."
+
+#. Type: readme
+#. Description
+#: ../templates:6001
+msgid ""
+"Also, you will probably have to edit the /etc/mailman3/mailman_hyperkitty."
+"cfg file to put an appropriate url as localhost won't point to your mailman3 "
+"web instance. You will also have to alter the MAILMAN_ARCHIVER_FROM variable "
+"in /etc/mailman3/mailman-web.py."
+msgstr ""
+"Par ailleurs, vous devrez sans doute modifier le fichier "
+"/etc/mailman3/mailman_hyperkitty.cfg pour y mettre une url appropriée à la "
+"place de celle pointant sur localhost, qui ne fonctionnera probablement pas. "
+"Vous devrez également modifier la variable MAILMAN_ARCHIVER_FROM qui se "
+"trouve dans le fichier /etc/mailman3/mailman-web.py."
+
+#. Type: readme
+#. Description
+#: ../templates:6001
+msgid ""
+"You can see all these informations in the /etc/mailman3/nginx.conf file in "
+"the comments."
+msgstr ""
+"Vous pourrez retrouver toutes ces informations dans le fichier "
+"/etc/mailman3/nginx.conf, en commentaire."
+
+#. Type: boolean
+#. Description
+#: ../templates:7001
 msgid "Should the webserver(s) be restarted now?"
 msgstr "Faut-il redémarrer le serveur web maintenant ?"
 
 #. Type: boolean
 #. Description
-#: ../templates:6001
+#: ../templates:7001
 msgid ""
 "In order to activate the new configuration, the configured web server(s) "
 "have to be restarted."
