@@ -28,7 +28,7 @@ mailman-suite (0+20170523-12) unstable; urgency=medium
   * d/mailman3-web.postinst:
     - Add '-f' to ucfr for hyperkitty.conf, as we might hijack the file from
       old package mailman3-suite.
-    - Explictly run python2.7 version of django-admin
+    - Explicitly run python2.7 version of django-admin
   * d/contrib/hyperkitty.cfg.sample, d/mailman3-web.{install,postinst,postrm}:
     - Remove 'hyperkitty.cfg', it belongs to python3-mailman-hyperkitty
   * d/rules:

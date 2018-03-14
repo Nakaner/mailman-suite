@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mailman-suite\n"
 "Report-Msgid-Bugs-To: mailman-suite@packages.debian.org\n"
-"POT-Creation-Date: 2018-03-14 15:10+0100\n"
+"POT-Creation-Date: 2018-03-14 15:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,45 +106,43 @@ msgid ""
 "Mailman3-web."
 msgstr ""
 
-#. Type: readme
+#. Type: note
 #. Description
 #: ../templates:6001
-msgid "Choice of nginx:"
+msgid "Configuring Mailman3 in Nginx"
 msgstr ""
 
-#. Type: readme
+#. Type: note
 #. Description
 #: ../templates:6001
 msgid ""
-"Nginx configuration file is a vhost configuration. Hence, it comes with a "
-"server name which is set to mailman.example.com. You will have to change it "
-"properly."
+"The Mailman3 Nginx configuration file is a vhost configuration. Hence, it "
+"comes with a server name which is set to mailman.example.com. You will have "
+"to change it properly."
 msgstr ""
 
-#. Type: readme
+#. Type: note
 #. Description
 #: ../templates:6001
 msgid ""
-"Please also note that the /mailman3 part of the urls that you can see in "
-"the /etc/mailman3/apache.conf has been removed in the location statements."
+"Please also note that Mailman3 is configured to expect the web interface at "
+"URL subdirectory '/mailman3' per default."
 msgstr ""
 
-#. Type: readme
+#. Type: note
 #. Description
 #: ../templates:6001
 msgid ""
-"Also, you will probably have to edit the /etc/mailman3/mailman_hyperkitty."
-"cfg file to put an appropriate url as localhost won't point to your mailman3 "
-"web instance. You will also have to alter the MAILMAN_ARCHIVER_FROM variable "
-"in /etc/mailman3/mailman-web.py."
+"For the Nginx vhost configuration (without '/mailman3' subdomain) to work, "
+"you will have to edit the URL in 'base-url' at '/etc/mailman3/mailman-"
+"hyperkitty.cfg' and in 'MAILMAN_ARCHIVER_FROM' at '/etc/mailman3/mailman-web."
+"py' accordingly."
 msgstr ""
 
-#. Type: readme
+#. Type: note
 #. Description
 #: ../templates:6001
-msgid ""
-"You can see all these informations in the /etc/mailman3/nginx.conf file in "
-"the comments."
+msgid "See the comments in '/etc/mailman3/nginx.conf' for details."
 msgstr ""
 
 #. Type: boolean

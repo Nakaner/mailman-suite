@@ -39,25 +39,21 @@ _Description: Web server(s) to configure automatically:
  automatically for Mailman3-web.
 
 Template: mailman3-web/nginx-choice
-Type: readme
-_Description: Choice of nginx:
- Nginx configuration file is a vhost configuration. Hence,
- it comes with a server name which is set to
- mailman.example.com. You will have to change it properly.
+Type: note
+_Description: Configuring Mailman3 in Nginx
+ The Mailman3 Nginx configuration file is a vhost configuration. Hence,
+ it comes with a server name which is set to mailman.example.com. You
+ will have to change it properly.
  .
- Please also note that the /mailman3 part of the urls that
- you can see in the /etc/mailman3/apache.conf has been
- removed in the location statements.
+ Please also note that Mailman3 is configured to expect the web interface
+ at URL subdirectory '/mailman3' per default.
  .
- Also, you will probably have to edit the
- /etc/mailman3/mailman_hyperkitty.cfg file to put an
- appropriate url as localhost won't point to your mailman3
- web instance. You will also have to alter the
- MAILMAN_ARCHIVER_FROM variable in
- /etc/mailman3/mailman-web.py.
+ For the Nginx vhost configuration (without '/mailman3' subdomain) to
+ work, you will have to edit the URL in 'base-url' at
+ '/etc/mailman3/mailman-hyperkitty.cfg' and in 'MAILMAN_ARCHIVER_FROM'
+ at '/etc/mailman3/mailman-web.py' accordingly.
  .
- You can see all these informations in the
- /etc/mailman3/nginx.conf file in the comments.
+ See the comments in '/etc/mailman3/nginx.conf' for details.
 
 Template: mailman3-web/restart-webserver
 Type: boolean
