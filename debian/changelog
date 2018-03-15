@@ -1,3 +1,9 @@
+mailman-suite (0+20170523-14) UNRELEASED; urgency=medium
+
+  * Update po/fr.po
+
+ -- Pierre-Elliott Bécue <becue@crans.org>  Thu, 15 Mar 2018 17:41:34 +0100
+
 mailman-suite (0+20170523-13) unstable; urgency=medium
 
   * d/mailman3-web.postrm:

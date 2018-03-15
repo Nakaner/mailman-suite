@@ -71,6 +71,8 @@ msgid ""
 "If an empty password is given, no superuser will be created at all. It then "
 "needs to be created manually."
 msgstr ""
+"Si vous fournissez un mot de passe vide, aucun superutilisateur ne sera "
+"créé. Il faudra le faire manuellement."
 
 #. Type: select
 #. Choices
@@ -88,7 +90,7 @@ msgstr "apache2"
 #. Choices
 #: ../templates:5001
 msgid "nginx"
-msgstr ""
+msgstr "nginx"
 
 #. Type: select
 #. Description
@@ -99,11 +101,6 @@ msgstr "Serveur web à configurer automatiquement :"
 #. Type: select
 #. Description
 #: ../templates:5002
-#, fuzzy
-#| msgid ""
-#| "Mailman3-web supports any web server with uwsgi support, however only "
-#| "Apache 2 and nginx can be configured automatically. If you chose nginx, "
-#| "you'll have to change the vhost name in /etc/mailman3/nginx.conf."
 msgid ""
 "Mailman3-web supports any web server with uwsgi support, however only Apache "
 "2 and nginx can be configured automatically."
