@@ -1,3 +1,10 @@
+mailman-suite (0+20170523-13) unstable; urgency=medium
+
+  * d/mailman3-web.postrm:
+    - Remove all log files, also rotated ones.
+
+ -- Jonas Meurer <jonas@freesources.org>  Thu, 15 Mar 2018 12:19:20 +0100
+
 mailman-suite (0+20170523-12) unstable; urgency=medium
 
   [ Jonas Meurer ]
