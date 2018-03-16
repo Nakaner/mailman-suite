@@ -8,15 +8,15 @@ web interface and the Hyperkitty web achiver together.
 a fully working Mailman3 suite:
 
  * The mail transport agent (MTA) needs to be configured to deliver list
-   mail to mailman3-core. See /usr/share/doc/mailman3-core/README.Debian
-   for further information.
+   mail to mailman3. See /usr/share/doc/mailman3/README.Debian for further
+   information.
 
  * The Hyperkitty configuration snippet needs to be added to the Mailman3
    configuration file at /etc/mailman3/mailman.cfg. This probably already
-   has been done automatically during configuragion of the mailman3-core
-   package. If in doubt, reconfigure mailman3-core:
+   has been done automatically during configuragion of the mailman3 package.
+   If in doubt, reconfigure mailman3:
 
-   # dpkg-reconfigure mailman3-core
+   # dpkg-reconfigure mailman3
 
  * A superuser for the Postorius web interface needs to be configured.
    This can be done during configuration of this mailman3-web package.

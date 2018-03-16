@@ -3,6 +3,8 @@ mailman-suite (0+20170523-13) unstable; urgency=medium
   [ Jonas Meurer]
   * d/mailman3-web.postrm:
     - Remove all log files, also rotated ones.
+  * d/README.Debian, d/TODO:
+    - Package 'mailman3-core' got renamed to 'mailman3'
 
   [ Pierre-Elliott Bécue]
   * Update po/fr.po
