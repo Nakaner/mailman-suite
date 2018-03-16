@@ -6,8 +6,11 @@ mailman-suite (0+20170523-13) unstable; urgency=medium
 
   [ Pierre-Elliott Bécue]
   * Update po/fr.po
+  * d/control:
+    - Raise debhelper build dependency level to 11
+  * d/compat: Bump to 11
 
- -- Pierre-Elliott Bécue <becue@crans.org>  Fri, 16 Mar 2018 22:30:12 +0100
+ -- Pierre-Elliott Bécue <becue@crans.org>  Fri, 16 Mar 2018 22:34:51 +0100
 
 mailman-suite (0+20170523-12) unstable; urgency=medium
 
