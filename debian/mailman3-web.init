@@ -31,11 +31,11 @@ fi
 chown www-data:www-data /run/mailman3/web
 
 do_start () {
-    start-stop-daemon --start --quiet --pidfile $PIDFILE \
-        --exec $DAEMON --test >/dev/null|| return 1
+    start-stop-daemon --start --quiet --pidfile $PIDFILE --exec $DAEMON \
+        --test >/dev/null|| return 1
 
-    start-stop-daemon --start --quiet --pidfile $PIDFILE \
-        --exec $DAEMON -- $DAEMON_ARGS || return 2
+    start-stop-daemon --start --quiet --pidfile $PIDFILE --exec $DAEMON \
+        -- $DAEMON_ARGS || return 2
 }
 
 do_stop () {
@@ -44,8 +44,8 @@ do_stop () {
 }
 
 do_reload () {
-    start-stop-daemon --stop --quiet --signal=HUP \
-        --pidfile $PIDFILE --exec $DAEMON
+    start-stop-daemon --stop --quiet --signal=HUP --pidfile $PIDFILE \
+        --exec $DAEMON
 
     RETVAL="$?"
 
@@ -56,9 +56,7 @@ do_reload () {
 }
 
 do_force_reload() {
-    start-stop-daemon --stop --quiet \
-        --signal=TERM \
-        --pidfile $PIDFILE \
+    start-stop-daemon --stop --quiet --signal=TERM  --pidfile $PIDFILE \
         --exec $DAEMON
 
     RETVAL="$?"
@@ -70,52 +68,53 @@ do_force_reload() {
 }
 
 case "$1" in
-    start)
-        log_daemon_msg "Starting $DESC" "$NAME"
+  start)
+    log_daemon_msg "Starting $DESC" "$NAME"
+    do_start
+    log_end_msg "$?"
+    ;;
+
+  stop)
+    log_daemon_msg "Stopping $DESC" "$NAME"
+    do_stop
+    log_end_msg "$?"
+    ;;
+
+  status)
+    status_of_proc -p "$PIDFILE" "$DAEMON" "$NAME" && exit 0 || exit $?
+    ;;
+
+  reload)
+    log_daemon_msg "Reloading $DESC" "$NAME"
+    do_reload
+    log_end_msg "$?"
+    ;;
+
+  force-reload)
+    log_daemon_msg "Forced reloading $DESC" "$NAME"
+    do_force_reload
+    log_end_msg "$RETVAL"
+    ;;
+
+  restart)
+    log_daemon_msg "Restarting $DESC" "$NAME"
+    do_stop
+    case "$?" in
+      0)
         do_start
         log_end_msg "$?"
+        ;;
+      *)
+        # Failed to stop
+        log_end_msg 1
+        ;;
+    esac
     ;;
 
-    stop)
-        log_daemon_msg "Stopping $DESC" "$NAME"
-        do_stop
-        log_end_msg "$?"
-    ;;
-
-    status)
-        status_of_proc -p "$PIDFILE" "$DAEMON" "$NAME" \
-            && exit 0 || exit $?
-    ;;
-
-    reload)
-        log_daemon_msg "Reloading $DESC" "$NAME"
-        do_reload
-        log_end_msg "$?"
-    ;;
-
-    force-reload)
-        log_daemon_msg "Forced reloading $DESC" "$NAME"
-        do_force_reload
-        log_end_msg "$RETVAL"
-    ;;
-
-    restart)
-        log_daemon_msg "Restarting $DESC" "$NAME"
-        do_stop
-        case "$?" in
-            0)
-                do_start
-                log_end_msg "$?"
-            ;;
-            *)
-                # Failed to stop
-                log_end_msg 1
-            ;;
-        esac
-    ;;
-
-    *)
-        echo "Usage: $SCRIPTNAME {start|stop|status|restart|reload|force-reload}" >&2
-        exit 3
+  *)
+    echo "Usage: $SCRIPTNAME {start|stop|status|restart|reload|force-reload}" >&2
+    exit 3
     ;;
 esac
+
+exit 0
