@@ -198,7 +198,34 @@ update_django () {
     fi
 }
 
-create_superuser () {
+config_django_site () {
+    db_get mailman3-web/django-site
+    django_site_domain="$RET"
+
+    if [ -n "$django_site_domain" ]; then
+       django_site_domain_old="$(/usr/share/mailman3-web/manage.py shell -c \
+           "from django.contrib.sites.models import Site; \
+            print Site.objects.all()[0].domain")"
+       django_site_name="$(/usr/share/mailman3-web/manage.py shell -c \
+           "from django.contrib.sites.models import Site; \
+            print Site.objects.all()[0].name")"
+
+       if [ "$django_site_name" = "example.com" ] || \
+          [ "$django_site_name" = "$django_site_domain_old" ]; then
+           # change site name only if it's unchanged so far
+           django_site_name="$django_site_domain"
+       fi
+
+       /usr/share/mailman3-web/manage.py shell -c \
+            "from django.contrib.sites.models import Site; \
+             one = Site.objects.all()[0]; \
+             one.domain = '$django_site_domain'; \
+             one.name = '$django_site_name'; \
+             one.save()"
+    fi
+}
+
+create_django_superuser () {
     db_get mailman3-web/superuser-name
     su_name="$RET"
     db_get mailman3-web/superuser-mail
@@ -226,7 +253,8 @@ case "$1" in
             update_django
         fi
 
-        create_superuser
+        config_django_site
+        create_django_superuser
 
         # Handle webserver configuration/restart
         db_get mailman3-web/configure-webserver
