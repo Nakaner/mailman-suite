@@ -198,7 +198,7 @@ create_superuser () {
     if [ -n "$su_name" ] && [ -n "$su_mail" ] && [ -n "$su_password" ]; then
         /usr/share/mailman3-web/manage.py shell -c \
             "from django.contrib.auth.models import User; \
-             User.objects.filter(email='$su_mail').delete(); \
+             User.objects.filter(username='$su_name').delete(); \
              User.objects.create_superuser('$su_name', \
              '$su_mail', '$su_password')"
     fi
