@@ -120,9 +120,16 @@ create_config () {
     [ "$secretkey" = "change-this-on-your-production-server" ] && unset secretkey
     # Generate a new one
     while [ -z "$secretkey" ]; do
-        secretkey="$(dd if=/dev/urandom bs=1 count=200 2>/dev/null \
-            | base64 -w0 | sed -ne 's|\(.\{48\}\).*|\1|p')"
+        secretkey="$(dd if=/dev/urandom bs=1 count=200 2>/dev/null | \
+            base64 -w0 | sed -ne 's|\(.\{48\}\).*|\1|p')"
     done
+
+    # Get admin mail address from ADMINS from maimlan3-web.py if existent
+    [ -f /etc/mailman3/mailman-web.py ] && {
+        adminmail="$(sed -e '1,/^ADMINS = ($/d' -e '/^)$/,$d' -e \
+            "s|^.*'Mailman Suite Admin'.*'\(\S\+\)').*$|\1|" \
+            /etc/mailman3/mailman-web.py)"
+    }
 
     # Get MAILMAN_REST_API_PASS from mailman-web.py if existent
     [ -f /etc/mailman3/mailman-web.py ] && {
@@ -155,8 +162,12 @@ create_config () {
     db_get mailman3-web/emailname
     emailname="$RET"
 
+    db_get mailman3-web/superuser-mail
+    su_mail="$RET"
+
     # Set custom settings in settings_local.py
     sed -i -e "s|^\(\s*SECRET_KEY\s*=\s*'\)\S\+\('\s*\)$|\1$secretkey\2|" \
+           -e "/^ADMINS = ($/,/^)$/{s|'$adminmail'|'$su_mail'|}" \
            -e "s|^\(\s*MAILMAN_REST_API_PASS\s*=\s*'\)\S\+\('\s*\)|\1$restapipass\2|" \
            -e "s|^\(\s*MAILMAN_ARCHIVER_KEY\s*=\s*'\)\S\+\('\s*\)|\1$archiverkey\2|" \
            -e "s|^\(\s*EMAILNAME\s*=\s*'\)\S\+\('\s*\)|\1$emailname\2|" \
