@@ -17,6 +17,7 @@ mailman-suite (0+20170523-13) unstable; urgency=medium
   * d/mailman3-web.{config,postinst}, d/mailman3-web/templates:
     - Add new debconf question about Django site domain, configure it
       in postinst script.
+    - Always run django-admin as user 'www-data' in maintainer scripts.
 
   [ Pierre-Elliott Bécue]
   * Update po/fr.po
@@ -24,7 +25,7 @@ mailman-suite (0+20170523-13) unstable; urgency=medium
     - Raise debhelper build dependency level to 11
   * d/compat: Bump to 11
 
- -- Jonas Meurer <jonas@freesources.org>  Sat, 24 Mar 2018 15:53:38 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Sat, 24 Mar 2018 16:16:35 +0100
 
 mailman-suite (0+20170523-12) unstable; urgency=medium
 

@@ -181,20 +181,21 @@ create_config () {
     rm -f $settings_local_new
 }
 
+su_cmd="su --shell /bin/sh --command"
 django_admin="python2.7 /usr/bin/django-admin"
 django_admin_args="--verbosity 0 --no-color --pythonpath /usr/share/mailman3-web --settings settings"
 
 init_django () {
     if pathfind django-admin; then
         update_django
-        su --shell /bin/sh --command "$django_admin loaddata $django_admin_args first_start" www-data
+        $su_cmd "$django_admin loaddata $django_admin_args first_start" www-data
     fi
 }
 
 update_django () {
     if pathfind django-admin; then
-        su --shell /bin/sh --command "$django_admin migrate       --no-input $django_admin_args" www-data
-        su --shell /bin/sh --command "$django_admin collectstatic --no-input $django_admin_args" www-data
+        $su_cmd "$django_admin migrate       --no-input $django_admin_args" www-data
+        $su_cmd "$django_admin collectstatic --no-input $django_admin_args" www-data
     fi
 }
 
@@ -203,12 +204,12 @@ config_django_site () {
     django_site_domain="$RET"
 
     if [ -n "$django_site_domain" ]; then
-       django_site_domain_old="$(/usr/share/mailman3-web/manage.py shell -c \
-           "from django.contrib.sites.models import Site; \
-            print Site.objects.all()[0].domain")"
-       django_site_name="$(/usr/share/mailman3-web/manage.py shell -c \
-           "from django.contrib.sites.models import Site; \
-            print Site.objects.all()[0].name")"
+       django_site_domain_old="$($su_cmd "$django_admin shell $django_admin_args \
+           --command \"from django.contrib.sites.models import Site; \
+           print Site.objects.all()[0].domain\"" www-data)"
+       django_site_name="$($su_cmd "$django_admin shell $django_admin_args \
+           --command \"from django.contrib.sites.models import Site; \
+           print Site.objects.all()[0].name\"" www-data)"
 
        if [ "$django_site_name" = "example.com" ] || \
           [ "$django_site_name" = "$django_site_domain_old" ]; then
@@ -216,12 +217,12 @@ config_django_site () {
            django_site_name="$django_site_domain"
        fi
 
-       /usr/share/mailman3-web/manage.py shell -c \
-            "from django.contrib.sites.models import Site; \
-             one = Site.objects.all()[0]; \
-             one.domain = '$django_site_domain'; \
-             one.name = '$django_site_name'; \
-             one.save()"
+       $su_cmd "$django_admin shell $django_admin_args --command \
+            \"from django.contrib.sites.models import Site; \
+              one = Site.objects.all()[0]; \
+              one.domain = '$django_site_domain'; \
+              one.name = '$django_site_name'; \
+              one.save()\"" www-data
     fi
 }
 
