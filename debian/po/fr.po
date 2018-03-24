@@ -21,7 +21,7 @@ msgstr ""
 #. Description
 #: ../templates:1001
 msgid "Domain name for Mailman3 web interface:"
-msgstr ""
+msgstr "Nom de domaine pour l'interface web de Mailman3"
 
 #. Type: string
 #. Description
@@ -30,6 +30,9 @@ msgid ""
 "The Django project needs a default site domain set. This domain will be used "
 "by the webinterface and in mails sent in its name."
 msgstr ""
+"Le projet Django fournissant une interface web à Mailman3 nécessite un nom "
+"de domaine par défaut. Ce domaine servira à l'interface web et pour les "
+"courriels envoyés par elle."
 
 #. Type: string
 #. Description
