@@ -208,8 +208,8 @@ config_django_site () {
            --command \"from django.contrib.sites.models import Site; \
            print Site.objects.all()[0].domain\"" www-data)"
        django_site_name="$($su_cmd "$django_admin shell $django_admin_args \
-           --command \"from django.contrib.sites.models import Site; \
-           print Site.objects.all()[0].name\"" www-data)"
+           --command \"import locale; from django.contrib.sites.models import Site; \
+           print Site.objects.all()[0].name.encode(locale.getpreferredencoding())\"" www-data)"
 
        if [ "$django_site_name" = "example.com" ] || \
           [ "$django_site_name" = "$django_site_domain_old" ]; then

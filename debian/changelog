@@ -1,3 +1,14 @@
+mailman-suite (0+20170523-15) UNRELEASED; urgency=medium
+
+  * d/mailman3-web.postinst:
+    - Tweak a little the django admin call used to fetch
+      Site.objects.all()[0].name, as python can't encode automagically its
+      output in a subshell (as it can't with pipes). Use locale module with
+      getpreferredencoding function to set a default encoding that should
+      work on the current machine running the postinst script.
+
+ -- Pierre-Elliott Bécue <becue@crans.org>  Thu, 19 Apr 2018 23:40:39 +0200
+
 mailman-suite (0+20170523-14) unstable; urgency=medium
 
   [ Jonas Meurer ]
