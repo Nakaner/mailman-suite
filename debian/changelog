@@ -6,8 +6,18 @@ mailman-suite (0+20170523-15) UNRELEASED; urgency=medium
       output in a subshell (as it can't with pipes). Use locale module with
       getpreferredencoding function to set a default encoding that should
       work on the current machine running the postinst script.
+  * d/contrib/mailman3-web.tmpfile:
+    - mailman3-web rundir moved to /run/mailman3-web.
+  * d/contrib/uwsgi.ini:
+    - Move the socket file into /run/mailman3-web.
+  * d/contrib/mailman3-web.init:
+    - Move the pid file into /run/mailman3-web.
+  * d/contrib/apache.conf:
+    - The socked file has been moved into /run/mailman3-web.
+  * d/contrib/nginx.conf:
+    - The socket file has been moved into /run/mailman3-web.
 
- -- Pierre-Elliott Bécue <becue@crans.org>  Thu, 19 Apr 2018 23:40:39 +0200
+ -- Pierre-Elliott Bécue <becue@crans.org>  Tue, 24 Apr 2018 14:17:37 +0200
 
 mailman-suite (0+20170523-14) unstable; urgency=medium
 

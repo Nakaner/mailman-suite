@@ -16,7 +16,7 @@ NAME="mailman3-web"
 DESC="Mailman3-web uWSGI service"
 SCRIPTNAME=/etc/init.d/mailman3-web
 DAEMON=/usr/bin/uwsgi
-PIDFILE="/run/mailman3/web/${NAME}.pid"
+PIDFILE="/run/mailman3-web/${NAME}.pid"
 LOGFILE="/var/log/mailman3/web/mailman-web.log"
 DAEMON_ARGS="--ini /etc/mailman3/uwsgi.ini --pidfile ${PIDFILE} --daemonize ${LOGFILE}"
 
@@ -24,11 +24,11 @@ test -x $DAEMON || exit 0
 
 . /lib/lsb/init-functions
 
-if [ ! -d /run/mailman3/web ]; then
-    mkdir -p /run/mailman3/web
+if [ ! -d /run/mailman3-web ]; then
+    mkdir -p /run/mailman3-web
 fi
 
-chown www-data:www-data /run/mailman3/web
+chown www-data:www-data /run/mailman3-web
 
 do_start () {
     start-stop-daemon --start --quiet --pidfile $PIDFILE --exec $DAEMON \
