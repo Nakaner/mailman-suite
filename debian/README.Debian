@@ -11,6 +11,18 @@ a fully working Mailman3 suite:
    mail to mailman3. See /usr/share/doc/mailman3/README.Debian for further
    information.
 
+ * The web server (either Apache or Nginx) needs to be configured. A snippet
+   for Apache2 is included in /etc/mailman3/apache.conf, it may be included
+   into Apache2 configuration (eg. default vhost) to serve mailman3-web upon
+   installation. The Nginx file is a full vhost file that needs to be
+   configured a little.  It is located in /etc/mailman3/nginx.conf, and may be
+   modified in place.  Then, a symlink into /etc/nginx/sites-enabled and
+   mailman3 will be ready.  Note that the Apache2 snippet and the Nginx
+   configuration differ also in the available urls they provide. The Apache2
+   snippet provides a /mailman3/ subdirectory as other sites may be present on
+   the host. The Nginx file provides a standalone vhost, hence the /mailman3
+   suburl is expendable and thus not present, except for aliasing static files.
+
  * The Hyperkitty configuration snippet needs to be added to the Mailman3
    configuration file at /etc/mailman3/mailman.cfg. This probably already
    has been done automatically during configuragion of the mailman3 package.
@@ -90,7 +102,8 @@ configuration of the package:
 
  * Optionally, supported webservers (currently Apache2) will be configured
    to provide access to the project at '/mailman3' (by reverse proxying
-   to the uWSGI daemon).
+   to the uWSGI daemon). A Nginx configuration file is provided but it must be
+   modified manually and set up into Nginx directories by hand.
 
  * Optionally, a superuser for the Postorius webinterface will be created.
 
