@@ -1,5 +1,10 @@
 mailman-suite (0+20170523-15) UNRELEASED; urgency=medium
 
+  [ Lev Lamberov ]
+  * d/po/ru.po: Russian translation for debconf template.
+    Closes: #898181
+
+  [ Pierre-Elliott Bécue ]
   * d/mailman3-web.postinst:
     - Tweak a little the django admin call used to fetch
       Site.objects.all()[0].name, as python can't encode automagically its
