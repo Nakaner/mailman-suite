@@ -4,6 +4,10 @@ mailman-suite (0+20170523-15) UNRELEASED; urgency=medium
   * d/po/ru.po: Russian translation for debconf template.
     Closes: #898181
 
+  [ Rui Branco ]
+  * d/po/pt.po: Portuguese translation for debconf template.
+    Closes: #898540
+
   [ Pierre-Elliott Bécue ]
   * d/mailman3-web.postinst:
     - Tweak a little the django admin call used to fetch
