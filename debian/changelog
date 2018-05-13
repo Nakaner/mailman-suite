@@ -1,4 +1,4 @@
-mailman-suite (0+20170523-15) UNRELEASED; urgency=medium
+mailman-suite (0+20170523-15) unstable; urgency=medium
 
   [ Lev Lamberov ]
   * d/po/ru.po: Russian translation for debconf template.
@@ -27,8 +27,10 @@ mailman-suite (0+20170523-15) UNRELEASED; urgency=medium
     - The socket file has been moved into /run/mailman3-web.
   * d/README.Debian:
     - Add some details on webserver configuration
+  * d/copyright:
+    - Add myself to copyright file and update copyright years
 
- -- Pierre-Elliott Bécue <becue@crans.org>  Tue, 24 Apr 2018 14:17:37 +0200
+ -- Pierre-Elliott Bécue <becue@crans.org>  Sun, 13 May 2018 17:53:51 +0200
 
 mailman-suite (0+20170523-14) unstable; urgency=medium
 
