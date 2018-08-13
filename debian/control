@@ -6,7 +6,7 @@ Uploaders: Pierre-Elliott Bécue <becue@crans.org>,
            Jonas Meurer <jonas@freesources.org>
 Build-Depends: debhelper (>= 11~), po-debconf
 Rules-Requires-Root: binary-targets
-Standards-Version: 4.1.4
+Standards-Version: 4.2.0
 Homepage: https://gitlab.com/mailman/mailman-suite
 Vcs-Browser: https://salsa.debian.org/mailman-team/mailman-suite
 Vcs-Git: https://salsa.debian.org/mailman-team/mailman-suite.git
