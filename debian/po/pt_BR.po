@@ -1,0 +1,202 @@
+# Debconf translations for mailman-suite.
+# Copyright (C) 2018 Adriano Rafael Gomes <adrianorg@debian.org>
+# This file is distributed under the same license as the mailman-suite package.
+# Adriano Rafael Gomes <adrianorg@debian.org>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mailman-suite\n"
+"Report-Msgid-Bugs-To: mailman-suite@packages.debian.org\n"
+"POT-Creation-Date: 2018-03-23 16:50+0100\n"
+"PO-Revision-Date: 2018-07-01 17:15-0300\n"
+"Last-Translator: Adriano Rafael Gomes <adrianorg@debian.org>\n"
+"Language-Team: Brazilian Portuguese <debian-l10n-portuguese@lists.debian."
+"org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: string
+#. Description
+#: ../templates:1001
+msgid "Domain name for Mailman3 web interface:"
+msgstr "Nome de domínio para a interface web do Mailman3:"
+
+#. Type: string
+#. Description
+#: ../templates:1001
+msgid ""
+"The Django project needs a default site domain set. This domain will be used "
+"by the webinterface and in mails sent in its name."
+msgstr ""
+"O projeto Django precisa de um domínio de site padrão definido. Esse domínio "
+"será usado pela interface web e em e-mails enviados em seu nome."
+
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid "Domain name for sender email addresses:"
+msgstr "Nome de domínio para endereços de e-mail de remetente:"
+
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid ""
+"If the Mailman3 web interface sends emails, this domain will be used for the "
+"sender addresses. In particular, it will be 'postorius@<domain>' for "
+"internal authentication and 'root@<domain>' for error messages."
+msgstr ""
+"Se a interface web do Mailman3 enviar e-mails, esse domínio será usado para "
+"os endereços do remetente. Em particular, ele será \"postorius@<domínio>\" "
+"para autenticação interna e \"root@<domínio>\" para mensagens de erro."
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid "Username of the Postorius superuser:"
+msgstr "Nome de usuário do superusuário Postorius:"
+
+#. Type: string
+#. Description
+#: ../templates:3001
+msgid ""
+"This is the username of the Postorius superuser. It will have global "
+"administrative access to all mailinglists."
+msgstr ""
+"Esse é o nome de usuário do superusuário Postorius. Ele terá acesso "
+"administrativo global a todas as listas de e-mail."
+
+#. Type: string
+#. Description
+#: ../templates:4001
+msgid "Email address of the Postorius superuser:"
+msgstr "Endereço de e-mail do superusuário Postorius:"
+
+#. Type: password
+#. Description
+#: ../templates:5001
+msgid "Password for the Postorius superuser:"
+msgstr "Senha do superusuário Postorius:"
+
+#. Type: password
+#. Description
+#: ../templates:5001
+msgid ""
+"If an empty password is given, no superuser will be created at all. It then "
+"needs to be created manually."
+msgstr ""
+"Se a senha for deixada em branco, não será criado um superusuário. Ele então "
+"terá que ser criado manualmente."
+
+#. Type: select
+#. Choices
+#: ../templates:6001
+msgid "none"
+msgstr "nenhum"
+
+#. Type: select
+#. Choices
+#: ../templates:6001
+msgid "apache2"
+msgstr "apache2"
+
+#. Type: select
+#. Choices
+#: ../templates:6001
+msgid "nginx"
+msgstr "nginx"
+
+#. Type: select
+#. Description
+#: ../templates:6002
+msgid "Web server(s) to configure automatically:"
+msgstr "Servidor(es) web para configurar automaticamente:"
+
+#. Type: select
+#. Description
+#: ../templates:6002
+msgid ""
+"Mailman3-web supports any web server with uwsgi support, however only Apache "
+"2 and nginx can be configured automatically."
+msgstr ""
+"O Mailman3-web dá suporte a qualquer servidor web que tenha suporte a uwsgi, "
+"no entanto, somente o Apache 2 e o nginx podem ser configurados "
+"automaticamente."
+
+#. Type: select
+#. Description
+#: ../templates:6002
+msgid ""
+"Please select the web server(s) that should be configured automatically for "
+"Mailman3-web."
+msgstr ""
+"Por favor, selecione o(s) servidor(es) web que deve(m) ser automaticamente "
+"configurado(s) para o Mailman3-web."
+
+#. Type: note
+#. Description
+#: ../templates:7001
+msgid "Configuring Mailman3 in Nginx"
+msgstr "Configurando o Mailman3 no Nginx"
+
+#. Type: note
+#. Description
+#: ../templates:7001
+msgid ""
+"The Mailman3 Nginx configuration file is a vhost configuration. Hence, it "
+"comes with a server name which is set to mailman.example.com. You will have "
+"to change it properly."
+msgstr ""
+"O arquivo de configuração do Nginx para o Mailman3 é uma configuração de "
+"vhost. Portanto, ele vem com um nome de servidor que é definido como mailman."
+"example.com. Você deverá mudá-lo apropriadamente."
+
+#. Type: note
+#. Description
+#: ../templates:7001
+msgid ""
+"Please also note that Mailman3 is configured to expect the web interface at "
+"URL subdirectory '/mailman3' per default. But in the nginx file, as the "
+"configuration includes a vhost, the expected URL root is '/'."
+msgstr ""
+"Por favor, note também que o Mailman3 é configurado para esperar que a "
+"interface web fique no subdiretório \"/mailman3\" da URL por padrão. Mas no "
+"arquivo do nginx, como a configuração inclui um vhost, a URL raiz esperada é "
+"\"/\"."
+
+#. Type: note
+#. Description
+#: ../templates:7001
+msgid ""
+"For the Nginx vhost configuration (without '/mailman3' subdomain) to work, "
+"you will have to edit the URL in 'base-url' at '/etc/mailman3/mailman-"
+"hyperkitty.cfg' and in 'MAILMAN_ARCHIVER_FROM' at '/etc/mailman3/mailman-web."
+"py' accordingly."
+msgstr ""
+"Para a configuração do vhost no Nginx (sem o subdiretório \"/mailman3\") "
+"funcionar, você deverá editar a URL em \"base-url\" em \"/etc/mailman3/"
+"mailman-hyperkitty.cfg\" e em \"MAILMAN_ARCHIVER_FROM\" em \"/etc/mailman3/"
+"mailman-web.py\" correspondentemente."
+
+#. Type: note
+#. Description
+#: ../templates:7001
+msgid "See the comments in '/etc/mailman3/nginx.conf' for details."
+msgstr "Veja os comentários em \"/etc/mailman3/nginx.conf\" para detalhes."
+
+#. Type: boolean
+#. Description
+#: ../templates:8001
+msgid "Should the webserver(s) be restarted now?"
+msgstr "O(s) servidor(es) web deve(m) ser reiniciado(s) agora?"
+
+#. Type: boolean
+#. Description
+#: ../templates:8001
+msgid ""
+"In order to activate the new configuration, the configured web server(s) "
+"have to be restarted."
+msgstr ""
+"Para ativar a nova configuração, o(s) servidor(es) web configurado(s) "
+"deve(m) ser reiniciado(s)."
