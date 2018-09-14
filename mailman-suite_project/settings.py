@@ -94,13 +94,12 @@ INSTALLED_APPS = (
 )
 
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -491,6 +490,9 @@ if DEBUG == True:
 
 # Only display mailing-lists from the same virtual host as the webserver
 FILTER_VHOST = False
+
+
+POSTORIUS_TEMPLATE_BASE_URL = 'http://localhost:8000'
 
 
 try:
