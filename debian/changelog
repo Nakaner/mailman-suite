@@ -10,8 +10,10 @@ mailman-suite (0+20180705-1) UNRELEASED; urgency=medium
     - New patch to use python3 as interpreter in manage.py
   * d/mailman3-web.cron.d:
     - Run cronjobs as python3
+  * d/mailman3-web.{init,service}:
+    - Run uwsgi_python3
 
- -- Jonas Meurer <jonas@freesources.org>  Fri, 14 Sep 2018 23:49:23 +0200
+ -- Jonas Meurer <jonas@freesources.org>  Fri, 14 Sep 2018 23:52:40 +0200
 
 mailman-suite (0+20170523-16) unstable; urgency=medium
 
