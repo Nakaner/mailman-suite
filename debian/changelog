@@ -6,8 +6,10 @@ mailman-suite (0+20180705-1) UNRELEASED; urgency=medium
     - Update Depends to python3 packages
   * d/contrib/uwsgi.ini, d/mailman3-web.{config,postinst}:
     - Migrate to use python3
+  * d/patches/0002-manage.py-python3-interpreter.patch:
+    - New patch to use python3 as interpreter in manage.py
 
- -- Jonas Meurer <jonas@freesources.org>  Fri, 14 Sep 2018 23:33:28 +0200
+ -- Jonas Meurer <jonas@freesources.org>  Fri, 14 Sep 2018 23:38:31 +0200
 
 mailman-suite (0+20170523-16) unstable; urgency=medium
 
