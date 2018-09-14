@@ -6,9 +6,13 @@ mailman-suite (0+20170523-16) unstable; urgency=medium
 
   [ Pierre-Elliott Bécue ]
   * d/control:
-    - Bump Standards-Version to 4.2.0. No change required
+    - Bump Standards-Version to 4.2.0. No changes required
 
- -- Pierre-Elliott Bécue <becue@crans.org>  Mon, 13 Aug 2018 23:51:58 +0200
+  [ Jonas Meurer ]
+  * d/control:
+    - Bump Standards-Version to 4.2.1. No changes required
+
+ -- Jonas Meurer <jonas@freesources.org>  Fri, 14 Sep 2018 22:14:27 +0200
 
 mailman-suite (0+20170523-15) unstable; urgency=medium
 
