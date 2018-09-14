@@ -1,12 +1,13 @@
-mailman-suite (0+20170523-17) UNRELEASED; urgency=medium
+mailman-suite (0+20180705-1) UNRELEASED; urgency=medium
 
+  * New upstream snapshot 0+20180705
   * d/control:
     - Bump Standards-Version to 4.2.1. No changes required
     - Update Depends to python3 packages
   * d/contrib/uwsgi.ini, d/mailman3-web.{config,postinst}:
     - Migrate to use python3
 
- -- Jonas Meurer <jonas@freesources.org>  Fri, 14 Sep 2018 22:23:49 +0200
+ -- Jonas Meurer <jonas@freesources.org>  Fri, 14 Sep 2018 23:33:28 +0200
 
 mailman-suite (0+20170523-16) unstable; urgency=medium
 
