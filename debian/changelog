@@ -11,8 +11,11 @@ mailman-suite (0+20170523-16) unstable; urgency=medium
   [ Jonas Meurer ]
   * d/control:
     - Bump Standards-Version to 4.2.1. No changes required
+    - Update Depends to python3 packages
+  * d/contrib/uwsgi.ini, d/mailman3-web.{config,postinst}:
+    - Migrate to use python3
 
- -- Jonas Meurer <jonas@freesources.org>  Fri, 14 Sep 2018 22:14:27 +0200
+ -- Jonas Meurer <jonas@freesources.org>  Fri, 14 Sep 2018 22:18:11 +0200
 
 mailman-suite (0+20170523-15) unstable; urgency=medium
 

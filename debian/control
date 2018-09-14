@@ -16,15 +16,14 @@ Architecture: all
 Depends: dbconfig-sqlite3 | dbconfig-pgsql | dbconfig-mysql | dbconfig-no-thanks,
          lsb-base,
          node-less,
-         python (<< 2.8),
-         python-django-hyperkitty,
-         python-django-postorius,
-         python-psycopg2 | python-pymysql,
-         python-whoosh,
+         python3-django-hyperkitty,
+         python3-django-postorius,
+         python3-psycopg2 | python3-pymysql,
+         python3-whoosh,
          ruby-sass,
          ucf,
          uwsgi,
-         uwsgi-plugin-python,
+         uwsgi-plugin-python3,
          ${misc:Depends}
 Recommends: libapache2-mod-proxy-uwsgi | nginx
 Suggests: postgresql | default-mysql-server | virtual-mysql-server

@@ -182,7 +182,7 @@ create_config () {
 }
 
 su_cmd="su --shell /bin/sh --command"
-django_admin="python2.7 /usr/bin/django-admin"
+django_admin="python3 /usr/bin/django-admin"
 django_admin_args="--verbosity 0 --no-color --pythonpath /usr/share/mailman3-web --settings settings"
 
 init_django () {
