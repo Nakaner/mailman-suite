@@ -12,8 +12,10 @@ mailman-suite (0+20180705-1) UNRELEASED; urgency=medium
     - Run cronjobs as python3
   * d/mailman3-web.{init,service}:
     - Run uwsgi_python3
+  * d/mailman3-web.postinst:
+    * Update python print command to python3 compatible syntax.
 
- -- Jonas Meurer <jonas@freesources.org>  Fri, 14 Sep 2018 23:52:40 +0200
+ -- Jonas Meurer <jonas@freesources.org>  Sun, 16 Sep 2018 18:27:58 +0200
 
 mailman-suite (0+20170523-16) unstable; urgency=medium
 
