@@ -206,10 +206,10 @@ config_django_site () {
     if [ -n "$django_site_domain" ]; then
        django_site_domain_old="$($su_cmd "$django_admin shell $django_admin_args \
            --command \"from django.contrib.sites.models import Site; \
-	   print(Site.objects.all()[0].domain)\"" www-data)"
+           print(Site.objects.all()[0].domain)\"" www-data)"
        django_site_name="$($su_cmd "$django_admin shell $django_admin_args \
            --command \"import locale; from django.contrib.sites.models import Site; \
-	   print(Site.objects.all()[0].name.encode(locale.getpreferredencoding()))\"" www-data)"
+           print(Site.objects.all()[0].name.encode(locale.getpreferredencoding()))\"" www-data)"
 
        if [ "$django_site_name" = "example.com" ] || \
           [ "$django_site_name" = "$django_site_domain_old" ]; then
@@ -218,10 +218,11 @@ config_django_site () {
        fi
 
        $su_cmd "$django_admin shell $django_admin_args --command \
-            \"from django.contrib.sites.models import Site; \
+            \"import locale; \
+              from django.contrib.sites.models import Site; \
               one = Site.objects.all()[0]; \
-              one.domain = '$django_site_domain'; \
-              one.name = '$django_site_name'; \
+              one.domain = '${django_site_domain}'; \
+              one.name = ${django_site_name}.decode(locale.getpreferredencoding()); \
               one.save()\"" www-data
     fi
 }
@@ -235,11 +236,11 @@ create_django_superuser () {
     su_password="$RET"
 
     if [ -n "$su_name" ] && [ -n "$su_mail" ] && [ -n "$su_password" ]; then
-        /usr/share/mailman3-web/manage.py shell -c \
-            "from django.contrib.auth.models import User; \
-             User.objects.filter(username='$su_name').delete(); \
-             User.objects.create_superuser('$su_name', \
-             '$su_mail', '$su_password')"
+        $su_cmd "$django_admin shell $django_admin_args --command \
+            \"from django.contrib.auth.models import User; \
+              User.objects.filter(username='$su_name').delete(); \
+              User.objects.create_superuser('$su_name', \
+              '$su_mail', '$su_password')\"" www-data
     fi
 }
 
