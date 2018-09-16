@@ -13,9 +13,11 @@ mailman-suite (0+20180705-1) UNRELEASED; urgency=medium
   * d/mailman3-web.{init,service}:
     - Run uwsgi_python3
   * d/mailman3-web.postinst:
-    * Update python print command to python3 compatible syntax.
+    - Update python print command to python3 compatible syntax.
+  * d/contrib/settings_local.py.sample
+    - Add POSTORIUS_TEMPLATE_BASE_URL = 'http://localhost/mailman3/'
 
- -- Jonas Meurer <jonas@freesources.org>  Sun, 16 Sep 2018 18:27:58 +0200
+ -- Jonas Meurer <jonas@freesources.org>  Sun, 16 Sep 2018 18:39:20 +0200
 
 mailman-suite (0+20170523-16) unstable; urgency=medium
 

@@ -180,3 +180,5 @@ SOCIALACCOUNT_PROVIDERS = {
     #   'VERSION': 'v2.4',
     #},
 }
+
+POSTORIUS_TEMPLATE_BASE_URL = 'http://localhost/mailman3/'
