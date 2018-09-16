@@ -181,4 +181,11 @@ SOCIALACCOUNT_PROVIDERS = {
     #},
 }
 
+# On a production setup, setting COMPRESS_OFFLINE to True will bring a
+# significant performance improvement, as CSS files will not need to be
+# recompiled on each requests. It means running an additional "compress"
+# management command after each code upgrade.
+# http://django-compressor.readthedocs.io/en/latest/usage/#offline-compression
+COMPRESS_OFFLINE = True
+
 POSTORIUS_TEMPLATE_BASE_URL = 'http://localhost/mailman3/'

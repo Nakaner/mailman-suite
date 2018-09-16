@@ -194,8 +194,9 @@ init_django () {
 
 update_django () {
     if pathfind django-admin; then
-        $su_cmd "$django_admin migrate       --no-input $django_admin_args" www-data
+        $su_cmd "$django_admin migrate --no-input $django_admin_args" www-data
         $su_cmd "$django_admin collectstatic --no-input $django_admin_args" www-data
+        $su_cmd "$django_admin compress $django_admin_args" www-data
     fi
 }
 
