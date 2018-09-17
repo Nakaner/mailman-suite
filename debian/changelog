@@ -24,7 +24,11 @@ mailman-suite (0+20180916-1) UNRELEASED; urgency=medium
     - Add POSTORIUS_TEMPLATE_BASE_URL = 'http://localhost/mailman3/'
     - Enable COMPRESS_OFFLINE, brings performance improvements
 
- -- Jonas Meurer <jonas@freesources.org>  Mon, 17 Sep 2018 12:37:52 +0200
+  [ Helge Kreutzmann ]
+  * d/po/de.po:
+    - Add initial german debconf translation (Closes: #906184)
+
+ -- Jonas Meurer <jonas@freesources.org>  Mon, 17 Sep 2018 13:00:37 +0200
 
 mailman-suite (0+20170523-16) unstable; urgency=medium
 
