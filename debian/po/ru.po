@@ -1,4 +1,4 @@
-# Russian translation of mailman-suit debconf template.
+# Russian translation of mailman-suite debconf template.
 # Copyright (C) 2018 Lev Lamberov <dogsleg@debian.org>
 # This file is distributed under the same license as the mailman-suite package.
 # Lev Lamberov <dogsleg@debian.org>, 2018.

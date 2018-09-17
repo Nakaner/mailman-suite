@@ -4,6 +4,12 @@ mailman-suite (0+20180916-1) UNRELEASED; urgency=medium
   * d/control:
     - Bump Standards-Version to 4.2.1. No changes required
     - Update Depends to python3 packages
+    - Add Breaks python3-mailman-hyperkitty (<< 1.1.0-8~), since
+      that version starts using python3.
+  * d/control, d/NEWS:
+    - Remove traces of the binary package renaming from mailman3-suite
+      to mailman3-web. The former is not available anywhere anymore and
+      was never part of a release anyway.
   * d/contrib/uwsgi.ini, d/mailman3-web.{config,postinst}:
     - Migrate to use python3
   * d/mailman3-web.cron.d:
@@ -17,7 +23,7 @@ mailman-suite (0+20180916-1) UNRELEASED; urgency=medium
     - Add POSTORIUS_TEMPLATE_BASE_URL = 'http://localhost/mailman3/'
     - Enable COMPRESS_OFFLINE, brings performance improvements
 
- -- Jonas Meurer <jonas@freesources.org>  Mon, 17 Sep 2018 11:08:34 +0200
+ -- Jonas Meurer <jonas@freesources.org>  Mon, 17 Sep 2018 11:20:22 +0200
 
 mailman-suite (0+20170523-16) unstable; urgency=medium
 
