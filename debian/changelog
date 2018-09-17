@@ -1,4 +1,4 @@
-mailman-suite (0+20180916-1) UNRELEASED; urgency=medium
+mailman-suite (0+20180916-1) unstable; urgency=medium
 
   * New upstream snapshot 0+20180916
   * d/control:
