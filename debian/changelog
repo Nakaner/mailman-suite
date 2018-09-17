@@ -19,11 +19,12 @@ mailman-suite (0+20180916-1) UNRELEASED; urgency=medium
   * d/mailman3-web.postinst:
     - Update python print command to python3 compatible syntax.
     - Run 'compress' management command after 'collectstatic'
+    - Rebuild hyperkitty index if upgrading from Python2 packages
   * d/contrib/settings_local.py.sample
     - Add POSTORIUS_TEMPLATE_BASE_URL = 'http://localhost/mailman3/'
     - Enable COMPRESS_OFFLINE, brings performance improvements
 
- -- Jonas Meurer <jonas@freesources.org>  Mon, 17 Sep 2018 11:20:22 +0200
+ -- Jonas Meurer <jonas@freesources.org>  Mon, 17 Sep 2018 12:37:52 +0200
 
 mailman-suite (0+20170523-16) unstable; urgency=medium
 

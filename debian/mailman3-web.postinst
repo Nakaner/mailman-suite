@@ -200,7 +200,7 @@ update_django () {
     fi
 }
 
-config_django_site () {
+django_config_site () {
     db_get mailman3-web/django-site
     django_site_domain="$RET"
 
@@ -228,7 +228,7 @@ config_django_site () {
     fi
 }
 
-create_django_superuser () {
+django_create_superuser () {
     db_get mailman3-web/superuser-name
     su_name="$RET"
     db_get mailman3-web/superuser-mail
@@ -245,6 +245,14 @@ create_django_superuser () {
     fi
 }
 
+upgrade_fixes () {
+    # Rebuild hyperkitty index if upgrading from Python2 packages
+    version="$(dpkg -s $DPKG_MAINTSCRIPT_PACKAGE | sed -n 's/^Version: //p')"
+    if dpkg --compare-versions "$version" le "0+20180916-1"; then
+        $su_cmd "$django_admin rebuild_index --noinput $django_admin_args" www-data
+    fi
+}
+
 case "$1" in
     configure)
 
@@ -256,8 +264,10 @@ case "$1" in
             update_django
         fi
 
-        config_django_site
-        create_django_superuser
+        django_config_site
+        django_create_superuser
+
+        upgrade_fixes
 
         # Handle webserver configuration/restart
         db_get mailman3-web/configure-webserver
