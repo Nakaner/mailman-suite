@@ -8,7 +8,7 @@ mailman-suite (0+20180916-2) unstable; urgency=medium
   * d/control:
     - Replace my Crans address by my Debian's one.
 
- -- Jonas Meurer <jonas@freesources.org>  Sun, 07 Oct 2018 16:47:34 +0200
+ -- Jonas Meurer <jonas@freesources.org>  Sun, 07 Oct 2018 17:08:37 +0200
 
 mailman-suite (0+20180916-1) unstable; urgency=medium
 
