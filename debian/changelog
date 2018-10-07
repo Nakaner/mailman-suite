@@ -1,9 +1,14 @@
-mailman-suite (0+20180916-2) UNRELEASED; urgency=medium
+mailman-suite (0+20180916-2) unstable; urgency=medium
 
+  [ Jonas Meurer ]
   * d/mailman3-web.mailman3-web-qcluster.service:
     - Install systemd service file for django q_cluster
 
- -- Jonas Meurer <jonas@freesources.org>  Sun, 07 Oct 2018 15:26:04 +0200
+  [ Pierre-Elliott Bécue ]
+  * d/control:
+    - Replace my Crans address by my Debian's one.
+
+ -- Jonas Meurer <jonas@freesources.org>  Sun, 07 Oct 2018 16:47:34 +0200
 
 mailman-suite (0+20180916-1) unstable; urgency=medium
 
