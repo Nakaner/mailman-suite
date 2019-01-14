@@ -5,7 +5,7 @@ After=network.target remote-fs.target
 Requires=mailman3-web.service
 
 [Service]
-ExecStart=python3 /usr/bin/django-admin qcluster --pythonpath /usr/share/mailman3-web --settings settings
+ExecStart=/usr/bin/python3 /usr/bin/django-admin qcluster --pythonpath /usr/share/mailman3-web --settings settings
 User=www-data
 Restart=always
 
