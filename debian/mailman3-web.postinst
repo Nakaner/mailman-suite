@@ -247,8 +247,8 @@ django_create_superuser () {
 
 upgrade_fixes () {
     # Rebuild hyperkitty index if upgrading from Python2 packages
-    version="$(dpkg -s $DPKG_MAINTSCRIPT_PACKAGE | sed -n 's/^Version: //p')"
-    if dpkg --compare-versions "$version" le "0+20180916-1"; then
+    if [ ! -z "$2" ] && dpkg --compare-versions "$2" le "0+20180916-3~"; then
+        echo "Rebuilding indexes database for python3 version. This may take some time."
         $su_cmd "$django_admin rebuild_index --noinput $django_admin_args" www-data
     fi
 }
@@ -267,7 +267,7 @@ case "$1" in
         django_config_site
         django_create_superuser
 
-        upgrade_fixes
+        upgrade_fixes "$@"
 
         # Handle webserver configuration/restart
         db_get mailman3-web/configure-webserver

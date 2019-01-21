@@ -1,9 +1,15 @@
 mailman-suite (0+20180916-3) UNRELEASED; urgency=medium
 
+  [ Jonas Meurer ]
   * d/mailman3-web.mailman3-web-qcluster.service:
     - Fix path to python3 interpreter (Closes: #919154)
 
- -- Jonas Meurer <jonas@freesources.org>  Mon, 14 Jan 2019 17:31:53 +0100
+  [ Pierre-Elliott Bécue ]
+  * d/mailman3-web.postinst:
+    - Avoid dpkg -s call for the upgrade_fixes, and call the fix only on
+      appropriate upgrade. Will re-do it for all upgrades to -3.
+
+ -- Pierre-Elliott Bécue <peb@debian.org>  Tue, 22 Jan 2019 00:50:51 +0100
 
 mailman-suite (0+20180916-2) unstable; urgency=medium
 
