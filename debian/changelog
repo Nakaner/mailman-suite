@@ -8,6 +8,8 @@ mailman-suite (0+20180916-3) UNRELEASED; urgency=medium
   * d/mailman3-web.postinst:
     - Avoid dpkg -s call for the upgrade_fixes, and call the fix only on
       appropriate upgrade. Will re-do it for all upgrades to -3.
+  * d/mailman3-web.postrm:
+    - Typo: ngnx_remove => nginx_remove. (Closes: #917548)
 
  -- Pierre-Elliott Bécue <peb@debian.org>  Tue, 22 Jan 2019 00:50:51 +0100
 
