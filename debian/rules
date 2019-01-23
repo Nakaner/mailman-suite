@@ -3,10 +3,6 @@
 %:
 	dh $@
 
-override_dh_installsystemd:
-	dh_installsystemd
-	dh_installsystemd --name mailman3-web-qcluster
-
 override_dh_fixperms:
 	chmod 0644 debian/mailman3-web/usr/share/mailman3-web/wsgi.py
 	dh_fixperms
