@@ -2,8 +2,11 @@ mailman-suite (0+20180916-4) UNRELEASED; urgency=medium
 
   * d/mailman3-web.cron.d:
     - Fix indention in mailman3-web cron.d file
+  * d/p/0001_settings_py.patch:
+    - Set queue polling inteval for django-q  cluster to 5 seconds (defaults
+      to 0.2 seconds) to decrease the database load. (Closes: #914099)
 
- -- Jonas Meurer <jonas@freesources.org>  Wed, 23 Jan 2019 10:44:05 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Wed, 23 Jan 2019 11:07:08 +0100
 
 mailman-suite (0+20180916-3) unstable; urgency=medium
 

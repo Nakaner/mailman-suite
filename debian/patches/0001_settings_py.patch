@@ -2,14 +2,26 @@ From: Jonas Meurer <jonas@freesources.org>
 Date: Fri, 14 Sep 2018 23:34:10 +0200
 Subject: Adjust settings.py for Debian mailman3-web
 Forwarded: not-needed
-Last-Update: 2018-09-14
+Last-Update: 2019-01-23
 
+* Disable debugging mode.
+* Disable all allauth socialaccount providers for privacy reasons.
+* Set postgresql as default database engine.
+* Enable 'USE_X_FORWARDED_HOST'.
+* Adjust 'STATIC_ROOT' and 'STATIC_URL' paths.
+* Adjust 'DEFAULT_FROM_EMAIL' and 'SERVER_EMAIL'.
+* Use smtp email backend per default to send mails.
+* Set 'ACCOUNT_DEFAULT_HTTP_PROTOCOL' to 'https'.
+* Use 'sass' instead of 'sassc' as CSS precompiler.
+* Change logging level for most logging channels to 'INFO'.
+* Set queue polling inteval for django-q  cluster to 5 seconds (defaults
+  to 0.2 seconds) to decrease the database load.
 ---
- mailman-suite_project/settings.py | 118 +++++++++++++++++---------------------
- 1 file changed, 52 insertions(+), 66 deletions(-)
+ mailman-suite_project/settings.py | 119 +++++++++++++++++---------------------
+ 1 file changed, 53 insertions(+), 66 deletions(-)
 
 diff --git a/mailman-suite_project/settings.py b/mailman-suite_project/settings.py
-index fbf152b..2695a37 100644
+index fbf152b..029b5d6 100644
 --- a/mailman-suite_project/settings.py
 +++ b/mailman-suite_project/settings.py
 @@ -34,7 +34,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -197,7 +209,15 @@ index fbf152b..2695a37 100644
          # You can also use the Xapian engine, it's faster and more accurate,
          # but requires another library.
          # http://django-haystack.readthedocs.io/en/v2.4.1/installing_search_engines.html#xapian
-@@ -420,9 +413,9 @@ LOGGING = {
+@@ -396,6 +389,7 @@ Q_CLUSTER = {
+     'timeout': 300,
+     'save_limit': 100,
+     'orm': 'default',
++    'poll': 5,
+ }
+ 
+ 
+@@ -420,9 +414,9 @@ LOGGING = {
          },
          'file':{
              'level': 'INFO',
@@ -210,7 +230,7 @@ index fbf152b..2695a37 100644
              'formatter': 'verbose',
          },
          'console': {
-@@ -433,22 +426,23 @@ LOGGING = {
+@@ -433,22 +427,23 @@ LOGGING = {
      'loggers': {
          'django.request': {
              'handlers': ['mail_admins', 'file'],
@@ -238,7 +258,7 @@ index fbf152b..2695a37 100644
          },
      },
      'formatters': {
-@@ -476,14 +470,6 @@ LOGGING = {
+@@ -476,14 +471,6 @@ LOGGING = {
  #}
  
  
