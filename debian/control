@@ -19,7 +19,7 @@ Depends: dbconfig-sqlite3 | dbconfig-pgsql | dbconfig-mysql | dbconfig-no-thanks
          python3,
          python3-django-hyperkitty,
          python3-django-postorius,
-         python3-psycopg2 | python3-pymysql,
+         python3-psycopg2 | python3-mysqldb,
          python3-whoosh,
          ruby-sass,
          ucf,
