@@ -1,10 +1,10 @@
-mailman-suite (0+20180916-5) UNRELEASED; urgency=medium
+mailman-suite (0+20180916-5) unstable; urgency=medium
 
   * d/control:
     - Replaces python3-pymysql dependency by python3-mysqldb which is the
       appropriate one for Mailman3 django projects. (Closes: #920304)
 
- -- Pierre-Elliott Bécue <peb@debian.org>  Sat, 02 Feb 2019 17:46:19 +0100
+ -- Pierre-Elliott Bécue <peb@debian.org>  Sat, 02 Feb 2019 17:54:27 +0100
 
 mailman-suite (0+20180916-4) unstable; urgency=medium
 
