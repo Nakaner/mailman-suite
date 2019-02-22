@@ -18,13 +18,12 @@ Last-Update: 2019-02-22
   to 0.2 seconds) to decrease the database load.
 * Remove paintstore from INSTALLED_APPS, no longer used with hyperkitty
   1.2.2.
-
 ---
  mailman-suite_project/settings.py | 120 +++++++++++++++++---------------------
  1 file changed, 53 insertions(+), 67 deletions(-)
 
 diff --git a/mailman-suite_project/settings.py b/mailman-suite_project/settings.py
-index fbf152b..dfee08a 100644
+index fbf152b..0bb1c77 100644
 --- a/mailman-suite_project/settings.py
 +++ b/mailman-suite_project/settings.py
 @@ -34,7 +34,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -224,7 +223,7 @@ index fbf152b..dfee08a 100644
      'timeout': 300,
      'save_limit': 100,
      'orm': 'default',
-+    'poll: 5,
++    'poll': 5,
  }
  
  
