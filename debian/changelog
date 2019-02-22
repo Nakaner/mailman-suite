@@ -6,8 +6,10 @@ mailman-suite (0+20180916-6) unstable; urgency=medium
   * d/control:
     - Add breaks for python3-django-hyperkitty (<< 1.2.2-1~) to reflect
       the removed paintstore dependency.
+  * d/mailman3-web.service:
+    - spawn 'uwsgi --plugin python3' instead of 'uwsgi_python3'
 
- -- Jonas Meurer <jonas@freesources.org>  Fri, 22 Feb 2019 21:08:15 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Fri, 22 Feb 2019 22:10:44 +0100
 
 mailman-suite (0+20180916-5) unstable; urgency=medium
 
