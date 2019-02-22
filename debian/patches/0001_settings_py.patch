@@ -2,7 +2,7 @@ From: Jonas Meurer <jonas@freesources.org>
 Date: Fri, 14 Sep 2018 23:34:10 +0200
 Subject: Adjust settings.py for Debian mailman3-web
 Forwarded: not-needed
-Last-Update: 2019-01-23
+Last-Update: 2019-02-22
 
 * Disable debugging mode.
 * Disable all allauth socialaccount providers for privacy reasons.
@@ -14,14 +14,17 @@ Last-Update: 2019-01-23
 * Set 'ACCOUNT_DEFAULT_HTTP_PROTOCOL' to 'https'.
 * Use 'sass' instead of 'sassc' as CSS precompiler.
 * Change logging level for most logging channels to 'INFO'.
-* Set queue polling inteval for django-q  cluster to 5 seconds (defaults
+* Set queue polling inteval vor django-q cluster to 5 seconds (defaults
   to 0.2 seconds) to decrease the database load.
+* Remove paintstore from INSTALLED_APPS, no longer used with hyperkitty
+  1.2.2.
+
 ---
- mailman-suite_project/settings.py | 119 +++++++++++++++++---------------------
- 1 file changed, 53 insertions(+), 66 deletions(-)
+ mailman-suite_project/settings.py | 120 +++++++++++++++++---------------------
+ 1 file changed, 53 insertions(+), 67 deletions(-)
 
 diff --git a/mailman-suite_project/settings.py b/mailman-suite_project/settings.py
-index fbf152b..029b5d6 100644
+index fbf152b..dfee08a 100644
 --- a/mailman-suite_project/settings.py
 +++ b/mailman-suite_project/settings.py
 @@ -34,7 +34,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -33,7 +36,15 @@ index fbf152b..029b5d6 100644
  
  ADMINS = (
       ('Mailman Suite Admin', 'root@localhost'),
-@@ -84,13 +84,13 @@ INSTALLED_APPS = (
+@@ -75,7 +75,6 @@ INSTALLED_APPS = (
+     'django.contrib.staticfiles',
+     'rest_framework',
+     'django_gravatar',
+-    'paintstore',
+     'compressor',
+     'haystack',
+     'django_extensions',
+@@ -84,13 +83,13 @@ INSTALLED_APPS = (
      'allauth.account',
      'allauth.socialaccount',
      'django_mailman3.lib.auth.fedora',
@@ -53,7 +64,7 @@ index fbf152b..029b5d6 100644
  )
  
  
-@@ -143,9 +143,9 @@ WSGI_APPLICATION = 'wsgi.application'
+@@ -143,9 +142,9 @@ WSGI_APPLICATION = 'wsgi.application'
  DATABASES = {
      'default': {
          # Use 'sqlite3', 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -65,7 +76,7 @@ index fbf152b..029b5d6 100644
          # The following settings are not used with sqlite3:
          'USER': 'mailmansuite',
          'PASSWORD': 'mmpass',
-@@ -155,20 +155,12 @@ DATABASES = {
+@@ -155,20 +154,12 @@ DATABASES = {
          # PORT: set to empty string for default.
          'PORT': '',
      }
@@ -87,7 +98,7 @@ index fbf152b..029b5d6 100644
  
  # And if your proxy does your SSL encoding for you, set SECURE_PROXY_SSL_HEADER
  # https://docs.djangoproject.com/en/1.8/ref/settings/#secure-proxy-ssl-header
-@@ -233,11 +225,11 @@ USE_TZ = True
+@@ -233,11 +224,11 @@ USE_TZ = True
  # Don't put anything in this directory yourself; store your static files
  # in apps' "static/" subdirectories and in STATICFILES_DIRS.
  # Example: "/var/www/example.com/static/"
@@ -101,7 +112,7 @@ index fbf152b..029b5d6 100644
  
  # Additional locations of static files
  STATICFILES_DIRS = (
-@@ -266,23 +258,24 @@ LOGIN_URL = 'account_login'
+@@ -266,23 +257,24 @@ LOGIN_URL = 'account_login'
  LOGIN_REDIRECT_URL = 'list_index'
  LOGOUT_URL = 'account_logout'
  
@@ -129,7 +140,7 @@ index fbf152b..029b5d6 100644
  
  # Compatibility with Bootstrap 3
  from django.contrib.messages import constants as messages  # flake8: noqa
-@@ -304,34 +297,34 @@ ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+@@ -304,34 +296,34 @@ ACCOUNT_AUTHENTICATION_METHOD = "username_email"
  ACCOUNT_EMAIL_REQUIRED = True
  ACCOUNT_EMAIL_VERIFICATION = "mandatory"
  # You probably want https in production, but this is a dev setup file
@@ -189,7 +200,7 @@ index fbf152b..029b5d6 100644
  }
  
  
-@@ -359,8 +352,8 @@ SOCIALACCOUNT_PROVIDERS = {
+@@ -359,8 +351,8 @@ SOCIALACCOUNT_PROVIDERS = {
  #
  COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
@@ -200,7 +211,7 @@ index fbf152b..029b5d6 100644
  )
  # On a production setup, setting COMPRESS_OFFLINE to True will bring a
  # significant performance improvement, as CSS files will not need to be
-@@ -379,7 +372,7 @@ COMPRESS_PRECOMPILERS = (
+@@ -379,7 +371,7 @@ COMPRESS_PRECOMPILERS = (
  HAYSTACK_CONNECTIONS = {
      'default': {
          'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
@@ -209,15 +220,15 @@ index fbf152b..029b5d6 100644
          # You can also use the Xapian engine, it's faster and more accurate,
          # but requires another library.
          # http://django-haystack.readthedocs.io/en/v2.4.1/installing_search_engines.html#xapian
-@@ -396,6 +389,7 @@ Q_CLUSTER = {
+@@ -396,6 +388,7 @@ Q_CLUSTER = {
      'timeout': 300,
      'save_limit': 100,
      'orm': 'default',
-+    'poll': 5,
++    'poll: 5,
  }
  
  
-@@ -420,9 +414,9 @@ LOGGING = {
+@@ -420,9 +413,9 @@ LOGGING = {
          },
          'file':{
              'level': 'INFO',
@@ -230,7 +241,7 @@ index fbf152b..029b5d6 100644
              'formatter': 'verbose',
          },
          'console': {
-@@ -433,22 +427,23 @@ LOGGING = {
+@@ -433,22 +426,23 @@ LOGGING = {
      'loggers': {
          'django.request': {
              'handlers': ['mail_admins', 'file'],
@@ -258,7 +269,7 @@ index fbf152b..029b5d6 100644
          },
      },
      'formatters': {
-@@ -476,14 +471,6 @@ LOGGING = {
+@@ -476,14 +470,6 @@ LOGGING = {
  #}
  
  
