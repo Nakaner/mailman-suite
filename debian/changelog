@@ -4,8 +4,10 @@ mailman-suite (0+20180916-7) unstable; urgency=medium
     - Remove the whole logic to configure django site domain and name via
       debconf. The code was very error-prone and it's better to leave this
       exercise to the local admin. (Closes: #924330)
+  * d/mailman3-web-postinst:
+    - Fix logic to run init_django at install and update_django at upgrade.
 
- -- Jonas Meurer <jonas@freesources.org>  Tue, 12 Mar 2019 12:56:29 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Tue, 12 Mar 2019 13:07:32 +0100
 
 mailman-suite (0+20180916-6) unstable; urgency=medium
 

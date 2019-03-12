@@ -240,7 +240,7 @@ case "$1" in
 
         create_config
 
-        if [ -n "$2" ]; then
+        if [ -z "$2" ]; then
             init_django
         else
             update_django
