@@ -200,34 +200,6 @@ update_django () {
     fi
 }
 
-django_config_site () {
-    db_get mailman3-web/django-site
-    django_site_domain="$RET"
-
-    if [ -n "$django_site_domain" ]; then
-       django_site_domain_old="$($su_cmd "$django_admin shell $django_admin_args \
-           --command \"from django.contrib.sites.models import Site; \
-           print(Site.objects.all()[0].domain)\"" www-data)"
-       django_site_name="$($su_cmd "$django_admin shell $django_admin_args \
-           --command \"import locale; from django.contrib.sites.models import Site; \
-           print(Site.objects.all()[0].name.encode(locale.getpreferredencoding()))\"" www-data)"
-
-       if [ "$django_site_name" = "example.com" ] || \
-          [ "$django_site_name" = "$django_site_domain_old" ]; then
-           # change site name only if it's unchanged so far
-           django_site_name="$django_site_domain"
-       fi
-
-       $su_cmd "$django_admin shell $django_admin_args --command \
-            \"import locale; \
-              from django.contrib.sites.models import Site; \
-              one = Site.objects.all()[0]; \
-              one.domain = '${django_site_domain}'; \
-              one.name = ${django_site_name}.decode(locale.getpreferredencoding()); \
-              one.save()\"" www-data
-    fi
-}
-
 django_create_superuser () {
     db_get mailman3-web/superuser-name
     su_name="$RET"
@@ -274,7 +246,6 @@ case "$1" in
             update_django
         fi
 
-        django_config_site
         django_create_superuser
 
         upgrade_fixes "$@"

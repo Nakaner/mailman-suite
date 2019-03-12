@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mailman-suite\n"
 "Report-Msgid-Bugs-To: mailman-suite@packages.debian.org\n"
-"POT-Creation-Date: 2018-03-23 16:50+0100\n"
+"POT-Creation-Date: 2019-03-12 12:49+0100\n"
 "PO-Revision-Date: 2018-05-06 23:08+0500\n"
 "Last-Translator: Lev Lamberov <dogsleg@debian.org>\n"
 "Language-Team: Debian-L10n-Russian <debian-l10n-russian@lists.debian.org>\n"
@@ -22,29 +22,12 @@ msgstr ""
 #. Type: string
 #. Description
 #: ../templates:1001
-msgid "Domain name for Mailman3 web interface:"
-msgstr "Доменное имя для веб-интерфейса Mailman3:"
-
-#. Type: string
-#. Description
-#: ../templates:1001
-msgid ""
-"The Django project needs a default site domain set. This domain will be used "
-"by the webinterface and in mails sent in its name."
-msgstr ""
-"Для Django требуется указать домен сайта по умолчанию. Этот домен будет "
-"использоваться веб-интерфейсом, а также в сообщениях, отправляемых от его "
-"имени."
-
-#. Type: string
-#. Description
-#: ../templates:2001
 msgid "Domain name for sender email addresses:"
 msgstr "Имя домена для адресов отправителя сообщений:"
 
 #. Type: string
 #. Description
-#: ../templates:2001
+#: ../templates:1001
 msgid ""
 "If the Mailman3 web interface sends emails, this domain will be used for the "
 "sender addresses. In particular, it will be 'postorius@<domain>' for "
@@ -57,13 +40,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:3001
+#: ../templates:2001
 msgid "Username of the Postorius superuser:"
 msgstr "Имя пользователя, выполняющего роль суперпользователя Postorius:"
 
 #. Type: string
 #. Description
-#: ../templates:3001
+#: ../templates:2001
 msgid ""
 "This is the username of the Postorius superuser. It will have global "
 "administrative access to all mailinglists."
@@ -74,19 +57,19 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:4001
+#: ../templates:3001
 msgid "Email address of the Postorius superuser:"
 msgstr "Адрес электронной почты суперпользователя Postorius:"
 
 #. Type: password
 #. Description
-#: ../templates:5001
+#: ../templates:4001
 msgid "Password for the Postorius superuser:"
 msgstr "Пароль суперпользователя Postorius:"
 
 #. Type: password
 #. Description
-#: ../templates:5001
+#: ../templates:4001
 msgid ""
 "If an empty password is given, no superuser will be created at all. It then "
 "needs to be created manually."
@@ -96,31 +79,31 @@ msgstr ""
 
 #. Type: select
 #. Choices
-#: ../templates:6001
+#: ../templates:5001
 msgid "none"
 msgstr "отсутствует"
 
 #. Type: select
 #. Choices
-#: ../templates:6001
+#: ../templates:5001
 msgid "apache2"
 msgstr "apache2"
 
 #. Type: select
 #. Choices
-#: ../templates:6001
+#: ../templates:5001
 msgid "nginx"
 msgstr "nginx"
 
 #. Type: select
 #. Description
-#: ../templates:6002
+#: ../templates:5002
 msgid "Web server(s) to configure automatically:"
 msgstr "Веб-сервер (-ы) для выполнения автоматической настройки:"
 
 #. Type: select
 #. Description
-#: ../templates:6002
+#: ../templates:5002
 msgid ""
 "Mailman3-web supports any web server with uwsgi support, however only Apache "
 "2 and nginx can be configured automatically."
@@ -130,7 +113,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../templates:6002
+#: ../templates:5002
 msgid ""
 "Please select the web server(s) that should be configured automatically for "
 "Mailman3-web."
@@ -140,13 +123,13 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../templates:7001
+#: ../templates:6001
 msgid "Configuring Mailman3 in Nginx"
 msgstr "Настройка Mailman3 в Nginx"
 
 #. Type: note
 #. Description
-#: ../templates:7001
+#: ../templates:6001
 msgid ""
 "The Mailman3 Nginx configuration file is a vhost configuration. Hence, it "
 "comes with a server name which is set to mailman.example.com. You will have "
@@ -158,7 +141,7 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../templates:7001
+#: ../templates:6001
 msgid ""
 "Please also note that Mailman3 is configured to expect the web interface at "
 "URL subdirectory '/mailman3' per default. But in the nginx file, as the "
@@ -170,7 +153,7 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../templates:7001
+#: ../templates:6001
 msgid ""
 "For the Nginx vhost configuration (without '/mailman3' subdomain) to work, "
 "you will have to edit the URL in 'base-url' at '/etc/mailman3/mailman-"
@@ -184,19 +167,19 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../templates:7001
+#: ../templates:6001
 msgid "See the comments in '/etc/mailman3/nginx.conf' for details."
 msgstr "Подробности см. в комментариях в файле «/etc/mailman3/nginx.conf»."
 
 #. Type: boolean
 #. Description
-#: ../templates:8001
+#: ../templates:7001
 msgid "Should the webserver(s) be restarted now?"
 msgstr "Перезапустить веб-сервер (-ы) прямо сейчас?"
 
 #. Type: boolean
 #. Description
-#: ../templates:8001
+#: ../templates:7001
 msgid ""
 "In order to activate the new configuration, the configured web server(s) "
 "have to be restarted."
