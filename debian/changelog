@@ -1,4 +1,4 @@
-mailman-suite (0+20180916-7) unstable; urgency=medium
+mailman-suite (0+20180916-7) unstable; urgency=critical
 
   * d/templates, d/po/*.po, d/mailman3-web.{config,postinst}:
     - Remove the whole logic to configure django site domain and name via
@@ -7,7 +7,7 @@ mailman-suite (0+20180916-7) unstable; urgency=medium
   * d/mailman3-web-postinst:
     - Fix logic to run init_django at install and update_django at upgrade.
 
- -- Jonas Meurer <jonas@freesources.org>  Tue, 12 Mar 2019 13:07:32 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Tue, 12 Mar 2019 13:20:15 +0100
 
 mailman-suite (0+20180916-6) unstable; urgency=medium
 
