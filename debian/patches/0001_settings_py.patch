@@ -12,7 +12,6 @@ Last-Update: 2019-02-22
 * Adjust 'DEFAULT_FROM_EMAIL' and 'SERVER_EMAIL'.
 * Use smtp email backend per default to send mails.
 * Set 'ACCOUNT_DEFAULT_HTTP_PROTOCOL' to 'https'.
-* Use 'sass' instead of 'sassc' as CSS precompiler.
 * Change logging level for most logging channels to 'INFO'.
 * Set queue polling inteval vor django-q cluster to 5 seconds (defaults
   to 0.2 seconds) to decrease the database load.
@@ -199,17 +198,6 @@ index fbf152b..0bb1c77 100644
  }
  
  
-@@ -359,8 +351,8 @@ SOCIALACCOUNT_PROVIDERS = {
- #
- COMPRESS_PRECOMPILERS = (
-    ('text/less', 'lessc {infile} {outfile}'),
--   ('text/x-scss', 'sassc -t compressed {infile} {outfile}'),
--   ('text/x-sass', 'sassc -t compressed {infile} {outfile}'),
-+   ('text/x-scss', 'sass -t compressed {infile} {outfile}'),
-+   ('text/x-sass', 'sass -t compressed {infile} {outfile}'),
- )
- # On a production setup, setting COMPRESS_OFFLINE to True will bring a
- # significant performance improvement, as CSS files will not need to be
 @@ -379,7 +371,7 @@ COMPRESS_PRECOMPILERS = (
  HAYSTACK_CONNECTIONS = {
      'default': {

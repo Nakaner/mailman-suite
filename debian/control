@@ -21,7 +21,7 @@ Depends: dbconfig-sqlite3 | dbconfig-pgsql | dbconfig-mysql | dbconfig-no-thanks
          python3-django-postorius,
          python3-psycopg2 | python3-mysqldb,
          python3-whoosh,
-         ruby-sass,
+         sassc,
          ucf,
          uwsgi,
          uwsgi-plugin-python3,
