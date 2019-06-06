@@ -226,8 +226,8 @@ upgrade_fixes () {
 
     # Remove superfluous systemd mailman3-web-qcluster service unit file
     if [ ! -z "$2" ] && dpkg --compare-versions "$2" le "0+20180916-4~"; then
-        systemctl --system daemon-reload >/dev/null || true
         if [ -d /run/systemd/system ]; then
+            systemctl --system daemon-reload >/dev/null || true
             deb-systemd-invoke stop 'mailman3-web-qcluster.service' >/dev/null || true
         fi
         deb-systemd-helper purge 'mailman3-web-qcluster.service' >/dev/null || true

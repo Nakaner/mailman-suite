@@ -1,3 +1,10 @@
+mailman-suite (0+20180916-8) UNRELEASED; urgency=medium
+
+  * d/mailman3-web.postinst:
+    - Run 'systemctl daemon-reload' just if systemd is installed.
+
+ -- Jonas Meurer <jonas@freesources.org>  Thu, 06 Jun 2019 18:26:58 +0200
+
 mailman-suite (0+20180916-7) unstable; urgency=critical
 
   * d/templates, d/po/*.po, d/mailman3-web.{config,postinst}:
