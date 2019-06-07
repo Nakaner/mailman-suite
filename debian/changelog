@@ -2,12 +2,13 @@ mailman-suite (0+20180916-8) UNRELEASED; urgency=medium
 
   * d/mailman3-web.postinst:
     - Run 'systemctl daemon-reload' just if systemd is installed.
+      (Closes: #930133)
   * d/control, d/patches/0001_settings_py.patch:
     - Switch back from ruby-sass to sassc. Ruby-sass became unmaintained
       and abandoned recently. Thanks to Christian Ehrhardt for bugreport
       and patch. (Closes: #924629)
 
- -- Jonas Meurer <jonas@freesources.org>  Fri, 07 Jun 2019 19:07:46 +0200
+ -- Jonas Meurer <jonas@freesources.org>  Fri, 07 Jun 2019 19:16:40 +0200
 
 mailman-suite (0+20180916-7) unstable; urgency=critical
 
