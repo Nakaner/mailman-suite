@@ -15,7 +15,6 @@ Package: mailman3-web
 Architecture: all
 Depends: dbconfig-sqlite3 | dbconfig-pgsql | dbconfig-mysql | dbconfig-no-thanks,
          lsb-base,
-         node-less,
          python3,
          python3-django-hyperkitty,
          python3-django-postorius,

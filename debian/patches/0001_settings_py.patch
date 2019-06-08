@@ -1,6 +1,7 @@
 From: Jonas Meurer <jonas@freesources.org>
 Date: Fri, 14 Sep 2018 23:34:10 +0200
 Subject: Adjust settings.py for Debian mailman3-web
+
 Forwarded: not-needed
 Last-Update: 2019-02-22
 
@@ -17,12 +18,14 @@ Last-Update: 2019-02-22
   to 0.2 seconds) to decrease the database load.
 * Remove paintstore from INSTALLED_APPS, no longer used with hyperkitty
   1.2.2.
+* Remove lessc from COMPRESS_COMPILERS, mailman3 django projects don't
+  use/require less at all.
 ---
- mailman-suite_project/settings.py | 120 +++++++++++++++++---------------------
- 1 file changed, 53 insertions(+), 67 deletions(-)
+ mailman-suite_project/settings.py | 117 +++++++++++++++++---------------------
+ 1 file changed, 51 insertions(+), 66 deletions(-)
 
 diff --git a/mailman-suite_project/settings.py b/mailman-suite_project/settings.py
-index fbf152b..0bb1c77 100644
+index fbf152b..7d0520a 100644
 --- a/mailman-suite_project/settings.py
 +++ b/mailman-suite_project/settings.py
 @@ -34,7 +34,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -198,7 +201,15 @@ index fbf152b..0bb1c77 100644
  }
  
  
-@@ -379,7 +371,7 @@ COMPRESS_PRECOMPILERS = (
+@@ -358,7 +350,6 @@ SOCIALACCOUNT_PROVIDERS = {
+ # https://pypi.python.org/pypi/django_compressor
+ #
+ COMPRESS_PRECOMPILERS = (
+-   ('text/less', 'lessc {infile} {outfile}'),
+    ('text/x-scss', 'sassc -t compressed {infile} {outfile}'),
+    ('text/x-sass', 'sassc -t compressed {infile} {outfile}'),
+ )
+@@ -379,7 +370,7 @@ COMPRESS_PRECOMPILERS = (
  HAYSTACK_CONNECTIONS = {
      'default': {
          'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
@@ -207,7 +218,7 @@ index fbf152b..0bb1c77 100644
          # You can also use the Xapian engine, it's faster and more accurate,
          # but requires another library.
          # http://django-haystack.readthedocs.io/en/v2.4.1/installing_search_engines.html#xapian
-@@ -396,6 +388,7 @@ Q_CLUSTER = {
+@@ -396,6 +387,7 @@ Q_CLUSTER = {
      'timeout': 300,
      'save_limit': 100,
      'orm': 'default',
@@ -215,7 +226,7 @@ index fbf152b..0bb1c77 100644
  }
  
  
-@@ -420,9 +413,9 @@ LOGGING = {
+@@ -420,9 +412,9 @@ LOGGING = {
          },
          'file':{
              'level': 'INFO',
@@ -228,7 +239,7 @@ index fbf152b..0bb1c77 100644
              'formatter': 'verbose',
          },
          'console': {
-@@ -433,22 +426,23 @@ LOGGING = {
+@@ -433,22 +425,23 @@ LOGGING = {
      'loggers': {
          'django.request': {
              'handlers': ['mail_admins', 'file'],
@@ -256,7 +267,7 @@ index fbf152b..0bb1c77 100644
          },
      },
      'formatters': {
-@@ -476,14 +470,6 @@ LOGGING = {
+@@ -476,14 +469,6 @@ LOGGING = {
  #}
  
  
