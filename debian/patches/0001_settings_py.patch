@@ -20,12 +20,14 @@ Last-Update: 2019-02-22
   1.2.2.
 * Remove lessc from COMPRESS_COMPILERS, mailman3 django projects don't
   use/require less at all.
+* Uncomment COMPRESS_COMPILERS altogether. Hyperkitty in Debian compiles
+  scss files at build time, so no sass compiler is needed at runtime.
 ---
- mailman-suite_project/settings.py | 117 +++++++++++++++++---------------------
- 1 file changed, 51 insertions(+), 66 deletions(-)
+ mailman-suite_project/settings.py | 125 +++++++++++++++++---------------------
+ 1 file changed, 55 insertions(+), 70 deletions(-)
 
 diff --git a/mailman-suite_project/settings.py b/mailman-suite_project/settings.py
-index fbf152b..7d0520a 100644
+index fbf152b..b6a5967 100644
 --- a/mailman-suite_project/settings.py
 +++ b/mailman-suite_project/settings.py
 @@ -34,7 +34,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -201,14 +203,22 @@ index fbf152b..7d0520a 100644
  }
  
  
-@@ -358,7 +350,6 @@ SOCIALACCOUNT_PROVIDERS = {
+@@ -357,11 +349,10 @@ SOCIALACCOUNT_PROVIDERS = {
+ # django-compressor
  # https://pypi.python.org/pypi/django_compressor
  #
- COMPRESS_PRECOMPILERS = (
+-COMPRESS_PRECOMPILERS = (
 -   ('text/less', 'lessc {infile} {outfile}'),
-    ('text/x-scss', 'sassc -t compressed {infile} {outfile}'),
-    ('text/x-sass', 'sassc -t compressed {infile} {outfile}'),
- )
+-   ('text/x-scss', 'sassc -t compressed {infile} {outfile}'),
+-   ('text/x-sass', 'sassc -t compressed {infile} {outfile}'),
+-)
++#COMPRESS_PRECOMPILERS = (
++#   ('text/x-scss', 'sassc -t compressed {infile} {outfile}'),
++#   ('text/x-sass', 'sassc -t compressed {infile} {outfile}'),
++#)
+ # On a production setup, setting COMPRESS_OFFLINE to True will bring a
+ # significant performance improvement, as CSS files will not need to be
+ # recompiled on each requests. It means running an additional "compress"
 @@ -379,7 +370,7 @@ COMPRESS_PRECOMPILERS = (
  HAYSTACK_CONNECTIONS = {
      'default': {

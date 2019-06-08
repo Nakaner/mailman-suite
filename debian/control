@@ -16,18 +16,16 @@ Architecture: all
 Depends: dbconfig-sqlite3 | dbconfig-pgsql | dbconfig-mysql | dbconfig-no-thanks,
          lsb-base,
          python3,
-         python3-django-hyperkitty,
+         python3-django-hyperkitty (>= 1.2.2-2~),
          python3-django-postorius,
          python3-psycopg2 | python3-mysqldb,
          python3-whoosh,
-         sassc,
          ucf,
          uwsgi,
          uwsgi-plugin-python3,
          ${misc:Depends}
 Recommends: libapache2-mod-proxy-uwsgi | nginx
 Suggests: postgresql | default-mysql-server | virtual-mysql-server
-Breaks: python3-django-hyperkitty (<< 1.2.2-1~)
 Description: Django project integrating Mailman3 Postorius and HyperKitty
  This django web application provides the Mailman3 Postorius web interface
  and the HyperKitty mailinglist archiver integrated into one project.

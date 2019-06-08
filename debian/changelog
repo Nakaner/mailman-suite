@@ -1,3 +1,14 @@
+mailman-suite (0+20180916-10) UNRELEASED; urgency=medium
+
+  * d/control, d/patches/0001_settings_py.patch:
+    * Remove dependency on sassc and tighten the dependeny on
+      python3-django-hyperkitty to (>= 1.2.2-2~). Hyperkitty now compiles
+      the scss files at build-time, which allows us to drop the sassc drop
+      the build-time dependeny. Thanks to Christian Ehrhardt for bringing
+      up this topic. (Closes: #924961)
+
+ -- Jonas Meurer <jonas@freesources.org>  Sat, 08 Jun 2019 19:43:03 +0200
+
 mailman-suite (0+20180916-9) unstable; urgency=medium
 
   * d/control, d/patches/0001_settings_py.patch:
