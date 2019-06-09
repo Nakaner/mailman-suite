@@ -1,6 +1,15 @@
 include:
- - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml
- - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml
 
 variables:
- RELEASE: 'unstable'
+  RELEASE: 'unstable'
+
+# Disable the reprotest job for now. It fails because reprotest does
+# `unshare -r`, which breaks `chown`. See
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928921 for more context
+reprotest:
+  extends: .test-reprotest
+  only:
+    refs:
+      - nonexistent_ref_d41d8cd98f00b204e9800998ecf8427e
