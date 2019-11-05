@@ -4,7 +4,8 @@ Priority: optional
 Maintainer: Debian Mailman Team <pkg-mailman-hackers@lists.alioth.debian.org>
 Uploaders: Pierre-Elliott Bécue <peb@debian.org>,
            Jonas Meurer <jonas@freesources.org>
-Build-Depends: debhelper (>= 11~), po-debconf
+Build-Depends: debhelper-compat (= 12),
+               po-debconf
 Rules-Requires-Root: binary-targets
 Standards-Version: 4.4.1
 Homepage: https://gitlab.com/mailman/mailman-suite
