@@ -12,6 +12,8 @@ mailman-suite (0+20180916-10) UNRELEASED; urgency=medium
   * d/control:
     - Bump Standards-Version to 4.4.1
     - Switch to debhelper-compat (version 12) instead of debian/compat
+    - Use Pre-Depends: ${misc:Pre-Depends} to be properly compatible
+      with --skip-systemd-native
 
  -- Pierre-Elliott Bécue <peb@debian.org>  Tue, 05 Nov 2019 22:26:33 +0100
 
