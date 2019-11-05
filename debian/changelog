@@ -1,4 +1,4 @@
-mailman-suite (0+20180916-10) UNRELEASED; urgency=medium
+mailman-suite (0+20180916-10) unstable; urgency=medium
 
   [ Jonas Meurer ]
   * d/control, d/patches/0001_settings_py.patch:
@@ -15,7 +15,7 @@ mailman-suite (0+20180916-10) UNRELEASED; urgency=medium
     - Use Pre-Depends: ${misc:Pre-Depends} to be properly compatible
       with --skip-systemd-native
 
- -- Pierre-Elliott Bécue <peb@debian.org>  Tue, 05 Nov 2019 22:26:33 +0100
+ -- Pierre-Elliott Bécue <peb@debian.org>  Tue, 05 Nov 2019 22:34:23 +0100
 
 mailman-suite (0+20180916-9) unstable; urgency=medium
 
