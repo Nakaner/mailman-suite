@@ -2,8 +2,9 @@ mailman-suite (0+20200530-1) UNRELEASED; urgency=medium
 
   * New upstream snapshot 0+20200530
     * d/patches/0001_settings_py.patch: rebase
+  * d/mailman3-web.service: Switch to `StandardError=journal`
 
- -- Jonas Meurer <jonas@freesources.org>  Sat, 23 Jan 2021 21:01:25 +0100
+ -- Jonas Meurer <jonas@freesources.org>  Sat, 23 Jan 2021 21:28:42 +0100
 
 mailman-suite (0+20180916-10) unstable; urgency=medium
 
