@@ -1,4 +1,4 @@
-mailman-suite (0+20200530-1) UNRELEASED; urgency=medium
+mailman-suite (0+20200530-1) unstable; urgency=medium
 
   * New upstream snapshot 0+20200530
     * d/patches/0001_settings_py.patch: rebase
