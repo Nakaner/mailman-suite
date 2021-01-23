@@ -75,7 +75,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'django_gravatar',
-    'paintstore',
     'compressor',
     'haystack',
     'django_extensions',
@@ -88,7 +87,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.gitlab',
     'allauth.socialaccount.providers.google',
-    #'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
     'allauth.socialaccount.providers.stackexchange',
 )
@@ -154,6 +153,8 @@ DATABASES = {
         'HOST': '',
         # PORT: set to empty string for default.
         'PORT': '',
+        # OPTIONS: for mysql engine only, do not use with other engines.
+        # 'OPTIONS': {'charset': 'utf8mb4'}  # Enable utf8 4-byte encodings.
     }
     # Example for PostgreSQL (recommanded for production):
     #'default': {
