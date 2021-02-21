@@ -27,7 +27,9 @@ Depends: dbconfig-sqlite3 | dbconfig-pgsql | dbconfig-mysql | dbconfig-no-thanks
          uwsgi-plugin-python3,
          ${misc:Depends}
 Recommends: libapache2-mod-proxy-uwsgi | nginx
-Suggests: postgresql | default-mysql-server | virtual-mysql-server
+Suggests: flite,
+          postgresql | default-mysql-server | virtual-mysql-server,
+          sox
 Description: Django project integrating Mailman3 Postorius and HyperKitty
  This django web application provides the Mailman3 Postorius web interface
  and the HyperKitty mailinglist archiver integrated into one project.

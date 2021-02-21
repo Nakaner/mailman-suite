@@ -1,3 +1,10 @@
+mailman-suite (0+20180916-11) unstable; urgency=medium
+
+  * d/p/0002_captcha.patch
+    - Add support for captchas using django-simple-captcha.
+
+ -- Michael Reichert <osm-ml@michreichert.de>  Sun, 21 Feb 2021 11:27:40 +0100
+
 mailman-suite (0+20180916-10) unstable; urgency=medium
 
   [ Jonas Meurer ]

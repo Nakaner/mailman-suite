@@ -59,6 +59,7 @@ INSTALLED_APPS = (
     #'allauth.socialaccount.providers.facebook',
     #'allauth.socialaccount.providers.twitter',
     #'allauth.socialaccount.providers.stackexchange',
+    #'captcha',
 )
 
 
@@ -188,3 +189,13 @@ SOCIALACCOUNT_PROVIDERS = {
 COMPRESS_OFFLINE = True
 
 POSTORIUS_TEMPLATE_BASE_URL = 'http://localhost/mailman3/'
+
+# # Uncomment the following lines for Captcha support
+# # Don't forget to add 'captcha' to INSTALLED_APPS.
+# ACCOUNT_SIGNUP_FORM_CLASS = 'django_mailman3.forms.CaptchaSignupForm'
+# import shutil
+# # Flite makes captchas audible for visually impaired users.
+# CAPTCHA_FLITE_PATH = shutil.which('flite')
+# # Sox adds random noise to prevent spammers calculating hashes of the
+# # captchas and creating rainbow tables of them.
+# CAPTCHA_SOX_PATH = shutil.which('sox')
